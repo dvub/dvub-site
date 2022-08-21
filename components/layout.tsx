@@ -1,19 +1,13 @@
 import CSS from 'csstype'
 import React, { ReactNode, FC } from 'react';
+import type { Metadata } from '../types/metada'
 
 
-interface Meta {
-    title: string;
-    author: string;
-    authorLink: string;
-    date: string;
-}
 
 interface Props {
     children: ReactNode;
-    meta: Meta;
+    meta: Metadata;
 }
-
 const Layout: FC<Props> = (props) => {
 
     const { children, meta } = props;
