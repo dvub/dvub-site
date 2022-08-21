@@ -1,41 +1,42 @@
 import CSS from 'csstype'
+import React, { ReactNode, FC } from 'react';
 
-interface Props {
-    children: string; // this might be wrong ...?
-    meta: Meta;
-}
+
 interface Meta {
     title: string;
     author: string;
     authorLink: string;
     date: string;
 }
-const Layout = (props: Props) => {
 
-    const style: CSS.Properties = {
-        textAlign: 'center',
-    }
+interface Props {
+    children: ReactNode;
+    meta: Meta;
+}
+
+const Layout: FC<Props> = (props) => {
+
+    const { children, meta } = props;
+    const { title, author, date, authorLink } = meta;
 
     return (
-        <div>
+        <div style={{textAlign: 'center'}}>
             {/* title, author, date, etc */}
-            <header style={style}>
-                <h1>{props.meta.title}</h1>
-                By: <a href="https://github.com/dvub">{props.meta.author}</a>
+            <header>
+                <h1>{title}</h1>
+                By: <a href={authorLink}>{author}</a>
                 <br/>
-                Date: {props.meta.date}
+                Date: {date}
             </header>
 
             {/* props.children will render the standard md content*/}
-            <div>
-                {props.children}    
+            <div style={{display: 'inline-block',textAlign: 'left'}}>
+                {children}    
             </div>
 
             {/*footer goes here */}
-
             <footer>
 
-                <a href="#top">back to top</a>
             </footer>
         </div>
     );
