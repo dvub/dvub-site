@@ -10,35 +10,56 @@ import { Metadata } from '../types/metada';
 */
 export async function getStaticProps() {
 
-    const metas = [];
+    const postInfos: Array<PostInfo> = [];
     const postFiles = fs.readdirSync('./pages/posts/');
+
     for (let post of postFiles) {
         try {
+
+            const fileName = post.substring(0, post.length - 4);
             const { meta } = await import(`./posts/${post}`); // dynamic imports
-            metas.push(meta);
+
+            postInfos.push({ metadata: meta, fileName: fileName });
+
         } catch (error) {
             console.log(error);
         }
     }
-
     return {
         props: {
-            metas: metas
+            PostInfos: postInfos
         },
     }
 }
 
+
+interface PostInfo {
+    metadata: Metadata;
+    fileName: string;
+}
+
 interface Props {
-    metas: Array<Metadata>,
+    PostInfos: Array<PostInfo>
 }
 
 const Posts: FC<Props> = (props) => {
     
-    const metadatas = props.metas;
-    const listItems = metadatas.map((d) => {
-        return <li key={d.title}>
-            {d.title}
-        </li>
+    const postInfos = props.PostInfos;
+
+    const listItems = postInfos.map((d) => {
+
+        const { title, description, date } = d.metadata;
+
+        return (
+            <a key={d.metadata.title} href={`posts/${d.fileName}`}>
+                <li key={title} >
+                    <h2>{title}</h2>
+                    {description}<br/>
+                    {date}
+                    
+                </li>
+            </a>
+        );
     });
     return (
         <div>
