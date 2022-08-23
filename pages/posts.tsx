@@ -1,8 +1,9 @@
-import type { NextPage } from 'next'
 import fs from 'fs'
 import { FC } from 'react'
 import { Metadata } from '../types/metada';
 import Navbar from '../components/navbar'
+import Link from 'next/link'
+
 /*
 * getStaticProps() to get metadata of posts
 * code adapted from: 
@@ -51,14 +52,14 @@ const Posts: FC<Props> = (props) => {
         const { title, description, date } = d.metadata;
 
         return (
-            <a key={d.metadata.title} href={`posts/${d.fileName}`}>
+            <Link key={d.metadata.title} href={`posts/${d.fileName}`}>
                 <li key={title} >
                     <h2>{title}</h2>
                     {description}<br/>
                     {date}
                     
                 </li>
-            </a>
+            </Link>
         );
     });
     return (

@@ -1,5 +1,11 @@
 import type { NextPage } from 'next'
 import Navbar from '../components/navbar'
+
+// todo:
+// add syntax highlighting to mdx - DONE
+// use head to add titles to pages other than posts
+// create a global header component with website title, navbar, etc.
+
 const Home: NextPage = () => {
 
   return (
