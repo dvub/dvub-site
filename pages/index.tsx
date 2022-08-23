@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import Navbar from '../components/navbar'
+import CustomNavBar from '../components/navbar'
 
 // todo:
 // add syntax highlighting to mdx - DONE
@@ -10,8 +10,6 @@ const Home: NextPage = () => {
 
   return (
     <div>
-      <h1>Name</h1>
-      <Navbar></Navbar>
       <div style={{textAlign: 'center'}}>
         <h1>Welcome To My Website!</h1>
         <p>

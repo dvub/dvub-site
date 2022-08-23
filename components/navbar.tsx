@@ -1,16 +1,32 @@
-import Link from 'next/link'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FC } from 'react'
 
-const Navbar = () => {
+
+
+const CustomNavBar = () => {
 
     return (
-        <div style={{display: 'flex', justifyContent: 'space-between', paddingRight: '50%'}}>
-
-            <Link href='../'>Main Page</Link>
-            <Link href='../posts'>Posts</Link>
-            <Link href='../about'>About</Link>
-            <Link href='https://github.com/dvub'>My Projects</Link>
-        </div>
+        <div>
+            <Navbar sticky='top' bg='dark' variant='dark' expand="lg">
+            <Container>
+            <Navbar.Brand href="../">dvubLog[]</Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                <Nav.Link href="../">Home</Nav.Link>
+                <Nav.Link href="../about">About</Nav.Link>
+                <Nav.Link href="../posts">Posts</Nav.Link>
+                </Nav>
+            </Navbar.Collapse>
+            </Container>
+        </Navbar>
+      </div>
     ); 
 
 }
-export default Navbar
+
+
+export default CustomNavBar

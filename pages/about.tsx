@@ -1,11 +1,14 @@
 import type { NextPage } from 'next'
-import Navbar from '../components/navbar'
-const About: NextPage = () => {
+import Head from 'next/head'
+
+const About = () => {
 
   return (
+
     <div>
-        <Navbar></Navbar>
-        <h1>About Me!</h1>
+    <h1>About Me!</h1>
+
+    asdasdasdasd
     </div>
   );
 }
