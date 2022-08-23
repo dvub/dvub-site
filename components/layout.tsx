@@ -13,10 +13,16 @@ const Layout: FC<Props> = (props) => {
     const { children, meta } = props;
     const { title, author, date, authorLink } = meta;
 
+
+    const bodyStyle: CSS.Properties = {
+        textAlign: 'left',
+    }
     return (
-        <div style={{textAlign: 'center'}}>
+
+
+        <div> 
             {/* title, author, date, etc */}
-            <header>
+            <header style={{textAlign: 'center'}}>
                 <h1>{title}</h1>
                 By: <a href={authorLink}>{author}</a>
                 <br/>
@@ -24,7 +30,10 @@ const Layout: FC<Props> = (props) => {
             </header>
 
             {/* props.children will render the standard md content*/}
-            <div style={{display: 'inline-block',textAlign: 'left'}}>
+            <div style={bodyStyle}>
+
+                <a href='../posts'>Back to posts</a>
+
                 {children}    
             </div>
 

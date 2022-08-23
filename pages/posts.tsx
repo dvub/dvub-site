@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import fs from 'fs'
 import { FC } from 'react'
 import { Metadata } from '../types/metada';
-
+import Navbar from '../components/navbar'
 /*
 * getStaticProps() to get metadata of posts
 * code adapted from: 
@@ -63,6 +63,7 @@ const Posts: FC<Props> = (props) => {
     });
     return (
         <div>
+            <Navbar></Navbar>
             <h1>Posts</h1>
             <ul>
                 {listItems}
