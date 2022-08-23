@@ -2,7 +2,8 @@ import fs from 'fs'
 import { FC } from 'react'
 import { Metadata } from '../types/metada';
 import Link from 'next/link'
-
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 /*
 * getStaticProps() to get metadata of posts
 * code adapted from: 
@@ -51,13 +52,15 @@ const Posts: FC<Props> = (props) => {
         const { title, description, date } = d.metadata;
 
         return (
-            <Link key={title} href={`posts/${d.fileName}`}>
-                <li>
-                    <h2>{title}</h2>
-                    {description}<br/>
-                    {date}
-                </li>
-            </Link>
+            <Card key={title} style={{width: '18rem'}}>
+                <Card.Body>
+                    <Card.Title>{title}</Card.Title>
+                    <Card.Text>
+                        {description}
+                    </Card.Text>
+                <Button href={`posts/${d.fileName}`} variant="primary">Go</Button>
+                </Card.Body>
+            </Card>
         );
     });
     return (
