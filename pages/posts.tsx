@@ -52,12 +52,11 @@ const Posts: FC<Props> = (props) => {
         const { title, description, date } = d.metadata;
 
         return (
-            <Link key={d.metadata.title} href={`posts/${d.fileName}`}>
-                <li key={title} >
+            <Link key={title} href={`posts/${d.fileName}`}>
+                <li>
                     <h2>{title}</h2>
                     {description}<br/>
                     {date}
-                    
                 </li>
             </Link>
         );
