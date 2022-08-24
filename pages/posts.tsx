@@ -52,20 +52,21 @@ const Posts: FC<Props> = (props) => {
         const { title, description, date } = d.metadata;
 
         return (
-            <Card key={title} style={{width: '18rem'}}>
-                <Card.Body>
-                    <Card.Title>{title}</Card.Title>
-                    <Card.Text>
-                        {description}
-                    </Card.Text>
-                <Button href={`posts/${d.fileName}`} variant="primary">Go</Button>
-                </Card.Body>
-            </Card>
+            <Link href={`posts/${d.fileName}`} key={title}>
+                <Card style={{width: '18rem'}}>
+                    <Card.Body>
+                        <Card.Title>{title}</Card.Title>
+                        <Card.Subtitle>{date}</Card.Subtitle> 
+                        <Card.Text>
+                            {description}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+            </Link>
         );
     });
     return (
         <div>
-            <h1>Posts</h1>
             <ul>
                 {listItems}
             </ul>
