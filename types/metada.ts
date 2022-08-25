@@ -4,4 +4,5 @@ export interface Metadata {
     authorLink: string;
     date: string;
     description: string;
+    tags: Array<string>;
 }

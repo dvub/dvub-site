@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import CustomNavBar from '../components/navbar'
 
 // todo:
 // add syntax highlighting to mdx - DONE

@@ -2,8 +2,8 @@ import fs from 'fs'
 import { FC } from 'react'
 import { Metadata } from '../types/metada';
 import Link from 'next/link'
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Col, Container, Row } from 'react-bootstrap';
 /*
 * getStaticProps() to get metadata of posts
 * code adapted from: 
@@ -45,31 +45,44 @@ interface Props {
 
 const Posts: FC<Props> = (props) => {
     
-    const postInfos = props.PostInfos;
+    const postInfos =  props.PostInfos;
 
     const listItems = postInfos.map((d) => {
 
-        const { title, description, date } = d.metadata;
+        const { title, description, date, tags } = d.metadata;
+
+        const tagStream = tags.join('-');
 
         return (
-            <Link href={`posts/${d.fileName}`} key={title}>
-                <Card style={{width: '18rem'}}>
-                    <Card.Body>
-                        <Card.Title>{title}</Card.Title>
-                        <Card.Subtitle>{date}</Card.Subtitle> 
-                        <Card.Text>
-                            {description}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-            </Link>
+            <Col key={title}>
+                <Link href={`posts/${d.fileName}`}>
+                    <Card style={{width: '18rem'}}>
+                        <Card.Body>
+                            <Card.Title>{title}</Card.Title>
+
+                            <Card.Text>
+                                {description}
+                            </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            {date} · {tagStream}
+                        </Card.Footer>
+                    </Card>
+                </Link>
+            </Col>
+
         );
     });
+
+    
     return (
+
         <div>
-            <ul>
-                {listItems}
-            </ul>
+            <Container style={{margin: '2rem'}}>
+                <Row xs={'auto'}>
+                    {listItems}
+                </Row>
+            </Container>
         </div>
     );
 }
