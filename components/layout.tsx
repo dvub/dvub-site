@@ -11,7 +11,7 @@ interface Props {
 const Layout: FC<Props> = (props) => {
 
     const { children, meta } = props;
-    const { title, author, date, authorLink, description } = meta;
+    const { title, author, date, authorLink, description, tags } = meta;
 
 
 
@@ -22,6 +22,9 @@ const Layout: FC<Props> = (props) => {
         marginRight: sideMargin,
         marginTop: '2rem',
     }
+
+    const tagDisplay = tags ? tags.join(', ') : '';
+
     return (
         <>
             <Head>
@@ -32,19 +35,14 @@ const Layout: FC<Props> = (props) => {
             <div>
                 {/* title, author, date, etc */}
                 <header style={bodyStyle}>
-                    <h1>{title}</h1>
-                    By: <a href={authorLink}>{author}</a>
-                    <br />
-                    Date: {date}
-                    <br/>
+                    <h1>{title}</h1> 
+                    <a href={authorLink}>{author}</a> · {date} · {tagDisplay}
+                    <br/><br/>
                     {description}
                 </header>
 
                 {/* props.children will render the standard md content*/}
                 <div style={bodyStyle}>
-
-                    <Link href='../posts'>Back to posts</Link>
-
                     {children}
                 </div>
 
