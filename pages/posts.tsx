@@ -15,7 +15,7 @@ const Posts = () => {
 
     // https://nextjs.org/docs/basic-features/data-fetching/client-side
 
-    const [data, setData] = useState<Metadata[]>([])
+    const [metas, setMetas] = useState<Metadata[]>([])
     const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -23,13 +23,13 @@ const Posts = () => {
         fetch('/api/metas')
           .then((res) => res.json())
           .then((data) => {
-            setData(data)
+            setMetas(data)
             setLoading(false)
           })
       }, [])
 
 
-    const listItems = isLoading ? 'Loading': data.map((d) => {
+    const listItems = isLoading ? 'Loading': metas.map((d) => {
         // destructuring
         const { title, description, date, tags, fileName } = d;
 
