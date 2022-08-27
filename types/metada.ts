@@ -5,4 +5,5 @@ export interface Metadata {
     date: string;
     description: string;
     tags: Array<string>;
+    fileName: string;
 }
