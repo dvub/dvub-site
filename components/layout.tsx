@@ -1,6 +1,6 @@
 import CSS from 'csstype'
 import React, { ReactNode, FC } from 'react'
-import type { Metadata } from '../types/metada'
+import type { Metadata } from '../types/metadata'
 import Link from 'next/link'
 import Head from 'next/head'
 

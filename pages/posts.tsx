@@ -2,7 +2,7 @@
 // page to display posts using boostrap's cards components
 // using getStaticProps to get all mdx files from posts/ directory
 
-import { Metadata } from '../types/metada';
+import { Metadata } from '../types/metadata';
 import Link from 'next/link'
 import Card from 'react-bootstrap/Card';
 import { Col, Container, Row } from 'react-bootstrap';
