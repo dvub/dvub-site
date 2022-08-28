@@ -43,9 +43,8 @@ const Layout: FC<Props> = (props) => {
 
     const listItems = isLoading ? 'Loading' : metas.map((d) => {
 
-
         const { title } = d;
-
+        
         return (
             <Col key={title}>
                 <PostCard meta={d}></PostCard>
@@ -57,24 +56,28 @@ const Layout: FC<Props> = (props) => {
 
     return (
         <div>
+
             <Head>
                 <title>{title}</title>
                 <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css" />
             </Head>
 
-            <div>
+            <div style={bodyStyle}>
+
                 {/* title, author, date, etc */}
-                <header style={bodyStyle}>
+                <header>
                     <h1>{title}</h1>
                     <a href={authorLink}>{author}</a> · {date} · {tagDisplay}
                     <br /><br />
                     {description}
                 </header>
 
+
                 {/* props.children will render the standard md content*/}
-                <div style={bodyStyle}>
+                <div>
                     {children}
                 </div>
+
 
                 {/*footer goes here */}
                 <footer>
