@@ -3,11 +3,15 @@ import React, { ReactNode, FC, useState, useEffect } from 'react'
 import type { Metadata } from '../types/metadata'
 import Link from 'next/link'
 import Head from 'next/head'
+import { Col, Container, Row } from 'react-bootstrap'
+import PostCard from './postCard'
+
 
 interface Props {
     children: ReactNode;
     meta: Metadata;
 }
+
 const Layout: FC<Props> = (props) => {
 
     const { children, meta } = props;
@@ -21,20 +25,33 @@ const Layout: FC<Props> = (props) => {
         marginTop: '2rem',
     }
 
-    const [metas, setMetas] = useState<Metadata[]>([])
-    const [isLoading, setLoading] = useState(false)
+    const [metas, setMetas] = useState<Metadata[]>([]);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true)
-        fetch('/api/metas')
-          .then((res) => res.json())
-          .then((data) => {
-            setMetas(data)
-            setLoading(false)
-          })
-      }, [])
 
-    console.log(metas);
+        setLoading(true);
+        fetch('/api/metas')
+            .then((res) => res.json())
+            .then((data) => {
+
+                setMetas(data);
+                setLoading(false);
+
+            });
+    }, []);
+
+    const listItems = isLoading ? 'Loading' : metas.map((d) => {
+
+
+        const { title } = d;
+
+        return (
+            <Col key={title}>
+                <PostCard meta={d}></PostCard>
+            </Col>
+        );
+    });
 
     const tagDisplay = tags ? tags.join(', ') : '';
 
@@ -48,9 +65,9 @@ const Layout: FC<Props> = (props) => {
             <div>
                 {/* title, author, date, etc */}
                 <header style={bodyStyle}>
-                    <h1>{title}</h1> 
+                    <h1>{title}</h1>
                     <a href={authorLink}>{author}</a> · {date} · {tagDisplay}
-                    <br/><br/>
+                    <br /><br />
                     {description}
                 </header>
 
@@ -61,7 +78,11 @@ const Layout: FC<Props> = (props) => {
 
                 {/*footer goes here */}
                 <footer>
-
+                    <Container style={{ margin: '2rem' }}>
+                        <Row xs={'auto'}>
+                            {listItems}
+                        </Row>
+                    </Container>
                 </footer>
             </div>
         </div>
