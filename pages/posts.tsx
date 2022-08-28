@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Card from 'react-bootstrap/Card';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-
+import PostCard  from '../components/postCard'
 // <-----------------------> //
 
 const Posts = () => {
@@ -28,36 +28,14 @@ const Posts = () => {
           })
       }, [])
 
-
     const listItems = isLoading ? 'Loading': metas.map((d) => {
-        // destructuring
-        const { title, description, date, tags, fileName } = d;
 
-        const tagDisplay = tags ? tags.join(', ') : '';
 
-        // adding a rounded border with a background color
-        // span will keep the text inline
-        const styledTags = (
-            <span style={{ border: '5px solid #AAAAAA', backgroundColor: '#AAAAAA', borderRadius: '25px' }}>
-                {tagDisplay}
-            </span>
-        );
+        const { title } = d;
 
         return (
             <Col key={title}>
-                <Link href={`posts/${fileName}`}>
-                    <Card style={{ width: '18rem', height: '14rem', overflow: 'hidden' }}>
-                        <Card.Body>
-                            <Card.Title>{title}</Card.Title>
-                            <Card.Text>
-                                {description}
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            {date} · {styledTags}
-                        </Card.Footer>
-                    </Card>
-                </Link>
+                <PostCard meta={d}></PostCard>
             </Col>
         );
     });
