@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { Card } from "react-bootstrap";
 import { Metadata } from "../types/metadata";
-
+import CSS from 'csstype'
 
 interface Props {
     meta: Metadata;
@@ -25,7 +25,7 @@ const PostCard: FC<Props> = (props) => {
 
     return (
         <Link href={`posts/${fileName}`}>
-            <Card style={{ width: '18rem', height: '14rem', overflow: 'hidden' }}>
+            <Card style={{overflow: 'hidden', height: '12rem'}}>
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>

@@ -45,7 +45,7 @@ const Posts = () => {
         <div>
             {/* putting rows into a container with margin */}
             <Container style={{ margin: '2rem' }}>
-                <Row xs={'auto'}>
+                <Row xs={2}>
                     {listItems}
                 </Row>
             </Container>

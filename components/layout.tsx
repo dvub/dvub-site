@@ -17,7 +17,7 @@ const Layout: FC<Props> = (props) => {
     const { children, meta } = props;
     const { title, author, date, authorLink, description, tags } = meta;
 
-    const sideMargin = '12rem';
+    const sideMargin = '15%';
     const bodyStyle: CSS.Properties = {
         textAlign: 'left',
         marginLeft: sideMargin,
@@ -80,9 +80,10 @@ const Layout: FC<Props> = (props) => {
 
 
                 {/*footer goes here */}
-                <footer>
+                <footer style={{marginTop: '4rem'}}>
+                    Other posts:
                     <Container style={{ margin: '2rem' }}>
-                        <Row xs={'auto'}>
+                        <Row xs={2}> {/* 2 items per row*/}
                             {listItems}
                         </Row>
                     </Container>
