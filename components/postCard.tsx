@@ -13,7 +13,7 @@ const PostCard: FC<Props> = (props) => {
 
     const { title, description, date, tags, fileName } = props.meta;
 
-    const tagDisplay = tags ? tags.join(', ') : '';
+    let tagDisplay = tags ? tags.join(', ') : '';
 
     // adding a rounded border with a background color
     // span will keep the text inline
@@ -22,19 +22,24 @@ const PostCard: FC<Props> = (props) => {
             {tagDisplay}
         </span>
     );
-
+    
     return (
-        <Link href={`posts/${fileName}`}>
-            <Card style={{overflow: 'hidden', height: '12rem'}}>
-                <Card.Body>
-                    <Card.Title>{title}</Card.Title>
-                    <Card.Text>
-                        {description}
-                    </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                    {date} · {styledTags}
-                </Card.Footer>
+        // /posts (slash at the front) for absolute path
+        <Link href={`/posts/${fileName}`}>
+            <Card>
+                <div style={{height: '8rem', overflow: 'hidden',}}>
+                    <Card.Body>
+                        <Card.Title>{title}</Card.Title>
+                        <Card.Text>
+                            {description}
+                        </Card.Text>
+                    </Card.Body>
+                </div>
+                <div style={{height:'2.5rem'}}>
+                    <Card.Footer>
+                        {date} · {styledTags}
+                    </Card.Footer>
+                </div>
             </Card>
         </Link>
     );
