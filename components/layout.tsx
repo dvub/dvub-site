@@ -17,13 +17,6 @@ const Layout: FC<Props> = (props) => {
     const { children, meta } = props;
     const { title, author, date, authorLink, description, tags } = meta;
 
-    const sideMargin = '15%';
-    const bodyStyle: CSS.Properties = {
-        textAlign: 'left',
-        marginLeft: sideMargin,
-        marginRight: sideMargin,
-        marginTop: '2rem',
-    }
 
     const [metas, setMetas] = useState<Metadata[]>([]);
     const [isLoading, setLoading] = useState(false);
@@ -61,8 +54,8 @@ const Layout: FC<Props> = (props) => {
                 <title>{title}</title>
                 <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css" />
             </Head>
-
-            <div style={bodyStyle}>
+            
+            <div>
 
                 {/* title, author, date, etc */}
                 <header>
@@ -71,23 +64,28 @@ const Layout: FC<Props> = (props) => {
                     <br /><br />
                     {description}
                 </header>
-
+                <hr/>
 
                 {/* props.children will render the standard md content*/}
                 <div>
                     {children}
                 </div>
-
-
+                <hr/>
                 {/*footer goes here */}
-                <footer style={{marginTop: '4rem'}}>
-                    Other posts:
-                    <Container style={{ margin: '2rem' }}>
-                        <Row xs={2}> {/* 2 items per row*/}
+                <footer>
+
+                    <div>
+                        <h2>Other Posts</h2>
+                        Placeholder text goes here
+                    </div>
+                    <Container style={{marginTop: '2rem'}}>
+                        <Row xs={1} md={2} lg={2} xl={3}>
                             {listItems}
                         </Row>
                     </Container>
+                    Maybe put a link here for all posts, idk
                 </footer>
+
             </div>
         </div>
     );
