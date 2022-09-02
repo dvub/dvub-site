@@ -16,10 +16,12 @@ I decided that it was finally time for me to make my own personal website, for a
 
 # Language
 
-Almost all modern websites on the internet are built with Javascript (approximately 98%, according to [this source](https://w3techs.com/technologies/details/cp-javascript#:~:text=JavaScript%20is%20used%20as%20client,98.0%25%20of%20all%20the%20websites.)) Javascript is nice, but in my opinion, is missing a few key features that a language should have. That's where Typescript comes in: a superset of Javascript with type support!
+Almost all modern websites on the internet are built with Javascript (approximately *98%*, according to [this source](https://w3techs.com/technologies/details/cp-javascript#:~:text=JavaScript%20is%20used%20as%20client,98.0%25%20of%20all%20the%20websites.)) Javascript is nice, but in my opinion, is missing a few key features that a language should have. That's where [Typescript](https://www.typescriptlang.org/) comes in: a strongly typed superset of Javascript. Additionally, I used markdown to write my posts (including the post you're reading right now!), specifically MDX, which allows for Javascript to be written and exported in your markdown files.
 
-```js
-const abcd = "2001";
-```
+# Frameworks
+
+Regardless of language, there are many, *many* web frameworks available in Javascript (or Typescript!), such as Angular, Svelte, or Vue, to name a few, but I opted for [Next.js](https://nextjs.org/). The appeal of Next.js is that it makes use of the React Framework, which is a framework with a heavy focus on reusable components. Also, Next.js has great Typescript support, which is awesome! Since I was already somewhat familiar with React and writing components with JSX/TSX, I thought that learning Next.js for my website would be a great choice. One final consideration for my website was styling. Modern CSS can be a pain, which is why modern CSS frameworks exist. I decided to use a library called React-Bootstrap, which integrates the Boostrap CSS framework with React.
+
+# Structure
 
 export default ({children}) => <Layout meta={meta}>{children}</Layout>
