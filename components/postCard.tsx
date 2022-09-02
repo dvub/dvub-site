@@ -26,7 +26,7 @@ const PostCard: FC<Props> = (props) => {
     return (
         // /posts (slash at the front) for absolute path
         <Link href={`/posts/${fileName}`}>
-            <Card>
+            <Card style={{borderColor: 'transparent'}}>
                 <div style={{height: '8rem', overflow: 'hidden',}}>
                     <Card.Body>
                         <Card.Title>{title}</Card.Title>
@@ -36,7 +36,7 @@ const PostCard: FC<Props> = (props) => {
                     </Card.Body>
                 </div>
                 <div style={{height:'2.5rem'}}>
-                    <Card.Footer>
+                    <Card.Footer style={{backgroundColor: 'transparent', borderColor: 'transparent'}}>
                         {date} · {styledTags}
                     </Card.Footer>
                 </div>

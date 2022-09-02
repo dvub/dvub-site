@@ -1,7 +1,9 @@
 import type { NextPage } from 'next'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Stars } from '@react-three/drei'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { meshBounds, OrbitControls, Stars } from '@react-three/drei'
 import CSS from 'csstype'
+import * as THREE from 'three'
+import { useRef } from 'react'
 // todo:
 // use head to add titles to pages other than posts
 
@@ -12,14 +14,10 @@ const Home: NextPage = () => {
     left: '0',
     zIndex: '-100',
   }
-  const contentStyle: CSS.Properties = {
-    marginTop: '50%',
-    position: 'relative',
-    zIndex: '100',
-  }
   return (
     <div>
       <div style={{ textAlign: 'center' }}>
+        <h1 style={{}}>Welcome</h1>
         <Canvas style={canvasStyle}>
           <OrbitControls/>
           <Stars/>
@@ -30,20 +28,21 @@ const Home: NextPage = () => {
           />
           <Box />
         </Canvas>
-        <div style={contentStyle}>
-          <h1>Welcome</h1>
-          <p>
-            more stuff will show up later
-          </p>
-        </div>
       </div>
     </div>
   );
 }
 
 const Box = () => {
+  const mesh = useRef<THREE.Mesh>(null!);
+  useFrame(() => {
+    mesh.current.rotation.x += 0.01;
+    mesh.current.rotation.y += 0.01;
+  });
+
   return (
-    <mesh>
+    <mesh ref={mesh}>
+      
       <boxBufferGeometry attach="geometry"/>
       <meshLambertMaterial attach="material" color="hotpink" />
 
