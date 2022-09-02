@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { meshBounds, OrbitControls, Stars } from '@react-three/drei'
 import CSS from 'csstype'
 import * as THREE from 'three'
