@@ -48,7 +48,16 @@ const Sphere = () => {
   }  const attribute = new BufferAttribute(points, 3);
   const ref = useRef<BufferAttribute>(attribute);
 
+
   useFrame(() => {
+    for (let i = 0; i < ref.current.array.length; i+=3) {
+      const x = ref.current.getX(i);
+      const y = ref.current.getY(i+1);
+      const z = ref.current.getZ(i+2);
+      ref.current.setX(i, x);
+      ref.current.setY(i+1, y+0.1);
+      ref.current.setZ(i+2, z);
+    }
   });
 
 
@@ -63,7 +72,6 @@ const Sphere = () => {
         sizeAttenuation={true}
       />
     </points>
-
   );
 }
 
