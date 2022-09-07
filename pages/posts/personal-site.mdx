@@ -22,6 +22,29 @@ Almost all modern websites on the internet are built with Javascript (approximat
 
 Regardless of language, there are many, *many* web frameworks available in Javascript (or Typescript!), such as Angular, Svelte, or Vue, to name a few, but I opted for [Next.js](https://nextjs.org/). The appeal of Next.js is that it makes use of the React Framework, which is a framework with a heavy focus on reusable components. Also, Next.js has great Typescript support, which is awesome! Since I was already somewhat familiar with React and writing components with JSX/TSX, I thought that learning Next.js for my website would be a great choice. One final consideration for my website was styling. Modern CSS can be a pain, which is why modern CSS frameworks exist. I decided to use a library called React-Bootstrap, which integrates the Boostrap CSS framework with React.
 
+
+
 # Structure
+
+One of the best features of Next.js is that it has great support for MDX files. With a little bit of configuration, you can add support for rendering and routes to MDX files in the pages directory. ([Source](https://nextjs.org/docs/advanced-features/using-mdx#:~:text=//%20next.config.js%0A%0Aconst,%5D%2C%0A%7D))
+
+
+```js
+// next.config.js
+const withMDX = require('@next/mdx')({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [require("remark-prism")],
+    rehypePlugins: [],
+  },
+});
+
+module.exports = withMDX({
+  pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+});
+
+```
+
+
 
 export default ({children}) => <Layout meta={meta}>{children}</Layout>
