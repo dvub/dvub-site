@@ -27,7 +27,9 @@ const Home: NextPage = () => {
             angle={0.3}
           />
           <Sphere />
+          <Box/>
         </Canvas>
+        
       </div>
     </div>
   );
@@ -38,42 +40,56 @@ const Sphere = () => {
   const radius = 20;
   const points = new Float32Array(pointCount * 3);
   for (let i = 0; i < points.length; i+=3) {
-
     const point = randomSpherePoint(0,0,0,radius);
-
+    
     points[i] = point[0];
     points[i+1] = point[1];
     points[i+2] = point[2];
 
-  }  const attribute = new BufferAttribute(points, 3);
+  }  
+  const attribute = new BufferAttribute(points, 3);
   const ref = useRef<BufferAttribute>(attribute);
-
+  
 
   useFrame(() => {
     for (let i = 0; i < ref.current.array.length; i+=3) {
-      const x = ref.current.getX(i);
-      const y = ref.current.getY(i+1);
-      const z = ref.current.getZ(i+2);
-      ref.current.setX(i, x);
-      ref.current.setY(i+1, y+0.1);
-      ref.current.setZ(i+2, z);
+      const positions = ref.current.array;
+      const x = positions[i];
+      const y = positions[i+1];
+      const z = positions[i+2];
+
+      const newY = y+ 0.1;
+      const positionAttribute = ref.current;
+      positionAttribute.setXYZ(i, x, newY, z);
     }
+
   });
 
 
   return (
     <points >
       <bufferGeometry>
-        <bufferAttribute attach={"attributes-position"} {...attribute} ref={ref}/>
+        <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
       </bufferGeometry>
       <pointsMaterial
-        size={0.1}
+        size={0.15}
         color={0xff00ff}
         sizeAttenuation={true}
       />
     </points>
   );
 }
+function Box() {
+  const mesh = useRef<THREE.Mesh>(null!);
+  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
+  return (
+     <mesh ref={mesh}>
+        <boxGeometry args={[3, 3, 3]} />
+        <meshStandardMaterial color={"orange"} />
+     </mesh>
+  );
+}
+
 
 function randomSpherePoint(x0: number, y0: number, z0: number, radius: number): [number, number, number] {
   var u = Math.random();
