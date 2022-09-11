@@ -4,9 +4,18 @@ import { meshBounds, OrbitControls, Point, PointMaterial, Points, Stars } from '
 import CSS from 'csstype'
 import * as THREE from 'three'
 import { Ref, useRef, useState } from 'react'
-import { BufferAttribute, BufferGeometry, PointsMaterial } from 'three'
+import { BufferAttribute, BufferGeometry, PointsMaterial, Vector3 } from 'three'
+import mathUtils from '../utils/math'
+
 // todo:
 // use head to add titles to pages other than posts
+// todo sphere: randomize rotation for each point
+// add slight random position offset ?
+// add lerp to random points, back to sphere, and so on
+// change color, maybe change sprite?
+// 
+
+// other todos: remove orbitcontrols, position camera
 
 const Home: NextPage = () => {
   const canvasStyle: CSS.Properties = {
@@ -27,7 +36,6 @@ const Home: NextPage = () => {
             angle={0.3}
           />
           <Sphere />
-          <Box/>
         </Canvas>
         
       </div>
@@ -36,31 +44,47 @@ const Home: NextPage = () => {
 }
 
 const Sphere = () => {
-  const pointCount = 1000;
+
+  const rotationAxis = new Vector3(1, 1, 1);
+
+  const position = new Vector3(0,0,0);
+
+  const pointCount = 250;
   const radius = 20;
   const points = new Float32Array(pointCount * 3);
+
   for (let i = 0; i < points.length; i+=3) {
-    const point = randomSpherePoint(0,0,0,radius);
+
+    const point = mathUtils.randomSpherePoint(position,radius);
     
     points[i] = point[0];
     points[i+1] = point[1];
     points[i+2] = point[2];
 
   }  
+
+
   const attribute = new BufferAttribute(points, 3);
   const ref = useRef<BufferAttribute>(attribute);
-  
+
 
   useFrame(() => {
-    for (let i = 0; i < ref.current.array.length; i+=3) {
-      const positions = ref.current.array;
-      const x = positions[i];
-      const y = positions[i+1];
-      const z = positions[i+2];
+    ref.current.needsUpdate = true;
+    for (let i = 0; i < ref.current.count; i++) {
+      const x = ref.current.getX(i);
+      const y = ref.current.getY(i);
+      const z = ref.current.getZ(i);
 
-      const newY = y+ 0.1;
-      const positionAttribute = ref.current;
-      positionAttribute.setXYZ(i, x, newY, z);
+      const currentVector = new Vector3(x, y, z);
+
+      // 0.1 degrees * 60 = 6 degrees every second
+      // 6 degrees in 60 seconds (6 * 60) = 360 = 1 full rotation
+      const radRotation = mathUtils.toRadians(0.1);
+      
+
+      const newPos = mathUtils.rotateAboutPoint(currentVector, position, rotationAxis, radRotation);
+
+      ref.current.setXYZ(i, newPos.x, newPos.y, newPos.z);
     }
 
   });
@@ -78,28 +102,6 @@ const Sphere = () => {
       />
     </points>
   );
-}
-function Box() {
-  const mesh = useRef<THREE.Mesh>(null!);
-  useFrame(() => (mesh.current.rotation.x = mesh.current.rotation.y += 0.01));
-  return (
-     <mesh ref={mesh}>
-        <boxGeometry args={[3, 3, 3]} />
-        <meshStandardMaterial color={"orange"} />
-     </mesh>
-  );
-}
-
-
-function randomSpherePoint(x0: number, y0: number, z0: number, radius: number): [number, number, number] {
-  var u = Math.random();
-  var v = Math.random();
-  var theta = 2 * Math.PI * u;
-  var phi = Math.acos(2 * v - 1);
-  var x = x0 + (radius * Math.sin(phi) * Math.cos(theta));
-  var y = y0 + (radius * Math.sin(phi) * Math.sin(theta));
-  var z = z0 + (radius * Math.cos(phi));
-  return [x, y, z];
 }
 
 export default Home
