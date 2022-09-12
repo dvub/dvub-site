@@ -1,6 +1,6 @@
 import { Vector3 } from 'three';
 
-function randomSpherePoint(position: Vector3, radius: number): [number, number, number] {
+function randomSpherePoint(position: Vector3, radius: number): Vector3 {
     var u = Math.random();
     var v = Math.random();
     var theta = 2 * Math.PI * u;
@@ -8,7 +8,7 @@ function randomSpherePoint(position: Vector3, radius: number): [number, number, 
     var x = position.x + (radius * Math.sin(phi) * Math.cos(theta));
     var y = position.y + (radius * Math.sin(phi) * Math.sin(theta));
     var z = position.z + (radius * Math.cos(phi));
-    return [x, y, z];
+    return new Vector3(x, y, z);
 }
 
 // code adapted from: 
@@ -30,7 +30,11 @@ function toDegrees(angle: number) {
 function toRadians(angle: number) {
     return angle * (Math.PI / 180);
 }
+function randomRange(min: number, max: number): number {
+    return Math.random() * (max - min) + min;
+}
 
-const exports = { randomSpherePoint, rotateAboutPoint, toDegrees, toRadians };
+
+const exports = { randomRange, randomSpherePoint, rotateAboutPoint, toDegrees, toRadians };
 export default exports;
 
