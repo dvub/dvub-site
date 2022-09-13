@@ -37,7 +37,6 @@ const Home: NextPage = () => {
       <div style={{ textAlign: 'center' }}>
         <h1 style={{}}>Welcome</h1>
         <Canvas style={canvasStyle}>
-          <OrbitControls/>
           <SetCamera/>
           <ambientLight intensity={0.5} />
           <spotLight
@@ -55,6 +54,10 @@ const Home: NextPage = () => {
 const Sphere = () => {
   // declare variables
   const rotationAxis = new THREE.Vector3(1, 1, 0);
+
+  const radRotation = mathUtils.toRadians(0.1);
+
+
   const position = new THREE.Vector3(0,0,0);
   const pointCount = 250;
   const radius = 20;
@@ -86,12 +89,15 @@ const Sphere = () => {
   const ref = useRef<THREE.BufferAttribute>(attribute);
   const lerpFactor = useRef<number>(0.0);
 
+  const isSphere = useRef<boolean>(false);
+
   // animation loop
   useFrame((state, delta) => {
     ref.current.needsUpdate = true;
     
     for (let i = 0; i < ref.current.count; i++) {
-
+      spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis, radRotation);
+      randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis, radRotation);
       const randomPosition = randomPoints[i];
       const spherePosition = spherePoints[i];
       const x = ref.current.getX(i);
@@ -100,21 +106,28 @@ const Sphere = () => {
       let curr = new THREE.Vector3(x,y,z);
 
       
-      if (lerpFactor.current < 1) {
-        
-        lerpFactor.current += (0.0005 * delta);
-        curr = randomPosition.lerp(spherePosition, lerpFactor.current);
+      if (lerpFactor.current <= 0) {
+        isSphere.current = false;
+      }
+      if (lerpFactor.current >= 1) {
+        isSphere.current = true;
         
       }
+      console.log(lerpFactor.current);
+
+      if (isSphere.current === false) {
+        lerpFactor.current += (0.0005 * delta);
 
 
-
-      // 0.1 degrees * 60 = 6 degrees every second
-      // 6 degrees in 60 seconds (6 * 60) = 360 = 1 full rotation
-      const radRotation = mathUtils.toRadians(0.1);
+      }
+      if (isSphere.current === true) {
+        lerpFactor.current -= (0.0005 * delta);
+        
+      }
+      curr = randomPosition.lerp(spherePosition, lerpFactor.current);
       
-       const np = mathUtils.rotateAboutPoint(curr, position, rotationAxis, radRotation);
-      ref.current.setXYZ(i, np.x, np.y, np.z);
+      // const np = mathUtils.rotateAboutPoint(curr, position, rotationAxis, radRotation);
+      ref.current.setXYZ(i, curr.x, curr.y, curr.z);
     }
 
   });
