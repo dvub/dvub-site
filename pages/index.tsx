@@ -55,63 +55,66 @@ const Home: NextPage = () => {
 const Sphere = () => {
   // declare variables
   const rotationAxis = new THREE.Vector3(1, 1, 0);
-
   const position = new THREE.Vector3(0,0,0);
-
   const pointCount = 250;
   const radius = 20;
+  const min = -1 * radius;
+  const max = radius;
+  const randomPoints = Array<THREE.Vector3>(pointCount);
+  for (let i = 0; i < randomPoints.length; i++) {
+    const x = mathUtils.randomRange(min, max);
+    const y = mathUtils.randomRange(min, max);
+    const z = mathUtils.randomRange(min, max);
+    randomPoints[i] = new THREE.Vector3(x, y, z);
+  }
 
-  const points = new Float32Array(pointCount * 3);
-  const randomPoints = new Float32Array(pointCount * 3);
-  // iterate and set points, random points
-  for (let i = 0; i < randomPoints.length; i+=3) {
-    randomPoints[i] = mathUtils.randomRange(-20, 20);
-    randomPoints[i+1] = mathUtils.randomRange(-20, 20);
-    randomPoints[i+2] = mathUtils.randomRange(-20, 20);
-  } 
+  const spherePoints = Array<THREE.Vector3>(pointCount);
+  for (let i = 0; i < spherePoints.length; i++) {
+    spherePoints[i] = mathUtils.randomSpherePoint(position, radius);
+  }
+  const currentPoints = new Float32Array(pointCount * 3);
+  for (let i = 0; i < currentPoints.length; i+=3) {
+    const p = randomPoints[i / 3];
+    currentPoints[i] = p.x;
+    currentPoints[i + 1] = p.y;
+    currentPoints[i + 2] = p.z;
+  }
 
-  for (let i = 0; i < points.length; i+=3) {
-    const point = mathUtils.randomSpherePoint(position,radius);
-    points[i] = point.x;
-    points[i+1] = point.y;
-    points[i+2] = point.z;
-  }  
 
   // get our buffer attribute setup
-  const randomPointsAttribute = new THREE.BufferAttribute(randomPoints, 3);
-  const attribute = new THREE.BufferAttribute(points, 3);
+  const attribute = new THREE.BufferAttribute(currentPoints, 3);
   const ref = useRef<THREE.BufferAttribute>(attribute);
-  const lerpFactor = useRef<number>(1);
+  const lerpFactor = useRef<number>(0.0);
 
   // animation loop
-  useFrame((state) => {
-
+  useFrame((state, delta) => {
     ref.current.needsUpdate = true;
     
     for (let i = 0; i < ref.current.count; i++) {
 
+      const randomPosition = randomPoints[i];
+      const spherePosition = spherePoints[i];
       const x = ref.current.getX(i);
       const y = ref.current.getY(i);
       const z = ref.current.getZ(i);
+      let curr = new THREE.Vector3(x,y,z);
+
       
-      const randX = randomPointsAttribute.getX(i);
-      const randY = randomPointsAttribute.getY(i);
-      const randZ = randomPointsAttribute.getZ(i);
-
-
-      const currentPosition = new THREE.Vector3(x, y, z);
-      const randPosition = new THREE.Vector3(randX, randY, randZ);
-
-      const lerped = currentPosition.lerp(randPosition, lerpFactor.current);
-      if (lerpFactor.current > 0) {
-        lerpFactor.current -= 0.0001;
+      if (lerpFactor.current < 1) {
+        
+        lerpFactor.current += (0.0005 * delta);
+        curr = randomPosition.lerp(spherePosition, lerpFactor.current);
+        
       }
+
+
+
       // 0.1 degrees * 60 = 6 degrees every second
       // 6 degrees in 60 seconds (6 * 60) = 360 = 1 full rotation
       const radRotation = mathUtils.toRadians(0.1);
       
-      const newPos = mathUtils.rotateAboutPoint(lerped, position, rotationAxis, radRotation);
-      ref.current.setXYZ(i, newPos.x, newPos.y, newPos.z);
+       const np = mathUtils.rotateAboutPoint(curr, position, rotationAxis, radRotation);
+      ref.current.setXYZ(i, np.x, np.y, np.z);
     }
 
   });
