@@ -37,6 +37,7 @@ const Home: NextPage = () => {
       <div style={{ textAlign: 'center' }}>
         <h1 style={{}}>Welcome</h1>
         <Canvas style={canvasStyle}>
+          <OrbitControls></OrbitControls>
           <SetCamera/>
           <ambientLight intensity={0.5} />
           <spotLight
@@ -90,42 +91,37 @@ const Sphere = () => {
   const lerpFactor = useRef<number>(0.0);
 
   const isSphere = useRef<boolean>(false);
-
+  const lerpVal = 0.05;
   // animation loop
   useFrame((state, delta) => {
+
     ref.current.needsUpdate = true;
+    
+    if (lerpFactor.current <= 0) {
+      isSphere.current = false;
+    }
+    if (lerpFactor.current >= 0.1) {
+      isSphere.current = true;
+      
+    }
+
+    if (isSphere.current === false) {
+      lerpFactor.current += (lerpVal * delta);
+
+
+    }
+    if (isSphere.current === true) {
+      lerpFactor.current -= (lerpVal * delta);
+      
+    }
     
     for (let i = 0; i < ref.current.count; i++) {
       spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis, radRotation);
       randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis, radRotation);
       const randomPosition = randomPoints[i];
       const spherePosition = spherePoints[i];
-      const x = ref.current.getX(i);
-      const y = ref.current.getY(i);
-      const z = ref.current.getZ(i);
-      let curr = new THREE.Vector3(x,y,z);
-
       
-      if (lerpFactor.current <= 0) {
-        isSphere.current = false;
-      }
-      if (lerpFactor.current >= 1) {
-        isSphere.current = true;
-        
-      }
-      console.log(lerpFactor.current);
-
-      if (isSphere.current === false) {
-        lerpFactor.current += (0.0005 * delta);
-
-
-      }
-      if (isSphere.current === true) {
-        lerpFactor.current -= (0.0005 * delta);
-        
-      }
-      curr = randomPosition.lerp(spherePosition, lerpFactor.current);
-      
+      const curr = randomPosition.lerp(spherePosition, lerpFactor.current);
       // const np = mathUtils.rotateAboutPoint(curr, position, rotationAxis, radRotation);
       ref.current.setXYZ(i, curr.x, curr.y, curr.z);
     }
