@@ -1,11 +1,9 @@
 import type { NextPage } from 'next'
-import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import CSS from 'csstype'
-import * as THREE from 'three'
-import { Ref, useRef, useState } from 'react'
-import mathUtils from '../utils/math'
-
+import Sphere from '../components/sphere'
+import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
 // todo:
 // use head to add titles to pages other than posts
 // todo sphere: randomize rotation for each point
@@ -13,15 +11,7 @@ import mathUtils from '../utils/math'
 // add lerp to random points, back to sphere, and so on
 // change color, maybe change sprite?
 
-// kind of weird technique ?
-const SetCamera = () => {
-  const { camera } = useThree();
-  camera.position.set(0,0,-50);
-  return (
-    <>
-    </>
-  )
-}
+
 
 const Home: NextPage = () => {
 
@@ -36,110 +26,21 @@ const Home: NextPage = () => {
     <div>
       <div style={{ textAlign: 'center' }}>
         <h1 style={{}}>Welcome</h1>
-        <Canvas style={canvasStyle}>
-          <OrbitControls></OrbitControls>
-          <SetCamera/>
-          <ambientLight intensity={0.5} />
-          <spotLight
-            position={[10, 15, 10]}
-            angle={0.3}
-          />
+
+
+        <Canvas style={canvasStyle} camera={{ position: [0, 0, -50] }}>
+
+          <OrbitControls />
           <Sphere />
+
+          <EffectComposer>
+            <Bloom luminanceThreshold={0} luminanceSmoothing={0.9} height={300} />
+            <Vignette eskil={false} offset={0.1} darkness={1.1} />
+          </EffectComposer>
         </Canvas>
-        
+
       </div>
     </div>
-  );
-}
-
-const Sphere = () => {
-  // declare variables
-  const rotationAxis = new THREE.Vector3(1, 1, 0);
-
-  const radRotation = mathUtils.toRadians(0.1);
-
-
-  const position = new THREE.Vector3(0,0,0);
-  const pointCount = 250;
-  const radius = 20;
-  const min = -1 * radius;
-  const max = radius;
-  const randomPoints = Array<THREE.Vector3>(pointCount);
-  for (let i = 0; i < randomPoints.length; i++) {
-    const x = mathUtils.randomRange(min, max);
-    const y = mathUtils.randomRange(min, max);
-    const z = mathUtils.randomRange(min, max);
-    randomPoints[i] = new THREE.Vector3(x, y, z);
-  }
-
-  const spherePoints = Array<THREE.Vector3>(pointCount);
-  for (let i = 0; i < spherePoints.length; i++) {
-    spherePoints[i] = mathUtils.randomSpherePoint(position, radius);
-  }
-  const currentPoints = new Float32Array(pointCount * 3);
-  for (let i = 0; i < currentPoints.length; i+=3) {
-    const p = randomPoints[i / 3];
-    currentPoints[i] = p.x;
-    currentPoints[i + 1] = p.y;
-    currentPoints[i + 2] = p.z;
-  }
-
-
-  // get our buffer attribute setup
-  const attribute = new THREE.BufferAttribute(currentPoints, 3);
-  const ref = useRef<THREE.BufferAttribute>(attribute);
-  const lerpFactor = useRef<number>(0.0);
-
-  const isSphere = useRef<boolean>(false);
-  const lerpVal = 0.05;
-  // animation loop
-  useFrame((state, delta) => {
-
-    ref.current.needsUpdate = true;
-    
-    if (lerpFactor.current <= 0) {
-      isSphere.current = false;
-    }
-    if (lerpFactor.current >= 0.1) {
-      isSphere.current = true;
-      
-    }
-
-    if (isSphere.current === false) {
-      lerpFactor.current += (lerpVal * delta);
-
-
-    }
-    if (isSphere.current === true) {
-      lerpFactor.current -= (lerpVal * delta);
-      
-    }
-    
-    for (let i = 0; i < ref.current.count; i++) {
-      spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis, radRotation);
-      randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis, radRotation);
-      const randomPosition = randomPoints[i];
-      const spherePosition = spherePoints[i];
-      
-      const curr = randomPosition.lerp(spherePosition, lerpFactor.current);
-      // const np = mathUtils.rotateAboutPoint(curr, position, rotationAxis, radRotation);
-      ref.current.setXYZ(i, curr.x, curr.y, curr.z);
-    }
-
-  });
-
-  // return our buffergeometry using the attribute
-  return (
-    <points >
-      <bufferGeometry>
-        <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.15}
-        color={0xB372DC}
-        sizeAttenuation={true}
-      />
-    </points>
   );
 }
 
