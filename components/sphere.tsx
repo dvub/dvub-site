@@ -1,10 +1,14 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
+import { PointsMaterial } from "three";
 import mathUtils from '../utils/math'
 const Sphere = () => {
     // declare variables
-    const rotationAxis = new THREE.Vector3(1, 1, 0);
+
+
+    
+    const rotationAxis = useRef<THREE.Vector3>(new THREE.Vector3(1, 1, 0));
   
     const radRotation = mathUtils.toRadians(0.1);
   
@@ -45,32 +49,24 @@ const Sphere = () => {
     // set up our refs
     const ref = useRef<THREE.BufferAttribute>(attribute);
     const lerpFactor = useRef<number>(0.0);
-    const isSphere = useRef<boolean>(false);
   
-    const lerpVal = 0.25;
+    let lerpVal = 0.75;
     // animation loop
     useFrame((state, delta) => {
   
       ref.current.needsUpdate = true;
       
-      if (lerpFactor.current <= 0) 
-        isSphere.current = false;
-  
-      if (lerpFactor.current >= 1) 
-        isSphere.current = true;
-  
-  
-      if (isSphere.current === false) 
+      if (lerpFactor.current <= 1) {
         lerpFactor.current += (lerpVal * delta);
+      }
   
-      if (isSphere.current === true) 
-        lerpFactor.current -= (lerpVal * delta);
-  
-  
+      if (rotationAxis.current.z <= 1) {
+        rotationAxis.current.z += (0.01 * delta);
+      }
       // animation happens in this loop here
       for (let i = 0; i < ref.current.count; i++) {
-        spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis, radRotation);
-        randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis, radRotation);
+        spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis.current, radRotation);
+        randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis.current, radRotation);
         const randomPosition = randomPoints[i].clone(); // vector3s need to be cloned, otherwise they will mutate the arrays
         const spherePosition = spherePoints[i].clone();
         
@@ -82,12 +78,13 @@ const Sphere = () => {
   
     // return our buffergeometry using the attribute
     return (
-      <points >
-        <bufferGeometry>
-          <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
-          <pointsMaterial size={0.005}></pointsMaterial>
-        </bufferGeometry>
-      </points>
+
+        <points >
+          <bufferGeometry>
+            <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
+          </bufferGeometry>
+          <pointsMaterial size={0.1} color={0xd2b0ff} sizeAttenuation={true}/>
+        </points>
     );
 }
 
