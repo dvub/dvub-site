@@ -8,7 +8,7 @@ const Sphere = () => {
 
 
     
-    const rotationAxis = useRef<THREE.Vector3>(new THREE.Vector3(1, 1, 0));
+    const rotationAxis = new THREE.Vector3(1, 1, 0);
   
     const radRotation = mathUtils.toRadians(0.1);
   
@@ -48,7 +48,7 @@ const Sphere = () => {
   
     // set up our refs
     const ref = useRef<THREE.BufferAttribute>(attribute);
-    const lerpFactor = useRef<number>(0.0);
+    let lerpFactor = 0;
   
     let lerpVal = 0.75;
     // animation loop
@@ -56,21 +56,18 @@ const Sphere = () => {
   
       ref.current.needsUpdate = true;
       
-      if (lerpFactor.current <= 1) {
-        lerpFactor.current += (lerpVal * delta);
-      }
-  
-      if (rotationAxis.current.z <= 1) {
-        rotationAxis.current.z += (0.01 * delta);
+      if (lerpFactor <= 1) {
+        
+        lerpFactor += (lerpVal * delta);
       }
       // animation happens in this loop here
       for (let i = 0; i < ref.current.count; i++) {
-        spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis.current, radRotation);
-        randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis.current, radRotation);
+        spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis, radRotation);
+        randomPoints[i] = mathUtils.rotateAboutPoint(randomPoints[i], position, rotationAxis, radRotation);
         const randomPosition = randomPoints[i].clone(); // vector3s need to be cloned, otherwise they will mutate the arrays
         const spherePosition = spherePoints[i].clone();
         
-        const curr = randomPosition.lerp(spherePosition, lerpFactor.current);
+        const curr = randomPosition.lerp(spherePosition, Math.pow(1 - lerpFactor, 2));
         ref.current.setXYZ(i, curr.x, curr.y, curr.z);
       }
   
