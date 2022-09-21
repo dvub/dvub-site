@@ -53,12 +53,13 @@ const Sphere = () => {
     let lerpVal = 0.75;
     // animation loop
     useFrame((state, delta) => {
-  
+      
       ref.current.needsUpdate = true;
       
       if (lerpFactor <= 1) {
         
         lerpFactor += (lerpVal * delta);
+        
       }
       // animation happens in this loop here
       for (let i = 0; i < ref.current.count; i++) {
@@ -67,7 +68,7 @@ const Sphere = () => {
         const randomPosition = randomPoints[i].clone(); // vector3s need to be cloned, otherwise they will mutate the arrays
         const spherePosition = spherePoints[i].clone();
         
-        const curr = randomPosition.lerp(spherePosition, Math.pow(1 - lerpFactor, 2));
+        const curr = randomPosition.lerp(spherePosition, lerpFactor);
         ref.current.setXYZ(i, curr.x, curr.y, curr.z);
       }
   
@@ -80,7 +81,7 @@ const Sphere = () => {
           <bufferGeometry>
             <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
           </bufferGeometry>
-          <pointsMaterial size={0.1} color={0xd2b0ff} sizeAttenuation={true}/>
+          <pointsMaterial size={0.1} color={0x000000} sizeAttenuation={true}/>
         </points>
     );
 }
