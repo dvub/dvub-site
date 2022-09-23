@@ -2,8 +2,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,9 +13,10 @@ body {
   from { opacity: 0; }
   to {opacity: 1; }
 }
-
-.vertical-center {
-  top: 50%;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
+* {
+  font-family: 'Roboto';
+}
+h1 {
+  font-family: 'Playfair Display';
+  color: black
 }
