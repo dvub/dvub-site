@@ -3,33 +3,33 @@ import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import CSS from 'csstype'
 import Sphere from '../components/sphere'
-import { EffectComposer, DepthOfField, Bloom, Noise, Vignette } from '@react-three/postprocessing'
-import { KernelSize } from 'postprocessing'
+import { EffectComposer, Vignette, DepthOfField} from '@react-three/postprocessing'
 
 const Home: NextPage = () => {
   const canvasStyle: CSS.Properties = {
     position: 'absolute',
     top: '0',
     left: '0',
-    zIndex: '0',
+    zIndex: '-1',
   }
   return (
     <div>
       <div>
-        <div style={{ marginTop: '10rem', zIndex: '1' }}>
-          <h1 style={{
-            animation: 'fadein 2s',
-            backgroundColor: 'transparent',
-          }}>Welcome</h1>
-          <p style={{ backgroundColor: 'transparent', animation: 'fadein 2s' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor condimentum lacinia quis vel eros donec. Pellentesque diam volutpat commodo sed egestas egestas. Cursus vitae congue mauris rhoncus aenean vel. Dictum at tempor commodo ullamcorper a lacus vestibulum. Nec feugiat in fermentum posuere urna nec tincidunt. Accumsan in nisl nisi scelerisque. Hendrerit gravida rutrum quisque non tellus orci ac auctor augue. Auctor eu augue ut lectus. Nunc scelerisque viverra mauris in aliquam sem fringilla ut morbi. Non diam phasellus vestibulum lorem sed risus ultricies tristique. Pellentesque id nibh tortor id aliquet lectus proin. Et molestie ac feugiat sed lectus vestibulum. Interdum velit laoreet id donec. Ipsum dolor sit amet consectetur adipiscing elit. Lectus magna fringilla urna porttitor rhoncus dolor purus non.
-            Erat nam at lectus urna duis. At urna condimentum mattis pellentesque id. Cursus euismod quis viverra nibh cras. Auctor augue mauris augue neque gravida in fermentum. Augue lacus viverra vitae congue eu. At elementum eu facilisis sed odio morbi. Laoreet id donec ultrices tincidunt. Laoreet sit amet cursus sit amet dictum sit amet justo. Nec feugiat in fermentum posuere urna nec tincidunt praesent semper. In aliquam sem fringilla ut morbi tincidunt augue interdum. Purus non enim praesent elementum facilisis leo. Pharetra convallis posuere morbi leo urna. Tortor pretium viverra suspendisse potenti nullam ac tortor. Quam viverra orci sagittis eu. Justo nec ultrices dui sapien eget.
+        <div style={{ marginTop: '10rem', zIndex: '1', background: 'transparent', backdropFilter: 'blur(2px)'}}>
+          <h1>I&#39;m dvub, a developer;</h1>
+          <h1>Welcome.</h1>
+          <hr/>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Arcu odio ut sem nulla pharetra diam sit amet nisl. Senectus et netus et malesuada fames. Tristique magna sit amet purus gravida. Tempor nec feugiat nisl pretium fusce id velit ut. At augue eget arcu dictum varius duis at consectetur. Diam vulputate ut pharetra sit amet aliquam id. Tellus pellentesque eu tincidunt tortor aliquam. Nullam vehicula ipsum a arcu cursus. Duis ultricies lacus sed turpis tincidunt id aliquet risus feugiat. Augue ut lectus arcu bibendum at varius. Enim diam vulputate ut pharetra sit amet. Sit amet nulla facilisi morbi tempus iaculis. Aenean euismod elementum nisi quis eleifend quam adipiscing. Dui ut ornare lectus sit amet est placerat.
+
+          Tortor pretium viverra suspendisse potenti nullam ac tortor. Proin nibh nisl condimentum id. Nisl vel pretium lectus quam id leo in vitae turpis. Porta lorem mollis aliquam ut porttitor leo a diam. Fermentum odio eu feugiat pretium nibh. Sed libero enim sed faucibus. Lectus mauris ultrices eros in. Donec ac odio tempor orci dapibus ultrices in. Arcu cursus vitae congue mauris rhoncus aenean. Odio morbi quis commodo odio aenean sed adipiscing diam. Nisi quis eleifend quam adipiscing vitae proin. Elementum sagittis vitae et leo duis ut diam.
           </p>
+
         </div>
-        <Canvas style={canvasStyle} camera={{ position: [0, 0, -40] }}>
+        <Canvas style={canvasStyle} camera={{ position: [0, 0, -30] }}>
           <Sphere />
           <EffectComposer>
-            <Vignette eskil={false} offset={0.1} darkness={1.1} />
+            <DepthOfField focusDistance={12} focalLength={0.02} bokehScale={2.5} height={480} />
           </EffectComposer>
         </Canvas>
       </div>
