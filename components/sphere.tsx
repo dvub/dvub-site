@@ -12,15 +12,21 @@ const Sphere = () => {
   
     const radRotation = mathUtils.toRadians(0.05);
   
-  
+    
     const position = new THREE.Vector3(0,0,0);
     const pointCount = 250;
     const radius = 20;
   
-    const spherePoints = Array<THREE.Vector3>(pointCount);
-    for (let i = 0; i < spherePoints.length; i++) {
-      spherePoints[i] = mathUtils.randomSpherePoint(position, radius);
-    }
+    const spherePoints = Array<THREE.Vector3>(pointCount).fill().map(x => {
+      return mathUtils.randomSpherePoint(position, radius);
+    });
+    const randomRotations = Array<THREE.Vector3>(pointCount).fill(0).map(x => {
+      const rX = Math.random();
+      const rY = Math.random();
+      const rZ = Math.random();
+      return new THREE.Vector3(rX, rY, rZ);
+    });
+
 
     // create a float32array for our ref
     const currentPoints = new Float32Array(pointCount * 3);
@@ -35,11 +41,9 @@ const Sphere = () => {
       ref.current.needsUpdate = true;
 
       // animation happens in this loop here
-      for (let i = 0; i < ref.current.count; i++) {
-        
-        spherePoints[i] = mathUtils.rotateAboutPoint(spherePoints[i], position, rotationAxis, radRotation);
-
+      for (let i = 0; i < ref.current.count; i++) {   
         const s = spherePoints[i];
+        s = mathUtils.rotateAboutPoint(s, position, randomRotations[i], radRotation);
         ref.current.setXYZ(i, s.x, s.y, s.z);
       }
   
@@ -56,8 +60,4 @@ const Sphere = () => {
         </points>
     );
 }
-
-
-
-
 export default Sphere;  
