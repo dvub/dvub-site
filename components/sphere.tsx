@@ -1,7 +1,6 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
-import { PointsMaterial } from "three";
 import mathUtils from '../utils/math'
 const Sphere = () => {
     // declare variables
@@ -17,10 +16,10 @@ const Sphere = () => {
     const pointCount = 250;
     const radius = 20;
   
-    const spherePoints = Array<THREE.Vector3>(pointCount).fill().map(x => {
+    const spherePoints = Array<THREE.Vector3>(pointCount).fill(null!).map(x => {
       return mathUtils.randomSpherePoint(position, radius);
     });
-    const randomRotations = Array<THREE.Vector3>(pointCount).fill(0).map(x => {
+    const randomRotations = Array<THREE.Vector3>(pointCount).fill(null!).map(x => {
       const rX = Math.random();
       const rY = Math.random();
       const rZ = Math.random();
@@ -42,13 +41,13 @@ const Sphere = () => {
 
       // animation happens in this loop here
       for (let i = 0; i < ref.current.count; i++) {   
-        const s = spherePoints[i];
+        let s = spherePoints[i];
         s = mathUtils.rotateAboutPoint(s, position, randomRotations[i], radRotation);
         ref.current.setXYZ(i, s.x, s.y, s.z);
       }
   
     });
-  
+    const color = new THREE.Color(0x000000);
     // return our buffergeometry using the attribute
     return (
 
@@ -56,7 +55,7 @@ const Sphere = () => {
           <bufferGeometry>
             <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
           </bufferGeometry>
-          <pointsMaterial size={0.15} color={0x000000} sizeAttenuation={true}/>
+          <pointsMaterial size={0.15} color={color} sizeAttenuation={true} transparent={true}/>
         </points>
     );
 }
