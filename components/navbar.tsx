@@ -7,9 +7,8 @@ const CustomNavBar = () => {
 
     return (
         <div>
-            <Navbar sticky='top' bg='dark' variant='dark' expand="lg">
+            <Navbar sticky='top' expand="lg" className="navbar-custom">
                 <Container>
-                    <Navbar.Brand href="../">dvubLog[]</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">

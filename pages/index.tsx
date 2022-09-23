@@ -6,12 +6,6 @@ import Sphere from '../components/sphere'
 import { EffectComposer, Vignette, DepthOfField} from '@react-three/postprocessing'
 
 const Home: NextPage = () => {
-  const canvasStyle: CSS.Properties = {
-    position: 'absolute',
-    top: '0',
-    left: '0',
-    zIndex: '-1',
-  }
   return (
     <div>
       <div>
@@ -26,7 +20,7 @@ const Home: NextPage = () => {
           </p>
 
         </div>
-        <Canvas style={canvasStyle} camera={{ position: [0, 0, -30] }}>
+        <Canvas style={{position: 'absolute', top: '0', left: '0', zIndex: '-1'}} camera={{ position: [0, 0, -30] }}>
           <Sphere />
           <EffectComposer>
             <DepthOfField focusDistance={12} focalLength={0.02} bokehScale={2.5} height={480} />

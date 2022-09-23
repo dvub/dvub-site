@@ -13,10 +13,13 @@ body {
   from { opacity: 0; }
   to {opacity: 1; }
 }
-* {
-  font-family: 'Roboto';
-}
+
 h1 {
-  font-family: 'Playfair Display';
+  font-family: Playfair Display;
   color: black
+}
+.navbar,
+.navbar-default {
+  background-color: transparent;
+  font-family: Overpass Mono !important;
 }
