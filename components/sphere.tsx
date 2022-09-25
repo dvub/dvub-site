@@ -55,7 +55,7 @@ const Sphere = () => {
           <bufferGeometry>
             <bufferAttribute attach={"attributes-position"} ref={ref} {...attribute}/>
           </bufferGeometry>
-          <pointsMaterial size={0.15} color={color} sizeAttenuation={true} transparent={true}/>
+          <pointsMaterial size={0.2} color={color} sizeAttenuation={true} transparent={true}/>
         </points>
     );
 }
