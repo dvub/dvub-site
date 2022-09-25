@@ -1,29 +1,25 @@
-html,
 body {
   padding: 0;
   margin: 0;
   font-family: Roboto Mono !important;
 }
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-}
-@keyframes fadein {
-  from { opacity: 0; }
-  to {opacity: 1; }
-}
-
 h1 {
   font-family: Playfair Display;
   color: black;
 }
-
 .navbar-custom {
   font-family: Overpass Mono;
   color: black;
 }
 .mono {
   font-family: JetBrains Mono;
+}
+@keyframes fadein {
+  from { opacity: 0; }
+  to {opacity: 1; }
+}
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
 }
