@@ -9,6 +9,8 @@ import { Container, Col, Row } from 'react-bootstrap'
 // todo: absolute position of sphere on right side of screen
 // fix camera positioning on thinner views (super weird)
 
+// work on readme
+
 const Home: NextPage = () => {
   return (
     <div>
@@ -24,11 +26,15 @@ const Home: NextPage = () => {
               <h1>Welcome.</h1>
               <hr />
               <p>
-                I&#39;m a student who enjoys building projects and just making cool stuff. I also love opportunities to learn new and interesting things. One day I hope to be a professional developer and make an impact in the world using technology.
+                I&#39;m a student who enjoys building projects and just <b>making cool stuff</b>. 
+                I also love <b>opportunities to learn</b> new and interesting things. 
+                One day I hope to be a <b>professional developer</b> and make an <b>impact on the world</b> using technology.
+                <br/>
+                If you want to read about some of my projects, you can look <a href='posts'>here.</a>
               </p>
             </div>
           </Col>
-          <Col>
+          <Col >
             <Canvas camera={{ position: [-35, 0, 0]}}>
               <Sphere />
             </Canvas>
