@@ -2,6 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
+  font-family: Roboto Mono !important;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,9 +22,7 @@ h1 {
 
 .navbar-custom {
   font-family: Overpass Mono;
-}
-* {
-  font-family: Roboto;
+  color: black;
 }
 .mono {
   font-family: JetBrains Mono;
