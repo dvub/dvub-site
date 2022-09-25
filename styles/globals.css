@@ -16,10 +16,15 @@ body {
 
 h1 {
   font-family: Playfair Display;
-  color: black
+  color: black;
 }
-.navbar,
-.navbar-default {
-  background-color: transparent;
-  font-family: Overpass Mono !important;
+
+.navbar-custom {
+  font-family: Overpass Mono;
+}
+* {
+  font-family: Roboto;
+}
+.mono {
+  font-family: JetBrains Mono;
 }
