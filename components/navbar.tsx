@@ -7,7 +7,7 @@ const CustomNavBar = () => {
 
     return (
         <div>
-            <Navbar sticky='top' expand="lg" className="navbar-custom">
+            <Navbar className='navbar-custom' sticky='top' expand="lg">
                 <Container>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
