@@ -1,1 +1,3 @@
-This is my personal website, currently in development!
+# Personal Website
+
+todo: readme
