@@ -6,8 +6,7 @@ import Sphere from '../components/sphere'
 import { EffectComposer, Vignette, DepthOfField } from '@react-three/postprocessing'
 import { Container, Col, Row } from 'react-bootstrap'
 
-// todo: absolute position of sphere on right side of screen
-// fix camera positioning on thinner views (super weird)
+// SET CANVAS EL WIDTH AND HEIGHT INSIDE OF DIV
 
 // work on readme
 
@@ -15,17 +14,17 @@ const Home: NextPage = () => {
   return (
     <div>
       <div>
-        <Container>
-          <Row>
+        <Container> 
+          <Row xs={1} md={2}>
           <Col>
             <div>
-              <h1 style={{animation: 'fadein 2s'}}>I&#39;m dvub, a</h1>
-              <h1 className='mono'>
+              <h1 className='animate'>I&#39;m dvub, a</h1>
+              <h1 className='mono animate' style={{animationDelay: '1s'}}>
                   new developer();
                 </h1>
-              <h1>Welcome.</h1>
+              <h1 style={{animationDelay: '2s'}} className='animate'>Welcome.</h1>
               <hr />
-              <p>
+              <p className='animate' style={{animationDelay: '2.5s'}}>
                 I&#39;m a student who enjoys building projects and just <b>making cool stuff</b>. 
                 I also love <b>opportunities to learn</b> new and interesting things. 
                 One day I hope to be a <b>professional developer</b> and make an <b>impact on the world</b> using technology.
@@ -34,10 +33,13 @@ const Home: NextPage = () => {
               </p>
             </div>
           </Col>
-          <Col >
-            <Canvas camera={{ position: [-35, 0, 0]}}>
+          <Col>
+          <div>
+            <p>a</p>
+            <Canvas camera={{ position: [-25, 0, 0]}} className='animate' style={{animationDelay: '2.5s'}}>
               <Sphere />
             </Canvas>
+            </div>
           </Col>
           </Row>
         </Container>
