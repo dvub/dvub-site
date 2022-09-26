@@ -19,7 +19,7 @@ const Home: NextPage = () => {
           <Row>
           <Col>
             <div>
-              <h1>I&#39;m dvub, a</h1>
+              <h1 style={{animation: 'fadein 2s'}}>I&#39;m dvub, a</h1>
               <h1 className='mono'>
                   new developer();
                 </h1>
