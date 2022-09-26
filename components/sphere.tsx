@@ -1,17 +1,11 @@
 import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
+import { DepthPackingStrategies } from "three";
 import mathUtils from '../utils/math'
 const Sphere = () => {
     // declare variables
 
-
-    
-    const rotationAxis = new THREE.Vector3(1, 1, 0);
-  
-    const radRotation = mathUtils.toRadians(0.05);
-  
-    
     const position = new THREE.Vector3(0,0,0);
     const pointCount = 250;
     const radius = 20;
@@ -19,13 +13,6 @@ const Sphere = () => {
     const spherePoints = Array<THREE.Vector3>(pointCount).fill(null!).map(x => {
       return mathUtils.randomSpherePoint(position, radius);
     });
-    const randomRotations = Array<THREE.Vector3>(pointCount).fill(null!).map(x => {
-      const rX = Math.random();
-      const rY = Math.random();
-      const rZ = Math.random();
-      return new THREE.Vector3(rX, rY, rZ);
-    });
-
 
     // create a float32array for our ref
     const currentPoints = new Float32Array(pointCount * 3);
@@ -34,6 +21,7 @@ const Sphere = () => {
     // set up our ref
     const ref = useRef<THREE.BufferAttribute>(attribute);
 
+
     // animation loop
     useFrame((state, delta) => {
       
@@ -41,8 +29,14 @@ const Sphere = () => {
 
       // animation happens in this loop here
       for (let i = 0; i < ref.current.count; i++) {   
+
         let s = spherePoints[i];
-        s = mathUtils.rotateAboutPoint(s, position, randomRotations[i], radRotation);
+        const axis: THREE.Vector3 = new THREE.Vector3(0, state.mouse.x, -state.mouse.y);
+        const speed = mathUtils.toRadians(state.mouse.length());
+
+        
+        s = mathUtils.rotateAboutPoint(s, position, axis, speed);
+        
         ref.current.setXYZ(i, s.x, s.y, s.z);
       }
   
