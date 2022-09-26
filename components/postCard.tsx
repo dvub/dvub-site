@@ -27,16 +27,16 @@ const PostCard: FC<Props> = (props) => {
         // /posts (slash at the front) for absolute path
         <Link href={`/posts/${fileName}`}>
             <Card style={{border: 'transparent'}}>
-                <div style={{height: '8rem', overflow: 'hidden',}}>
+                <div style={{height: '10rem', overflow: 'hidden',}}>
                     <Card.Body>
-                        <Card.Title>{title}</Card.Title>
-                        <Card.Text>
+                        <Card.Title><b>{title}</b></Card.Title>
+                        <Card.Text style={{fontSize: '14px'}}>
                             {description}
                         </Card.Text>
                     </Card.Body>
                 </div>
-                <div style={{height:'2.5rem'}}>
-                    <Card.Footer style={{backgroundColor: 'transparent', border: 'transparent'}}>
+                <div style={{height:'4rem'}}>
+                    <Card.Footer style={{backgroundColor: 'transparent', border: 'transparent', fontSize: '15px'}}>
                         {date} · {styledTags}
                     </Card.Footer>
                 </div>
