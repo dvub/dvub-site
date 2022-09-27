@@ -21,7 +21,7 @@ const About = () => {
           Background
         </h2>
         <p>
-          For most of my life I was interested in technology. I always messed around with old hardware and was fascinated by it.
+          For most of my life, I was interested in technology. I always messed around with old hardware and was fascinated by it.
           When I was younger I discovered Scratch, a simple, block-based programming language. I loved to build games and projects
           of different sorts, and was fascinated and amazed by what people could do with such a tool. I then started really programming
           because I wanted to write mods for the popular game, Terraria. From there, my passion for programming sparked, and now I hope to be

@@ -17,8 +17,9 @@ const PostCard: FC<Props> = (props) => {
 
     // adding a rounded border with a background color
     // span will keep the text inline
+
     const styledTags = (
-        <span style={{ border: '5px solid #AAAAAA', backgroundColor: '#AAAAAA', borderRadius: '25px' }}>
+        <span style={{ border: '4px solid #AAAAAA', backgroundColor: '#AAAAAA', borderRadius: '10px' }}>
             {tagDisplay}
         </span>
     );
@@ -29,7 +30,7 @@ const PostCard: FC<Props> = (props) => {
             <Card style={{border: 'transparent'}}>
                 <div style={{height: '10rem', overflow: 'hidden',}}>
                     <Card.Body>
-                        <Card.Title><b>{title}</b></Card.Title>
+                        <Card.Title className='mono'>{title}</Card.Title>
                         <Card.Text style={{fontSize: '14px'}}>
                             {description}
                         </Card.Text>
