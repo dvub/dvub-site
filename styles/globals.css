@@ -16,7 +16,7 @@ h1 {
 }
 .animate {
   opacity:  0;
-  animation:  fadein 1.5s forwards;
+  animation:  fadein 2s forwards;
 }
 @keyframes fadein {
   from { opacity: 0; }
@@ -29,14 +29,4 @@ h1 {
   html {
     color-scheme: dark;
   }
-}
-#slide {
-    position: absolute;
-    left: -100px;
-    width: 100px;
-    height: 100px;
-    -webkit-animation: slide 0.5s forwards;
-    -webkit-animation-delay: 2s;
-    animation: slide 0.5s forwards;
-    animation-delay: 2s;
 }
