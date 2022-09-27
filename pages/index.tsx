@@ -35,8 +35,8 @@ const Home: NextPage = () => {
           </Col>
           <Col>
           <div>
-            <p>a</p>
-            <Canvas camera={{ position: [-25, 0, 0]}} className='animate' style={{animationDelay: '2.5s'}}>
+            <p>hover over me</p>
+            <Canvas camera={{ position: [-35, 0, 0]}} className='animate' style={{animationDelay: '2.5s', height: '25rem'}}>
               <Sphere />
             </Canvas>
             </div>
