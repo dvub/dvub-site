@@ -12,39 +12,49 @@ const Posts = () => {
 
     // https://nextjs.org/docs/basic-features/data-fetching/client-side
 
-    const [metas, setMetas] = useState<Metadata[]>([])
-    const [isLoading, setLoading] = useState(false)
+    const offset = 0.5;
+
+    const [metas, setMetas] = useState<Metadata[]>([]);
+    const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(true);
         fetch('/api/metas')
           .then((res) => res.json())
           .then((data) => {
-            setMetas(data)
-            setLoading(false)
-          })
-      }, [])
+            setMetas(data);
+            setLoading(false);
+          });
+      }, []
+      );
 
-    const listItems = isLoading ? '': metas.map((d) => {
-
-
-        const { title } = d;
-
+    const listItems = isLoading ? '': metas.map((d, i) => {
         return (
-            <Col key={title}>
-                <PostCard meta={d}></PostCard>
+            <Col key={i} className='animate' style={{animationDelay: `${(i * 0.125) + 1.5}s`}}>
+                <PostCard meta={d}/>
             </Col>
         );
     });
-    
+    // placeholder grid items for testing style, animtions, etc
+    /*
+    const listItems = new Array(9).fill(null!).map((d, i) => {
+        return (
+            <Col key={i} className='animate' style={{animationDelay: `${i * 0.125}s`}}>
+                <PostCard meta={{title: 'Placeholder'}}/>
+            </Col>
+        );
+    });
+    */
     return (
         <div>
-            <div>
-                <h1>Posts</h1>
-            </div>
-            <p style={{maxWidth: '40rem'}}>
+            <h1 className='animate'>
+                Posts
+            </h1>
+            <div className='animate' style={{animationDelay: '0.5s'}}>
+                <p style={{maxWidth: '40rem'}}>
                 Here you can find posts about <b>projects</b> that I've worked on or am currently working on. These posts serve as means for me to <b>document and share my progress</b> as a developer.
-            </p>
+                </p>        
+            </div>
             <hr/>
             {/* putting rows into a container with margin */}
             <div style={{margin: '1rem'}}>

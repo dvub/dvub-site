@@ -23,13 +23,15 @@ const Home: NextPage = () => {
                 </h1>
               <h1 style={{animationDelay: '1s'}} className='animate'>Welcome.</h1>
               <hr />
-              <p className='animate' style={{animationDelay: '2s'}}>
+              <div className='animate' style={{animationDelay: '2s'}}>
+                            <p>
                 I&#39;m a student who enjoys building projects and just <b>making cool stuff</b>. 
                 I also love <b>opportunities to learn</b> new and interesting things. 
                 One day I hope to be a <b>professional developer</b> and make an <b>impact on the world</b> using technology.
                 <br/>
                 If you want to read about some of my projects, you can look <a href='posts'>here.</a>
               </p>
+              </div>
             </div>
           </Col>
           <Col>
