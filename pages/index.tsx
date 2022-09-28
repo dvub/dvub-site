@@ -23,7 +23,7 @@ const Home: NextPage = () => {
                 </h1>
               <h1 style={{animationDelay: '1s'}} className='animate'>Welcome.</h1>
               <hr />
-              <p className='animate' style={{animationDelay: '1.5s'}}>
+              <p className='animate' style={{animationDelay: '2s'}}>
                 I&#39;m a student who enjoys building projects and just <b>making cool stuff</b>. 
                 I also love <b>opportunities to learn</b> new and interesting things. 
                 One day I hope to be a <b>professional developer</b> and make an <b>impact on the world</b> using technology.
@@ -33,7 +33,7 @@ const Home: NextPage = () => {
             </div>
           </Col>
           <Col>
-          <div style={{textAlign: 'center', animationDelay: '2s'}} className='animate'>
+          <div style={{textAlign: 'center', animationDelay: '2.5s'}} className='animate'>
             
             <Canvas camera={{ position: [-35, 0, 0]}} style={{height: '25rem'}}>
             
