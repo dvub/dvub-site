@@ -14,12 +14,8 @@ const PostCard: FC<Props> = (props) => {
     const { title, description, date, tags, fileName } = props.meta;
 
     let tagDisplay = tags ? tags.join(', ') : '';
-
-    // adding a rounded border with a background color
-    // span will keep the text inline
-
     const styledTags = (
-        <span style={{ border: '4px solid #AAAAAA', backgroundColor: '#AAAAAA', borderRadius: '10px' }}>
+        <span style={{ border: '4px solid #DADADA', backgroundColor: '#DADADA', borderRadius: '5px' }}>
             {tagDisplay}
         </span>
     );
@@ -30,7 +26,7 @@ const PostCard: FC<Props> = (props) => {
             <Card style={{border: 'transparent'}}>
                 <div style={{height: '10rem', overflow: 'hidden',}}>
                     <Card.Body>
-                        <Card.Title className='mono'>{title}</Card.Title>
+                        <Card.Title className='mono'><h4><b>{title}</b></h4></Card.Title>
                         <Card.Text style={{fontSize: '14px'}}>
                             {description}
                         </Card.Text>

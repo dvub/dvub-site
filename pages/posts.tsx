@@ -25,7 +25,7 @@ const Posts = () => {
           })
       }, [])
 
-    const listItems = isLoading ? 'Loading': metas.map((d) => {
+    const listItems = isLoading ? '': metas.map((d) => {
 
 
         const { title } = d;
@@ -36,15 +36,15 @@ const Posts = () => {
             </Col>
         );
     });
-
+    
     return (
         <div>
             <div>
                 <h1>Posts</h1>
-                <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor aliquam nulla facilisi cras fermentum odio.
-                </p>
             </div>
+            <p style={{maxWidth: '40rem'}}>
+                Here you can find posts about <b>projects</b> that I've worked on or am currently working on. These posts serve as means for me to <b>document and share my progress</b> as a developer.
+            </p>
             <hr/>
             {/* putting rows into a container with margin */}
             <div style={{margin: '1rem'}}>
@@ -54,7 +54,6 @@ const Posts = () => {
                     </Row>
                 </Container>
             </div>
-            <hr/>
         </div>
     );
 }
