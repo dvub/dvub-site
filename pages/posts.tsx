@@ -5,7 +5,7 @@
 import { Metadata } from '../types/metadata';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import PostCard  from '../components/postCard'
+import PostCard from '../components/postCard'
 // <-----------------------> //
 
 const Posts = () => {
@@ -20,18 +20,18 @@ const Posts = () => {
     useEffect(() => {
         setLoading(true);
         fetch('/api/metas')
-          .then((res) => res.json())
-          .then((data) => {
-            setMetas(data);
-            setLoading(false);
-          });
-      }, []
-      );
+            .then((res) => res.json())
+            .then((data) => {
+                setMetas(data);
+                setLoading(false);
+            });
+    }, []
+    );
 
-    const listItems = isLoading ? '': metas.map((d, i) => {
+    const listItems = isLoading ? '' : metas.map((d, i) => {
         return (
-            <Col key={i} className='animate' style={{animationDelay: `${(i * 0.125) + 1.5}s`}}>
-                <PostCard meta={d}/>
+            <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 1.5}s` }}>
+                <PostCard meta={d} />
             </Col>
         );
     });
@@ -50,14 +50,14 @@ const Posts = () => {
             <h1 className='animate'>
                 Posts
             </h1>
-            <div className='animate' style={{animationDelay: '0.5s'}}>
-                <p style={{maxWidth: '40rem'}}>
-                Here you can find posts about <b>projects</b> that I've worked on or am currently working on. These posts serve as means for me to <b>document and share my progress</b> as a developer.
-                </p>        
+            <div className='animate' style={{ animationDelay: '0.5s' }}>
+                <p style={{ maxWidth: '40rem' }}>
+                    Here you can find posts about <b>projects</b> that I&apos;ve worked on or am currently working on. These posts serve as means for me to <b>document and share my progress</b> as a developer.
+                </p>
             </div>
-            <hr/>
+            <hr />
             {/* putting rows into a container with margin */}
-            <div style={{margin: '1rem'}}>
+            <div style={{ margin: '1rem' }}>
                 <Container>
                     <Row xs={1} md={2} lg={2} xl={3}>
                         {listItems}

@@ -1,32 +1,47 @@
 html,
 body {
   font-family: Roboto Mono !important;
-  color:  black;
-  font-size:  16px;
+  color: black;
+  font-size: 16px;
 }
+
 h1 {
   font-family: Playfair Display;
   color: black;
 }
+
 .navbar-custom {
   font-family: Overpass Mono;
   color: black;
 }
+
 .mono {
   font-family: JetBrains Mono;
 }
+
 .animate {
-  opacity:  0;
-  animation:  fadein 2s forwards, slidein 2s forwards;
+  opacity: 0;
+  animation: fadein 2s forwards, slidein 2s forwards;
 }
 
 @keyframes fadein {
-  from { opacity: 0; }
-  to {opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
+
 @keyframes slidein {
-  from { margin-left: -100px; }
-  to { margin-left:  0px; }
+  from {
+    margin-left: -100px;
+  }
+
+  to {
+    margin-left: 0px;
+  }
 }
 
 
