@@ -9,7 +9,11 @@ h1 {
   font-family: Playfair Display;
   color: black;
 }
-
+h2 {
+  font-family: JetBrains Mono;
+  color: black;
+  font-weight: 700 !important;
+}
 .navbar-custom {
   font-family: Overpass Mono;
   color: black;
@@ -18,10 +22,9 @@ h1 {
 .mono {
   font-family: JetBrains Mono;
 }
-
 .animate {
   opacity: 0;
-  animation: fadein 2s forwards, slidein 2s forwards;
+  animation: fadein 1s forwards, slidein 1s forwards;
 }
 
 @keyframes fadein {
@@ -36,7 +39,7 @@ h1 {
 
 @keyframes slidein {
   from {
-    margin-left: -100px;
+    margin-left: -50px;
   }
 
   to {
