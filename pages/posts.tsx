@@ -12,8 +12,6 @@ const Posts = () => {
 
     // https://nextjs.org/docs/basic-features/data-fetching/client-side
 
-    const offset = 0.5;
-
     const [metas, setMetas] = useState<Metadata[]>([]);
     const [isLoading, setLoading] = useState(false);
 
@@ -27,10 +25,10 @@ const Posts = () => {
             });
     }, []
     );
-
+    
     const listItems = isLoading ? '' : metas.map((d, i) => {
         return (
-            <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 1.5}s` }}>
+            <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 0.375}s` }}>
                 <PostCard meta={d} />
             </Col>
         );
@@ -50,12 +48,12 @@ const Posts = () => {
             <h1 className='animate'>
                 Posts
             </h1>
-            <div className='animate' style={{ animationDelay: '0.5s' }}>
+            <div className='animate' style={{ animationDelay: '0.125s' }}>
                 <p style={{ maxWidth: '40rem' }}>
                     Here you can find posts about <b>projects</b> that I&apos;ve worked on or am currently working on. These posts serve as means for me to <b>document and share my progress</b> as a developer.
                 </p>
             </div>
-            <hr />
+            <hr className='animate' style={{ animationDelay: '0.25s' }} />
             {/* putting rows into a container with margin */}
             <div style={{ margin: '1rem' }}>
                 <Container>
