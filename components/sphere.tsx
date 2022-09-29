@@ -1,7 +1,6 @@
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
-import { DepthPackingStrategies } from "three";
 import mathUtils from '../utils/math'
 const Sphere = () => {
   // declare variables
