@@ -2,14 +2,14 @@ const About = () => {
 
 
   return (
-    <div style={{ maxWidth: '40rem' }}>
+    <div style={{ maxwidth: '40rem' }}>
       <h1 className='animate'>About</h1>
-      <div style={{ margin: '1rem', width: '100%' }}>
+      <div style={{ margin: '1rem'}}>
         <div className='animate' style={{animationDelay: '0.125s'}}>
           <h2>
             Overview
           </h2>
-          <p style={{width: '100%'}}>
+          <p>
             My name is dvub. I am a student currently studying computer science. I build some projects for school, but most of the time I build projects for fun. (like this website) <br /> Coding is one of my passions; I not only see it as a hobby, but as a way to make change in the world.
           </p>
           <hr />
