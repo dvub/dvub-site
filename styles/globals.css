@@ -18,7 +18,9 @@ h2 {
   font-family: Overpass Mono;
   color: black;
 }
-
+hr {
+  color: #DADADA !important;
+}
 .mono {
   font-family: JetBrains Mono;
 }
