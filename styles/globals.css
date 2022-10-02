@@ -21,6 +21,10 @@ h2 {
 hr {
   color: #DADADA !important;
 }
+.border {
+  border: 2px #DADADA solid;
+  border-radius: 5px;
+}
 .mono {
   font-family: JetBrains Mono;
 }
