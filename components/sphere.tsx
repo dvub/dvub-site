@@ -3,7 +3,13 @@ import { useFrame } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 import mathUtils from '../utils/math'
-const Sphere = () => {
+
+interface Props {
+  hovering: boolean;
+}
+
+
+const Sphere = (props: Props) => {
   // declare variables
 
   const position = new THREE.Vector3(0, 0, 0);
@@ -20,8 +26,6 @@ const Sphere = () => {
   const attribute = new THREE.BufferAttribute(currentPoints, 3);
   // set up our ref
   const ref = useRef<THREE.BufferAttribute>(attribute);
-
-
   // animation loop
   useFrame((state, delta) => {
 
@@ -31,9 +35,15 @@ const Sphere = () => {
     for (let i = 0; i < ref.current.count; i++) {
 
       let s = spherePoints[i];
-      const axis: THREE.Vector3 = new THREE.Vector3(0, state.mouse.x, -state.mouse.y);
-      const speed = mathUtils.toRadians(state.mouse.length());
 
+      const axis: THREE.Vector3 = new THREE.Vector3(0, state.mouse.x, -state.mouse.y);
+      let speed = mathUtils.toRadians(state.mouse.length());
+
+
+      if (!props.hovering) {
+        speed = mathUtils.toRadians(0.01);
+      }
+      
 
       s = mathUtils.rotateAboutPoint(s, position, axis, speed);
 
