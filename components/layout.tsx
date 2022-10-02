@@ -1,11 +1,8 @@
-import CSS from 'csstype'
 import React, { ReactNode, FC, useState, useEffect } from 'react'
 import type { Metadata } from '../types/metadata'
-import Link from 'next/link'
 import Head from 'next/head'
-import { Col, Container, Row } from 'react-bootstrap'
+import { Col } from 'react-bootstrap'
 import PostCard from './postCard'
-
 
 interface Props {
     children: ReactNode;
@@ -71,21 +68,6 @@ const Layout: FC<Props> = (props) => {
                     {children}
                 </div>
                 <hr />
-                {/*footer goes here */}
-                <footer>
-
-                    <div>
-                        <h2>Other Posts</h2>
-                        Placeholder text goes here
-                    </div>
-                    <Container style={{ marginTop: '2rem' }}>
-                        <Row xs={1} md={2} lg={2} xl={3}>
-                            {listItems}
-                        </Row>
-                    </Container>
-                    Maybe put a link here for all posts, idk
-                </footer>
-
             </div>
         </div>
     );
