@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <Col>
               <div>
                 <h1 className='animate'>I&#39;m dvub, a</h1>
-                <h1 className=' mono animate' style={{ animationDelay: '0.125s', maxWidth: '100%' }}>
+                <h1 className='mono animate' style={{ animationDelay: '0.125s', maxWidth: '100%' }}>
                   new developer();
                 </h1>
                 <h1 style={{ animationDelay: '0.25s' }} className='animate'>Welcome.</h1>
@@ -39,11 +39,12 @@ const Home: NextPage = () => {
               <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
 
                 <Canvas
-                  camera={{ position: [-35, 0, 0] }} 
-                  style={{ height: '25rem', border: '2px #DADADA solid', borderRadius: '5px' }} 
-                  onMouseEnter={() => setHovering(true)} 
+                  className='border'
+                  camera={{ position: [-35, 0, 0] }}
+                  style={{ height: '25rem'}}
+                  onMouseEnter={() => setHovering(true)}
                   onMouseLeave={() => setHovering(false)}
-                  >
+                >
                   <Sphere hovering={hovering} />
                 </Canvas>
                 <p>(hover over me)</p>
