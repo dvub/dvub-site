@@ -4,7 +4,7 @@ export const meta  = {
     author: 'dvub',
     authorLink: 'https://github.com/dvub',
     title: 'Personal Website',
-    date: '8/20/22',
+    date: '10/1/22',
     description: 'Building my personal website with Next.js and Typescript.',
     tags: ['comp-sci', 'webdev', 'first'],
     fileName: 'personal-site'
@@ -12,14 +12,17 @@ export const meta  = {
 
 ## Introduction
 
-I decided that it was finally time for me to make my own personal website, for a couple of reasons, but most importantly -- to track my progress as a developer. I considered a few different ways to do this, and maybe I will make use of a few different ways to track my progress (youtube videos, etc.), but for now I settled on what you're reading right now -- a blog. 
-(Note: all of the source code for this project can be found on my Github.)
+I decided that it was finally time for me to make my own personal website, for a couple of reasons, but most importantly to **track my progress as a developer**. I considered a few different ways to do this, and maybe I will make use of a few different ways to track my progress (youtube videos, etc.), but for now I settled on what you're reading right now -- a blog. 
+
+**Note: all of the source code for this project can be found on my Github.**
+
+**Also, if you have any suggestions or improvements, please open an issue on this repo, which can be found [here](https://github.com/dvub/personal_website).**
 
 ## Language & Frameworks
 
-Almost all modern websites on the internet are built with Javascript (approximately *98%*, according to [this source](https://w3techs.com/technologies/details/cp-javascript#:~:text=JavaScript%20is%20used%20as%20client,98.0%25%20of%20all%20the%20websites.)) Javascript is nice, but in my opinion, is missing a few key features that a language should have. That's where [Typescript](https://www.typescriptlang.org/) comes in: a strongly typed superset of Javascript. Additionally, I used markdown to write my posts (including the post you're reading right now!), specifically MDX, which allows for Javascript to be written and exported in markdown files.
+Almost all modern websites on the internet are built with Javascript (approximately *98%*, according to [this source](https://w3techs.com/technologies/details/cp-javascript#:~:text=JavaScript%20is%20used%20as%20client,98.0%25%20of%20all%20the%20websites.)) Javascript is nice, but in my opinion, is missing a few key features that a language should have. That's where [Typescript](https://www.typescriptlang.org/) comes in: a strongly typed superset of Javascript. Additionally, I used **markdown** to write my posts (including the post you're reading right now!), specifically MDX, which allows for Javascript to be written and exported in markdown files.
 
-There are many, *many* web frameworks available in Javascript (or Typescript), such as Angular, Svelte, or Vue, to name a few, but I opted for [Next.js](https://nextjs.org/). The appeal of Next.js is that it makes use of the React Framework, which is a framework with a heavy focus on reusable components. Also, Next.js has great Typescript support. Since I was already somewhat familiar with React and writing components with JSX/TSX, I thought that learning Next.js for my website would be a great choice. One final consideration for my website was styling. Modern CSS can be a pain, which is why modern CSS frameworks exist. I decided to use a library called React-Bootstrap, which integrates the Boostrap CSS framework with React.
+There are many, *many* web frameworks available in Javascript (or Typescript), such as Angular, Svelte, or Vue, to name a few, but I opted for [Next.js](https://nextjs.org/). The appeal of **Next.js** is that it makes use of the **React Framework**, which is a framework with a heavy focus on reusable components. Also, Next.js has great Typescript support. Since I was already somewhat familiar with React and writing components with JSX/TSX, I thought that learning Next.js for my website would be a great choice. One final consideration for my website was styling. Modern CSS can be a pain, which is why modern CSS frameworks exist. I decided to use a library called React-Bootstrap, which integrates the **Boostrap CSS** framework with React.
 
 ## Key Features
 For the blog/post section of my site, I wanted to use markdown files, which Next.js has great support for. With a little bit of configuration, you can add support for rendering and routes to MDX files in the pages directory.
@@ -34,22 +37,26 @@ The about page was pretty simple. I wanted a page where I could put information 
 
 ## Posts
 
-Time for the interesting stuff, the posts section. After all, it's the **main focus** for the site. I decided to have one page where all posts could be accessed, and then a posts directory where the posts would *actually* be stored. Although I *could've* used [getStaticProps()](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) in order to build a completely static site, there are a few features I want to be able to implement which require dynamism. With that said, I decided to make an API path in order to access metadata for posts, which are exported by the magic of MDX. I then created cards which would display said metadata and also act as a link to navigate to each post.
+Time for the interesting stuff, the posts section. After all, it's the **main focus** for the site. I decided to have one page where all posts could be accessed, and then a posts directory where the posts would *actually* be stored. Although I *could've* used [getStaticProps()](https://nextjs.org/docs/basic-features/data-fetching/get-static-props) in order to build a completely static site, there are a few features I want to be able to implement which require dynamism. With that said, I decided to make an **API path** in order to access **metadata** for posts, which are exported by the magic of MDX. I then created cards which would display said metadata and also act as a **link to navigate** to each post.
 
 ## Styling
 
-I would like to preface this section with a huge thanks to Arlen Mccluskey. A large portion of inspiration for styling originated from his website, which you can check out [here](https://www.arlenmccluskey.com/). Again, thank you for the awesome website, (and if you're reading this Mr. Mccluskey, please don't sue me) 
+I would like to preface this section with a huge thanks to **Arlen Mccluskey**. A large portion of inspiration for styling originated from his website, which you can check out [here](https://www.arlenmccluskey.com/). Again, thank you for making an awesome website for me to take inspiration from! (and if you're reading this Mr. Mccluskey, please don't sue me) 
 
 Now that I had all of the basic features implemented for my website, I wanted to make it look half-decent. I went for a minimal, modern look, using mainly mono fonts (JetBrains Mono, Overpass Mono, etc). In addition to being extremely readable, I just really like the look of them. I also wanted to incorporate a few subtle animations to make the site feel smoother and more polished, so I made some subtle fading and sliding animations using basic CSS. A lot of features of my site, such as the navbar at the top of pages, as well as the cards used for posts, are premade components from the React-Boostrap library, which I then modified with my own styling. Once again, I wanted to keep things relatively simple while still looking good.
 
 ## Future Changes
 
-Everything discussed in this post is mostly relevant to the state of the site at the time of my writing the post. At this time, the site is in a very early state. I will be making changes and improvements to the website for hopefully a very long time, and I will keep track of these changes [here](https://github.com/dvub/personal_website/issues/1). This is an open issue for the repo with a task list to track improvements/changes I have made or want to make. Obviously, more minor changes which aren't listed here can be found in the commits of the repo. (although admittedly, my commit summaries are lackluster)
+Everything discussed in this post is mostly relevant to the state of the site at the time of my writing the post. At this time, the site is in a very early state. I will be **making changes and improvements to the website** for hopefully a very long time, and I will keep track of these changes [here](https://github.com/dvub/personal_website/issues/1). This is an **open issue for the repo with a task list** to track improvements/changes I have made or want to make. Obviously, more minor changes which aren't listed here can be found in the commits of the repo. (although admittedly, my commit summaries are lackluster)
 
 
 ## Conclusion
 
-Overall, this project was really fun, and was what I consider to be my first complete web development experience. Hopefully, I will have deployed this site sometime after I finish writing this post and make some finishing touches to the site. (otherwise, how would you be reading this?)
+Overall, this project was really fun, and was what I consider to be my first **complete web development experience**. Hopefully, I will have deployed this site sometime after I finish writing this post and make some finishing touches to the site. (otherwise, how would you be reading this?) I won't discuss the deployment of the website here, as devops are out of the scope of this post and the development of the site, although maybe I will write a post about devops for this site.
+
+Learning Next.js was a great experience, and I was very happy with its **flexibility** and **overall ease-of-use**. TypeScript, like usual, is awesome to work in, and probably saved me hours of debugging on this project alone. All in all, the project was fun and I'm extremely happy with how it turned out. I'm also excited to continue working on the project and improving it over time.
+
+
 
 
 
