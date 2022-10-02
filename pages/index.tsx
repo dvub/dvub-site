@@ -3,10 +3,13 @@ import { Canvas } from '@react-three/fiber'
 import Sphere from '../components/sphere'
 import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
+import { useState } from 'react'
 // todos: 
 // work on readme
 
 const Home: NextPage = () => {
+  const [hovering, setHovering] = useState(false);
+
   return (
     <div>
       <Head>
@@ -35,9 +38,13 @@ const Home: NextPage = () => {
             <Col>
               <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
 
-                <Canvas camera={{ position: [-35, 0, 0] }} style={{ height: '25rem' }}>
-
-                  <Sphere />
+                <Canvas
+                  camera={{ position: [-35, 0, 0] }} 
+                  style={{ height: '25rem', border: '2px #DADADA solid', borderRadius: '5px' }} 
+                  onMouseEnter={() => setHovering(true)} 
+                  onMouseLeave={() => setHovering(false)}
+                  >
+                  <Sphere hovering={hovering} />
                 </Canvas>
                 <p>(hover over me)</p>
               </div>
