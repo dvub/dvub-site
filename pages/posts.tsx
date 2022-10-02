@@ -1,11 +1,11 @@
-
 // page to display posts using boostrap's cards components
 // using getStaticProps to get all mdx files from posts/ directory
 
 import { Metadata } from '../types/metadata';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import PostCard from '../components/postCard'
+import PostCard from '../components/postCard';
+import Head from 'next/head';
 // <-----------------------> //
 
 const Posts = () => {
@@ -25,7 +25,7 @@ const Posts = () => {
             });
     }, []
     );
-    
+
     const listItems = isLoading ? '' : metas.map((d, i) => {
         return (
             <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 0.375}s` }}>
@@ -45,6 +45,9 @@ const Posts = () => {
     */
     return (
         <div>
+            <Head>
+                <title>Posts</title>
+            </Head>
             <h1 className='animate'>
                 Posts
             </h1>
