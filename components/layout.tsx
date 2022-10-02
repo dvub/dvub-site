@@ -10,10 +10,9 @@ interface Props {
 }
 
 const Layout: FC<Props> = (props) => {
-
+    
     const { children, meta } = props;
     const { title, author, date, authorLink, description, tags } = meta;
-
 
     const [metas, setMetas] = useState<Metadata[]>([]);
     const [isLoading, setLoading] = useState(false);
@@ -45,7 +44,7 @@ const Layout: FC<Props> = (props) => {
     const tagDisplay = tags ? tags.join(', ') : '';
 
     return (
-        <div>
+        <div style={{maxWidth: '40rem', marginBottom: '10rem'}}>
 
             <Head>
                 <title>{title}</title>
@@ -53,16 +52,14 @@ const Layout: FC<Props> = (props) => {
             </Head>
 
             <div>
-
                 {/* title, author, date, etc */}
                 <header>
                     <h1>{title}</h1>
                     <a href={authorLink}>{author}</a> · {date} · {tagDisplay}
-                    <br /><br />
-                    {description}
+                    <br />
+                    <i>{description}</i>
                 </header>
                 <hr />
-
                 {/* props.children will render the standard md content*/}
                 <div>
                     {children}
