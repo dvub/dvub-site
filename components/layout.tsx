@@ -64,6 +64,9 @@ const Layout: FC<Props> = (props) => {
                 <div>
                     {children}
                 </div>
+                thanks for reading,
+                <br />
+                <i>~dvub</i>
                 <hr />
             </div>
         </div>
