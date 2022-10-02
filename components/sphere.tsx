@@ -8,7 +8,6 @@ interface Props {
   hovering: boolean;
 }
 
-
 const Sphere = (props: Props) => {
   // declare variables
 
@@ -26,27 +25,22 @@ const Sphere = (props: Props) => {
   const attribute = new THREE.BufferAttribute(currentPoints, 3);
   // set up our ref
   const ref = useRef<THREE.BufferAttribute>(attribute);
+
+  const slowSpeed = mathUtils.toRadians(0.1);
+
   // animation loop
   useFrame((state, delta) => {
 
+    const isHovering = props.hovering;
     ref.current.needsUpdate = true;
+
+    const axis: THREE.Vector3 = new THREE.Vector3(0, state.mouse.x, -state.mouse.y);
+    const speed = isHovering ? mathUtils.toRadians(state.mouse.length()) : slowSpeed;
 
     // animation happens in this loop here
     for (let i = 0; i < ref.current.count; i++) {
-
       let s = spherePoints[i];
-
-      const axis: THREE.Vector3 = new THREE.Vector3(0, state.mouse.x, -state.mouse.y);
-      let speed = mathUtils.toRadians(state.mouse.length());
-
-
-      if (!props.hovering) {
-        speed = mathUtils.toRadians(0.01);
-      }
-      
-
       s = mathUtils.rotateAboutPoint(s, position, axis, speed);
-
       ref.current.setXYZ(i, s.x, s.y, s.z);
     }
 
