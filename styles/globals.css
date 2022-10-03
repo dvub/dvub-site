@@ -4,7 +4,6 @@ body {
   color: black;
   font-size: 16px;
 }
-
 h1 {
   font-family: Playfair Display;
   color: black;
@@ -25,6 +24,7 @@ hr {
   border: 2px #DADADA solid;
   border-radius: 5px;
 }
+
 .mono {
   font-family: JetBrains Mono;
 }
@@ -33,6 +33,28 @@ hr {
   animation: fadein 1s forwards, slidein 1s forwards;
 }
 
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+}
+.content-wrap {
+  padding-bottom: 4rem;    /* Footer height */
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 4rem;            /* Footer height */
+  font-family: Overpass Mono;
+  text-align: center;
+  line-height: 4rem;
+  border: 5px solid black;
+}
+.container {
+  display: flex;
+  justify-content: center;
+}
 @keyframes fadein {
   from {
     opacity: 0;
