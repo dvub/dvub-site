@@ -32,7 +32,10 @@ hr {
   opacity: 0;
   animation: fadein 1s forwards, slidein 1s forwards;
 }
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 @keyframes fadein {
   from {
     opacity: 0;
@@ -42,7 +45,6 @@ hr {
     opacity: 1;
   }
 }
-
 @keyframes slidein {
   from {
     margin-left: -50px;
@@ -52,9 +54,6 @@ hr {
     margin-left: 0px;
   }
 }
-
-
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
