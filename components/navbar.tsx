@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
 
-const CustomNavBar = () => {
+const NavBar = () => {
 
     return (
         <div>
@@ -26,4 +26,4 @@ const CustomNavBar = () => {
 }
 
 
-export default CustomNavBar
+export default NavBar
