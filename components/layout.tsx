@@ -61,7 +61,7 @@ const Layout: FC<Props> = (props) => {
                 </header>
                 <hr />
                 {/* props.children will render the standard md content*/}
-                <div>
+                <div style={{margin: '1rem'}}>
                     {children}
                 </div>
                 thanks for reading,
