@@ -58,7 +58,7 @@ const Posts = () => {
             </div>
             <hr className='animate' style={{ animationDelay: '0.25s' }} />
             {/* putting rows into a container with margin */}
-            <div style={{ margin: '1rem' }}>
+            <div>
                 <Container>
                     <Row xs={1} md={2} lg={2} xl={3}>
                         {listItems}
