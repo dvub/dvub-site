@@ -32,29 +32,6 @@ hr {
   opacity: 0;
   animation: fadein 1s forwards, slidein 1s forwards;
 }
-
-
-.page-container {
-  position: relative;
-  min-height: 100vh;
-}
-.content-wrap {
-  padding-bottom: 4rem;    /* Footer height */
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 4rem;            /* Footer height */
-  font-family: Overpass Mono;
-  text-align: center;
-  line-height: 4rem;
-  border: 5px solid black;
-}
-.container {
-  display: flex;
-  justify-content: center;
-}
 @keyframes fadein {
   from {
     opacity: 0;
@@ -64,7 +41,6 @@ hr {
     opacity: 1;
   }
 }
-
 @keyframes slidein {
   from {
     margin-left: -50px;
@@ -74,9 +50,6 @@ hr {
     margin-left: 0px;
   }
 }
-
-
-
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
