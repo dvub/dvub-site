@@ -19,8 +19,12 @@ const Footer = () => {
 
                         </div>
                     </Col>
-                    <Col>v1.0.0</Col>
-                    <Col><a href=''>Changelog</a></Col>
+                    <Col>v1.0.1</Col>
+                    <Col>
+                        <a href='https://github.com/dvub/personal_website/blob/main/changelog.md'>
+                            Changelog
+                        </a>
+                    </Col>
                 </Row>
             </Container>
         </div>
