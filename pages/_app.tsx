@@ -1,21 +1,17 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CustomNavBar from '../components/navbar';
+import NavBar from '../components/navbar';
 import CSS from 'csstype'
+import Footer from '../components/footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const style: CSS.Properties = {
-<<<<<<< Updated upstream
-    marginRight: '15%',
-    marginLeft: '15%',
-    marginTop: '2rem'
-=======
+
     marginRight: '6rem',
     marginLeft: '6rem',
     marginTop: '2rem',
-    paddingBottom: '4rem',
->>>>>>> Stashed changes
+    paddingBottom: '4rem'
   };
   const footerStyle: CSS.Properties = {
     position: 'absolute',
@@ -33,14 +29,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }
 
   return (
-<<<<<<< Updated upstream
-    <div>
-      <CustomNavBar></CustomNavBar>
-      <div style={style}>
-        <Component {...pageProps} ></Component>
-      </div>
 
-=======
     <div style={wrapperStyle}>
       <NavBar />
       <div style={style}>
@@ -49,7 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <div style={footerStyle}>
         <Footer />
       </div>
->>>>>>> Stashed changes
     </div>
   );
 }
