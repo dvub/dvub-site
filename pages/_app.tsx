@@ -7,21 +7,24 @@ import Footer from '../components/footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
+
+  const footerHeight = '4rem';
+
   const style: CSS.Properties = {
 
     marginRight: '6rem',
     marginLeft: '6rem',
     marginTop: '2rem',
-    paddingBottom: '4rem'
+    paddingBottom: footerHeight,
   };
   const footerStyle: CSS.Properties = {
     position: 'absolute',
     bottom: '0',
     width: '100%',
-    height: '4rem',          /* Footer height */
+    height: footerHeight,        /* Footer height */
     fontFamily: 'Overpass Mono',
     textAlign: 'center',
-    lineHeight: '4rem',
+    lineHeight: footerHeight,
   }
   const wrapperStyle: CSS.Properties = {
     position: 'relative',
