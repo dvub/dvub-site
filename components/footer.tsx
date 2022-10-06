@@ -12,18 +12,13 @@ const Footer = () => {
                 <Row>
                     <Col>
                     <a href='https://github.com/dvub' style={linkStyle}>dvub</a>
-                        
                     </Col>
                     <Col lg={{ offset: 4}}>v1.0.1</Col>
                     <Col>
-                        <a href='https://github.com/dvub/personal_website' style={linkStyle}>
-                            repository
-                        </a>
+                        <a href='https://github.com/dvub/personal_website' style={linkStyle}>repository</a>
                     </Col>
                     <Col>
-                        <a href='https://github.com/dvub/personal_website/blob/main/changelog.md' style={linkStyle}>
-                            changelog
-                        </a>
+                        <a href='https://github.com/dvub/personal_website/blob/main/changelog.md' style={linkStyle}>changelog</a>
                     </Col>
                 </Row>
             </Container>
