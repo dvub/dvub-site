@@ -1,28 +1,28 @@
-import { Container, Row, Col } from 'react-bootstrap'
-import Image from 'next/image'
-const Footer = () => {
-    return (
-        <div>
-            <Container>
-                <Row className='justify-content-md-center'>
-                    <Col>dvub</Col>
-                    <Col>
-                        <div>
-                            <a href='https://github.com/dvub'>
-                                <Image
-                                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                                    width={32}
-                                    height={32}
-                                    alt='Github Icon'
-                                />
-                            </a>
+import { Container, Row, Col } from 'react-bootstrap';
+import CSS from 'csstype';
 
-                        </div>
-                    </Col>
-                    <Col>v1.0.1</Col>
+const Footer = () => {
+
+    const linkStyle: CSS.Properties = {textDecoration: 'none', color: 'black'};
+
+    return (
+
+        <div style={{fontSize: '14px'}}>
+            <Container>
+                <Row>
                     <Col>
-                        <a href='https://github.com/dvub/personal_website/blob/main/changelog.md'>
-                            Changelog
+                    <a href='https://github.com/dvub' style={linkStyle}>dvub</a>
+                        
+                    </Col>
+                    <Col lg={{ offset: 4}}>v1.0.1</Col>
+                    <Col>
+                        <a href='https://github.com/dvub/personal_website' style={linkStyle}>
+                            repository
+                        </a>
+                    </Col>
+                    <Col>
+                        <a href='https://github.com/dvub/personal_website/blob/main/changelog.md' style={linkStyle}>
+                            changelog
                         </a>
                     </Col>
                 </Row>
