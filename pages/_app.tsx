@@ -11,7 +11,6 @@ function MyApp({ Component, pageProps }: AppProps) {
   const footerHeight = '4rem';
 
   const style: CSS.Properties = {
-
     marginRight: '6rem',
     marginLeft: '6rem',
     marginTop: '2rem',
@@ -19,9 +18,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   };
   const footerStyle: CSS.Properties = {
     position: 'absolute',
-    bottom: '0',
+    bottom: 0,
     width: '100%',
-    height: footerHeight,        /* Footer height */
+    height: footerHeight,
     fontFamily: 'Overpass Mono',
     textAlign: 'center',
     lineHeight: footerHeight,
@@ -29,11 +28,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   const wrapperStyle: CSS.Properties = {
     position: 'relative',
     minHeight: '100vh',
-
   }
 
   return (
-
     <div style={wrapperStyle}>
       <NavBar />
       <div style={style}>
