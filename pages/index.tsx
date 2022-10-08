@@ -1,9 +1,11 @@
+/* eslint-disable react/no-unknown-property */
 import type { NextPage } from 'next'
 import { Canvas } from '@react-three/fiber'
 import Sphere from '../components/sphere'
 import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
 import { useState } from 'react'
+import { OrbitControls } from '@react-three/drei'
 // todos: 
 // work on readme
 
@@ -41,11 +43,14 @@ const Home: NextPage = () => {
                 <Canvas
                   className='border'
                   camera={{ position: [-35, 0, 0] }}
-                  style={{ height: '25rem'}}
+                  style={{ height: '25rem' }}
                   onMouseEnter={() => setHovering(true)}
                   onMouseLeave={() => setHovering(false)}
                 >
-                  <Sphere hovering={hovering} />
+                  <OrbitControls />
+                  <ambientLight />
+                  <pointLight position={[10, 10, 10]} />
+                  <Sphere />
                 </Canvas>
                 <p>(hover over me)</p>
               </div>
