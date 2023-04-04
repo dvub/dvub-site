@@ -10,8 +10,6 @@ import { OrbitControls } from '@react-three/drei'
 // work on readme
 
 const Home: NextPage = () => {
-  const [hovering, setHovering] = useState(false);
-
   return (
     <div>
       <Head>
@@ -44,8 +42,6 @@ const Home: NextPage = () => {
                   className='border'
                   camera={{ position: [-35, 0, 0] }}
                   style={{ height: '25rem' }}
-                  onMouseEnter={() => setHovering(true)}
-                  onMouseLeave={() => setHovering(false)}
                 >
                   <OrbitControls />
                   <ambientLight />

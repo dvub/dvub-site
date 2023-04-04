@@ -25,8 +25,8 @@ const Posts = () => {
             });
     }, []
     );
-
-    const listItems = isLoading ? '' : metas.map((d, i) => {
+    const loadingItem = <p className='animate'><b>Loading...</b></p>
+    const listItems = isLoading ? loadingItem : metas.map((d, i) => {
         return (
             <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 0.375}s` }}>
                 <PostCard meta={d} />

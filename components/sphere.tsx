@@ -7,21 +7,27 @@ import mathUtils from '../utils/math'
 
 interface args {
   position: THREE.Vector3;
+  index: number;
 }
-
 const Cone = (args: args) => {
   const { x, y, z } = args.position;
-  const a = new THREE.Euler( 0, 0, 1.57, 'XYZ' );
+  const randomRadian = (): number => {
+    return Math.random() * (2 * Math.PI);
+  }
+  const rotation = new THREE.Euler( randomRadian(), randomRadian(), randomRadian(), 'XYZ' );
+
+  
+
   return (
-    <mesh position={[x, y, z]} rotation={a}>
+    <mesh position={[x, y, z]} rotation={rotation}>
       <coneGeometry args={[1,1.5,3,1]}/>
-      <meshStandardMaterial color={'gray'}/>
+
+      <meshStandardMaterial color={`rgb(${62+args.index},${146+args.index},${230+args.index})`}/>
     </mesh>
   );
 }
 const Sphere = () => {
   // declare variables
-
   const position = new THREE.Vector3(0, 0, 0);
   const pointCount = 100;
   const radius = 20;
@@ -31,11 +37,10 @@ const Sphere = () => {
     <Cone 
       key={i} 
       position={mathUtils.randomSpherePoint(position, radius)}
+      index={i}
     />
     );
   });
-
-  // return our buffergeometry using the attribute
   return (
     <group>
       {cones}
