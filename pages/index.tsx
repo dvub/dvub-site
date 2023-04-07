@@ -4,14 +4,20 @@ import { Canvas } from '@react-three/fiber'
 import Sphere from '../components/sphere'
 import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
-import { useState } from 'react'
 import { OrbitControls } from '@react-three/drei'
+import { useState } from 'react'
 // todos: 
 // work on readme
 
 const Home: NextPage = () => {
+
+  const [title, setTitle] = useState('');
+
+
+  
+
   return (
-    <div>
+    <div >
       <Head>
         <title>dvub</title>
       </Head>
@@ -36,6 +42,7 @@ const Home: NextPage = () => {
               </div>
             </Col>
             <Col>
+              <p>{title}</p>
               <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
 
                 <Canvas
@@ -46,7 +53,7 @@ const Home: NextPage = () => {
                   <OrbitControls />
                   <ambientLight />
                   <pointLight position={[10, 10, 10]} />
-                  <Sphere />
+                  <Sphere onHover={setTitle}/>
                 </Canvas>
                 <p>(hover over me)</p>
               </div>
