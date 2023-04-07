@@ -1,0 +1,24 @@
+import Layout from '../../components/layout'
+
+export const meta  = {
+    author: 'dvub',
+    authorLink: 'https://github.com/dvub',
+    title: 'My First Linux Experience',
+    date: '4/6/2023',
+    description: 'My first experience with Arch Linux on a 2011 Macbook.',
+    tags: ['linux', 'arch', 'btw'],
+    fileName: 'first-linux-experience'
+}
+
+### Note
+This is actually not very recent; I actually *first* started using Linux *months ago*, but didn't think to write a blog post about it until now. So here we are.
+
+# Introduction
+Years ago, I got a mid-2011 Macbook Air from a relative who wasn't using it at all. I used it on and off for a while, until I actually needed it for school. For quite some time I ran MacOS on it, which was fine -- that is, excluding the fact that the version of MacOS I was on was years old. The biggest issue with this was not being able to run most modern programs, and that the software was pretty slow on such old hardware. So in my mind, there was only one reasonable solution: **Install Linux!**
+
+# Distro Choice
+After deciding that I wanted to try Linux, the next step was to choose a distribution to use -- a daunting task. (By the way, there are lots of tools online to help you if you're using linux: try [distrochooser](https://distrochooser.de/)) I ended up going with Arch, honestly, just because it seemed fun. The main constraints for me were at least a little bit of simplicity, since I'm a Linux noob, and also that the distro could run on very old hardware. According to the website, Arch is "a lightweight and flexible Linux distribution that tries to Keep It Simple." (the KISS ideology, without the stupid at the end)
+
+
+
+export default ({children}) => <Layout meta={meta}>{children}</Layout>
