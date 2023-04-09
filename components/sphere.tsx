@@ -1,15 +1,12 @@
-/* eslint-disable react/no-unknown-property */
-import { useFrame } from "@react-three/fiber";
-import { Dispatch, SetStateAction, memo, useRef } from "react";
+/* eslint-disable react/no-unknown-property */;
 import * as THREE from "three";
-import { ConeGeometry } from "three";
 import mathUtils from '../utils/math'
 import { Metadata } from "../types/metadata";
 
 const Cone = (args: {
   position: THREE.Vector3,
   index: number,
-  handleOnPointerOver(str: string): any,
+  handleOnPointerOver(meta: Metadata | null): any,
   meta: Metadata,
 }) => {
   const { position, index, handleOnPointerOver, meta } = args;
@@ -22,15 +19,17 @@ const Cone = (args: {
     <mesh
       position={[x, y, z]}
       rotation={rotation}
-      onPointerOver={() => { handleOnPointerOver(meta.title); }}
+      onPointerOver={() => { handleOnPointerOver(meta) }}
+      onPointerLeave={() => { handleOnPointerOver(null)}}
     >
       <coneGeometry args={[1, 1.5, 3, 1]} />
       <meshStandardMaterial color={`rgb(${62 + index},${146 + index},${230 + index})`} />
     </mesh>
   );
 }
+
 const Sphere = (props: {
-  handleOnPointerOver(str: string): any,
+  handleOnPointerOver(meta: Metadata | null): any,
   metas: Metadata[],
 }) => {
   // declare variables
@@ -55,4 +54,5 @@ const Sphere = (props: {
     </group>
   );
 }
-export default memo(Sphere);  
+
+export default Sphere;  

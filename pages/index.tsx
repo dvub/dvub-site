@@ -1,63 +1,30 @@
 /* eslint-disable react/no-unknown-property */
 import type { NextPage } from 'next'
-import { Canvas, RootState, useFrame } from '@react-three/fiber'
-import Sphere from '../components/sphere'
 import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
-import { OrbitControls } from '@react-three/drei'
 import { useEffect, useState, useRef } from 'react'
 import { Metadata } from '../types/metadata'
 import useMouse from '@react-hook/mouse-position'
-import { Clock } from 'three'
+import Scene from '../components/scene'
+import MetaDisplay from '../components/MetaDisplay'
+
 // todos: 
 // work on readme
-
-const Display = (props: {
-  title: string,
-  mouse: {
-    x: number | null,
-    y: number | null
-  }
-}) => {
-  /*
-  return (
-    <div className='border' style={{ position: 'absolute', left: props.mouse.x+'px', top: props.mouse.y+'px' }}>
-      <p>{props.title}</p>
-    </div>
-  );
-  */
-
-}
-const FrameLimiter = (props: {fps: number}) => {
-  const [clock] = useState(new Clock());
-
-  useFrame((state: RootState) => {
-    state.ready = false;
-    const timeUntilNextFrame = (1000 / props.fps) - clock.getDelta();
-
-    setTimeout(() => {
-      state.ready = true;
-      state.invalidate();
-    }, Math.max(0, timeUntilNextFrame));
-
-  });
-  return <></>;
-};
 const Home: NextPage = () => {
-  const ref = useRef(null)
+
+  const fps = 1000;
+  const ref = useRef(null);
   const mouse = useMouse(ref, {
     enterDelay: 100,
     leaveDelay: 100,
-    fps: 30,
-  })
+    fps: fps,
+  });
 
   // use state here to display title and other information about a post that the user is hovering over
-  const [postInfo, setPostInfo] = useState('');
-
+  const [postInfo, setPostInfo] = useState<Metadata | null>(null);
   // api call to get metadatas for posts
   const [metas, setMetas] = useState<Metadata[]>([]);
   const [isLoading, setLoading] = useState(true);
-
   useEffect(() => {
     setLoading(true);
     fetch('/api/metas')
@@ -66,8 +33,9 @@ const Home: NextPage = () => {
         setMetas(data);
         setLoading(false);
       });
-  }, []
-  );
+  }, []);
+
+
   return (
     <div ref={ref}>
       <Head>
@@ -95,20 +63,11 @@ const Home: NextPage = () => {
             </Col>
             {!isLoading &&
               <Col>
-                <Display title={postInfo} mouse={mouse} />
+                <MetaDisplay meta={postInfo} mouse={mouse} />
                 <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
-
-                  <Canvas
-                    camera={{ position: [-35, 0, 0] }}
-                    style={{ height: '25rem' }}
-                  >
-                    <FrameLimiter />
-                    <OrbitControls />
-                    <ambientLight />
-                    <pointLight position={[10, 10, 10]} />
-                    <Sphere handleOnPointerOver={setPostInfo} metas={metas} />
-                  </Canvas>
+                  <Scene metas={metas} setPostInfo={setPostInfo} fps={fps} />
                   <p>(FIX THE TEXT HERE)</p>
+                  <p>implement settings here</p>
                 </div>
               </Col>
             }

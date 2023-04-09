@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Layout: FC<Props> = (props) => {
-    
+
     const { children, meta } = props;
     const { title, author, date, authorLink, description, tags } = meta;
 
@@ -44,7 +44,7 @@ const Layout: FC<Props> = (props) => {
     const tagDisplay = tags ? tags.join(', ') : '';
 
     return (
-        <div style={{maxWidth: '40rem', marginBottom: '10rem'}}>
+        <div style={{ maxWidth: '40rem', marginBottom: '10rem' }}>
 
             <Head>
                 <title>{title}</title>
