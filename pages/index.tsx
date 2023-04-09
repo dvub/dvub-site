@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { Metadata } from '../types/metadata'
 import useMouse from '@react-hook/mouse-position'
-import Scene from '../components/scene'
+import Scene from '../components/Scene'
 import MetaDisplay from '../components/MetaDisplay'
 
 // todos: 
