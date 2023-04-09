@@ -6,26 +6,22 @@ import { ConeGeometry } from "three";
 import mathUtils from '../utils/math'
 import { Metadata } from "../types/metadata";
 
-
-interface args {
-  position: THREE.Vector3;
-  index: number;
-  handleOnPointerOver(str: string): any;
-  meta: Metadata;
-}
-
-const Cone = (args: args) => {
-
+const Cone = (args: {
+  position: THREE.Vector3,
+  index: number,
+  handleOnPointerOver(str: string): any,
+  meta: Metadata,
+}) => {
   const { position, index, handleOnPointerOver, meta } = args;
   const { x, y, z } = position;
-  const randomRadian = (): number => {
+  const randRad = (): number => {
     return Math.random() * (2 * Math.PI);
   }
-  const rotation = new THREE.Euler(randomRadian(), randomRadian(), randomRadian(), 'XYZ');
+  const rotation = new THREE.Euler(randRad(), randRad(), randRad(), 'XYZ');
   return (
     <mesh
-      position={[x, y, z]} 
-      rotation={rotation} 
+      position={[x, y, z]}
+      rotation={rotation}
       onPointerOver={() => { handleOnPointerOver(meta.title); }}
     >
       <coneGeometry args={[1, 1.5, 3, 1]} />
@@ -33,7 +29,10 @@ const Cone = (args: args) => {
     </mesh>
   );
 }
-const Sphere = (props: { handleOnPointerOver(str: string): any, metas: Metadata[] }) => {
+const Sphere = (props: {
+  handleOnPointerOver(str: string): any,
+  metas: Metadata[],
+}) => {
   // declare variables
   const position = new THREE.Vector3(0, 0, 0);
   const pointCount = props.metas.length;

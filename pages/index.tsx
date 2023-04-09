@@ -1,33 +1,75 @@
 /* eslint-disable react/no-unknown-property */
 import type { NextPage } from 'next'
-import { Canvas } from '@react-three/fiber'
+import { Canvas, RootState, useFrame } from '@react-three/fiber'
 import Sphere from '../components/sphere'
 import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
 import { OrbitControls } from '@react-three/drei'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { Metadata } from '../types/metadata'
+import useMouse from '@react-hook/mouse-position'
+import { Clock } from 'three'
 // todos: 
 // work on readme
 
-const Home: NextPage = () => {
+const Display = (props: {
+  title: string,
+  mouse: {
+    x: number | null,
+    y: number | null
+  }
+}) => {
+  /*
+  return (
+    <div className='border' style={{ position: 'absolute', left: props.mouse.x+'px', top: props.mouse.y+'px' }}>
+      <p>{props.title}</p>
+    </div>
+  );
+  */
 
-  const [title, setTitle] = useState('');
+}
+const FrameLimiter = (props: {fps: number}) => {
+  const [clock] = useState(new Clock());
+
+  useFrame((state: RootState) => {
+    state.ready = false;
+    const timeUntilNextFrame = (1000 / props.fps) - clock.getDelta();
+
+    setTimeout(() => {
+      state.ready = true;
+      state.invalidate();
+    }, Math.max(0, timeUntilNextFrame));
+
+  });
+  return <></>;
+};
+const Home: NextPage = () => {
+  const ref = useRef(null)
+  const mouse = useMouse(ref, {
+    enterDelay: 100,
+    leaveDelay: 100,
+    fps: 30,
+  })
+
+  // use state here to display title and other information about a post that the user is hovering over
+  const [postInfo, setPostInfo] = useState('');
+
+  // api call to get metadatas for posts
   const [metas, setMetas] = useState<Metadata[]>([]);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-      setLoading(true);
-      fetch('/api/metas')
-          .then((res) => res.json())
-          .then((data) => {
-              setMetas(data);
-              setLoading(false);
-          });
+    setLoading(true);
+    fetch('/api/metas')
+      .then((res) => res.json())
+      .then((data) => {
+        setMetas(data);
+        setLoading(false);
+      });
   }, []
   );
   return (
-    <div >
+    <div ref={ref}>
       <Head>
         <title>dvub</title>
       </Head>
@@ -51,23 +93,28 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </Col>
-            <Col>
-              <p>{title}</p>
-              <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
+            {!isLoading &&
+              <Col>
+                <Display title={postInfo} mouse={mouse} />
+                <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
 
-                <Canvas
-                  className='border'
-                  camera={{ position: [-35, 0, 0] }}
-                  style={{ height: '25rem' }}
-                >
-                  <OrbitControls />
-                  <ambientLight />
-                  <pointLight position={[10, 10, 10]} />
-                  <Sphere handleOnPointerOver={setTitle} metas={metas}/>
-                </Canvas>
-                <p>(hover over me)</p>
-              </div>
-            </Col>
+                  <Canvas
+                    camera={{ position: [-35, 0, 0] }}
+                    style={{ height: '25rem' }}
+                  >
+                    <FrameLimiter />
+                    <OrbitControls />
+                    <ambientLight />
+                    <pointLight position={[10, 10, 10]} />
+                    <Sphere handleOnPointerOver={setPostInfo} metas={metas} />
+                  </Canvas>
+                  <p>(FIX THE TEXT HERE)</p>
+                </div>
+              </Col>
+            }
+            {isLoading &&
+              <p>Loading</p>
+            }
           </Row>
         </Container>
 
