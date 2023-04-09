@@ -1,53 +1,53 @@
 /* eslint-disable react/no-unknown-property */
 import { useFrame } from "@react-three/fiber";
-import { Dispatch, SetStateAction, useRef } from "react";
+import { Dispatch, SetStateAction, memo, useRef } from "react";
 import * as THREE from "three";
 import { ConeGeometry } from "three";
 import mathUtils from '../utils/math'
+import { Metadata } from "../types/metadata";
 
 
 interface args {
   position: THREE.Vector3;
   index: number;
-  onHover(str: string): any;
+  handleOnPointerOver(str: string): any;
+  meta: Metadata;
 }
-
-interface props {
-  onHover(str: string): any;
-}
-
 
 const Cone = (args: args) => {
 
-  const { x, y, z } = args.position;
-
+  const { position, index, handleOnPointerOver, meta } = args;
+  const { x, y, z } = position;
   const randomRadian = (): number => {
     return Math.random() * (2 * Math.PI);
   }
-  const rotation = new THREE.Euler( randomRadian(), randomRadian(), randomRadian(), 'XYZ' );
-
-
+  const rotation = new THREE.Euler(randomRadian(), randomRadian(), randomRadian(), 'XYZ');
   return (
-    <mesh position={[x, y, z]} rotation={rotation} onPointerOver={() => {args.onHover(args.index+'');}}>
-      <coneGeometry args={[1,1.5,3,1]}/>
-      <meshStandardMaterial color={`rgb(${62+args.index},${146+args.index},${230+args.index})`}/>
+    <mesh
+      position={[x, y, z]} 
+      rotation={rotation} 
+      onPointerOver={() => { handleOnPointerOver(meta.title); }}
+    >
+      <coneGeometry args={[1, 1.5, 3, 1]} />
+      <meshStandardMaterial color={`rgb(${62 + index},${146 + index},${230 + index})`} />
     </mesh>
   );
 }
-const Sphere = (props: props) => {
+const Sphere = (props: { handleOnPointerOver(str: string): any, metas: Metadata[] }) => {
   // declare variables
   const position = new THREE.Vector3(0, 0, 0);
-  const pointCount = 100;
+  const pointCount = props.metas.length;
   const radius = 20;
 
   const cones = new Array(pointCount).fill(null!).map((x, i) => {
     return (
-    <Cone 
-      key={i} 
-      position={mathUtils.randomSpherePoint(position, radius)}
-      index={i}
-      onHover={props.onHover}
-    />
+      <Cone
+        key={i}
+        position={mathUtils.randomSpherePoint(position, radius)}
+        index={i}
+        handleOnPointerOver={props.handleOnPointerOver}
+        meta={props.metas[i]}
+      />
     );
   });
   return (
@@ -56,4 +56,4 @@ const Sphere = (props: props) => {
     </group>
   );
 }
-export default Sphere;  
+export default memo(Sphere);  

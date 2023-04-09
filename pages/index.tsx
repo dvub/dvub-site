@@ -5,17 +5,27 @@ import Sphere from '../components/sphere'
 import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
 import { OrbitControls } from '@react-three/drei'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Metadata } from '../types/metadata'
 // todos: 
 // work on readme
 
 const Home: NextPage = () => {
 
   const [title, setTitle] = useState('');
+  const [metas, setMetas] = useState<Metadata[]>([]);
+  const [isLoading, setLoading] = useState(false);
 
-
-  
-
+  useEffect(() => {
+      setLoading(true);
+      fetch('/api/metas')
+          .then((res) => res.json())
+          .then((data) => {
+              setMetas(data);
+              setLoading(false);
+          });
+  }, []
+  );
   return (
     <div >
       <Head>
@@ -53,7 +63,7 @@ const Home: NextPage = () => {
                   <OrbitControls />
                   <ambientLight />
                   <pointLight position={[10, 10, 10]} />
-                  <Sphere onHover={setTitle}/>
+                  <Sphere handleOnPointerOver={setTitle} metas={metas}/>
                 </Canvas>
                 <p>(hover over me)</p>
               </div>
