@@ -35,10 +35,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-.obsidian/*
-.obsidian/workspace/*
-.obsidian/plugins/*
-05*-*Personal/
-Day*Planners/*
+# obsidian
+.obsidian/
+.obsidian/workspace
+.obsidian/plugins
 .obsidian-git-data
 null*
