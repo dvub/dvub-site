@@ -4,7 +4,7 @@
 import { Metadata } from '../types/metadata';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import PostCard from '../components/postCard';
+import PostCard from '../components/PostCard';
 import Head from 'next/head';
 // <-----------------------> //
 
