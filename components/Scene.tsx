@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { Stats, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Sphere from './sphere';
+import Sphere from './Sphere';
 import FrameLimiter from "./FrameLimiter";
 import { memo } from "react";
 import { Metadata } from "../types/metadata";

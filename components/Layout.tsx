@@ -2,7 +2,7 @@ import React, { ReactNode, FC, useState, useEffect } from 'react'
 import type { Metadata } from '../types/metadata'
 import Head from 'next/head'
 import { Col } from 'react-bootstrap'
-import PostCard from './postCard'
+import PostCard from './PostCard'
 
 interface Props {
     children: ReactNode;
