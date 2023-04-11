@@ -7,7 +7,7 @@ import { Metadata } from '../types/metadata'
 import useMouse from '@react-hook/mouse-position'
 import Scene from '../components/Scene'
 import MetaDisplay from '../components/MetaDisplay'
-
+import Loading from '../components/Loading'
 // todos: 
 // work on readme
 const Home: NextPage = () => {
@@ -42,6 +42,7 @@ const Home: NextPage = () => {
         <title>dvub</title>
       </Head>
       <div>
+        <Loading/>
         <Container>
           <Row xs={1} md={2}>
             <Col>
