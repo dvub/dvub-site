@@ -3,19 +3,18 @@ import { useStopwatch } from "react-use-precision-timer";
 
 const Loading = () => {
     const stopwatch = useStopwatch();
-    const [time, setTime] = useState(0);
-    useEffect(() => {
-        setTime(stopwatch.getElapsedRunningTime());
+    if (!stopwatch.isRunning()) stopwatch.start();
 
-    }, [stopwatch])
+
+  
     return (
         <div>
             <p>
                 <b>
                     Loading...
                 </b>
-                (100% glitchless)
-                {time}
+                (100% glitchless)<br/>
+                {stopwatch.getElapsedRunningTime()}
             </p>
         </div>
     );

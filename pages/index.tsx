@@ -12,7 +12,7 @@ import Loading from '../components/Loading'
 // work on readme
 const Home: NextPage = () => {
 
-  const fps = 1000;
+  const fps = 60;
   const ref = useRef(null);
   const mouse = useMouse(ref, {
     enterDelay: 100,
