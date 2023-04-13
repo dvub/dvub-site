@@ -9,10 +9,10 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   const footerHeight = '4rem';
-
+  const margins = '10%';
   const style: CSS.Properties = {
-    marginRight: '6rem',
-    marginLeft: '6rem',
+    marginRight: margins,
+    marginLeft: margins,
     marginTop: '2rem',
     paddingBottom: footerHeight,
   };
