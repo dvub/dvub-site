@@ -1,5 +1,5 @@
 import Layout from '../../components/Layout'
-
+import Image from 'next/image'
 export const meta  = {
     author: 'dvub',
     authorLink: 'https://github.com/dvub',
@@ -27,21 +27,14 @@ After deciding that I wanted to try Linux, the next step was to choose a distrib
 ## Desktop Environment
 The next thing most people consider after their distribution is the [desktop environment](https://en.wikipedia.org/wiki/Desktop_environment) of choice. Some distributions come with desktop environments set up out of the box, such as [Linux Mint](https://linuxmint.com/), but Arch allows the user to choose any DE they want, providing a lot of flexibility and versatility. I went with [XFCE](https://www.xfce.org/) because I heard pretty good things about it online. XFCE uses the [XFWM](https://docs.xfce.org/xfce/xfwm4/introduction) window manager, which is pretty alright. Lately though, I've been considering switching WM's to something more sleek.  XFCE also comes with a terminal, file manager, email reader, and all the other good stuff you would expect in a DE. 
 ## Ricing
-One of the other things I wanted to quickly mention in this post was my experience with ricing my system. XFCE is super easy to customize and it took me probably an hour to customize my system. If you're curious, here are my specs:
-- DE: Xfce 4.18 
-- WM: Xfwm4 
-- WM Theme: Dracula 
-- Theme: Skeuos-Blue-Dark [GTK2/3] 
-- Icons: Colloid-yellow-dark [GTK2/3] 
-- Terminal: xfce4-terminal 
-- Terminal Font: JetBrainsMono Nerd Font
-I went for a blue theme.
+One of the other things I wanted to quickly mention in this post was my experience with ricing my system. XFCE is super easy to customize and it took me probably an hour to customize my system. If you're curious, here are my specs from a `neofetch` screenshot. You can also see the rice from the screenshot lol...
+<Image src="/posts/first-linux-experience/rice.png" alt="rice" width="1440" height="900" />
+
 # Installation
 And now, time for my dark confession.. I used `archinstall` to install and configure Arch on my laptop. My only excuse is that I spent multiple hours trying to install Arch myself, but ended up having issues along the way. (I honestly forgot what the issues were) *But*, my experience with `archinstall` *does* give me a chance to write about it, as well as the beginner Linux user experience in general. In short, `archinstall` was **incredibly convenient and easy to use** for a noob user. (me) The configuration options were pretty simple to understand and with `archinstall` the process probably took 20 minutes in total. Overall, I would say it was extremely approachable as a complete beginner. I'm sure that if I had dedicated a bit more time and patience to manually installing, I could have gotten it, but I just decided to try `archinstall`. 
 
 # Experience
 As for my actual user experience with Arch and Linux in general, well, it's been pretty great! In fact, I'm writing this blog post on my laptop right now using Obsidian! (I'll probably be writing about obsidian in a future post since I've started using it so much) Arch is ridiculously lightweight and fast, and everything runs smoothly except for certain programs such as VSCode. (due to all of the extensions I use) I've had *very* few issues (which I'll discuss in the next section of the post). XFCE as a desktop environment has been 
 # Issues
-
 
 export default ({children}) => <Layout meta={meta}>{children}</Layout>
