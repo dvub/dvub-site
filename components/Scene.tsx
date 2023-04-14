@@ -33,4 +33,4 @@ const Scene = (props: {
         </div>
     );
 }
-export default memo(Scene);
+export default Scene;

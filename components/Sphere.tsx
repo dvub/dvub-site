@@ -14,7 +14,7 @@ const Cone = (args: {
   meta: Metadata,
 }) => {
   const { position, index, meta } = args;
-  const positionScale = 0.75 + (Math.random() * 0.75);
+  const positionScale = 0.75 + (Math.random() * 0.25);
 
   const randRad = (): number => {
     return Math.random() * (2 * Math.PI);
