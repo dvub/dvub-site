@@ -23,8 +23,8 @@ const Scene = (props: {
                 camera={{ position: [-35, 0, 0] }}
                 style={{ height: '25rem' }}
             >
-                <Stats />
-                <OrbitControls />
+                <Stats/>
+                 <OrbitControls />
                 <ambientLight />
                 <pointLight position={[10, 10, 10]} />
                 <Sphere metas={metas} />
