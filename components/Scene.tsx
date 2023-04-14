@@ -5,16 +5,18 @@ import Sphere from './Sphere';
 import FrameLimiter from "./FrameLimiter";
 import { memo } from "react";
 import { Metadata } from "../types/metadata";
-
+import 'react-tooltip/dist/react-tooltip.css'
+import { Tooltip } from 'react-tooltip'
 const Scene = (props: {
-    setPostInfo(meta: Metadata): any,
     metas: Metadata[],
     fps: number,
 }) => {
 
-    const { setPostInfo, metas, fps } = props;
+    const { metas, fps } = props;
 
     return (
+        <div>
+        <Tooltip anchorSelect="tooltip" />
         <Canvas
             camera={{ position: [-35, 0, 0] }}
             style={{ height: '25rem' }}
@@ -23,9 +25,10 @@ const Scene = (props: {
             <OrbitControls />
             <ambientLight />
             <pointLight position={[10, 10, 10]} />
-            <Sphere handleOnPointerOver={setPostInfo} metas={metas} />
+            <Sphere metas={metas} />
             <FrameLimiter fps={fps} />
         </Canvas>
+        </div>
     );
 }
 export default memo(Scene);

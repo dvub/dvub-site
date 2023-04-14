@@ -9,7 +9,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   const footerHeight = '4rem';
-  const margins = '10%';
+  const margins = '5%';
   const style: CSS.Properties = {
     marginRight: margins,
     marginLeft: margins,

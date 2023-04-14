@@ -4,24 +4,13 @@ import { Container, Col, Row } from 'react-bootstrap'
 import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { Metadata } from '../types/metadata'
-import useMouse from '@react-hook/mouse-position'
 import Scene from '../components/Scene'
-import MetaDisplay from '../components/MetaDisplay'
 import Loading from '../components/Loading'
 // todos: 
 // work on readme
 const Home: NextPage = () => {
 
   const fps = 60;
-  const ref = useRef(null);
-  const mouse = useMouse(ref, {
-    enterDelay: 100,
-    leaveDelay: 100,
-    fps: fps,
-  });
-
-  // use state here to display title and other information about a post that the user is hovering over
-  const [postInfo, setPostInfo] = useState<Metadata | null>(null);
   // api call to get metadatas for posts
   const [metas, setMetas] = useState<Metadata[]>([]);
   const [isLoading, setLoading] = useState(true);
@@ -37,12 +26,12 @@ const Home: NextPage = () => {
 
 
   return (
-    <div ref={ref}>
+    <div>
       <Head>
         <title>dvub</title>
       </Head>
       <div>
-        <Loading/>
+        <Loading />
         <Container>
           <Row xs={1} md={2}>
             <Col>
@@ -64,9 +53,8 @@ const Home: NextPage = () => {
             </Col>
             {!isLoading &&
               <Col>
-                <MetaDisplay meta={postInfo} mouse={mouse} />
                 <div style={{ textAlign: 'center', animationDelay: '0.75s' }} className='animate'>
-                  <Scene metas={metas} setPostInfo={setPostInfo} fps={fps} />
+                  <Scene metas={metas} fps={fps} />
                   <p>(FIX THE TEXT HERE)</p>
                   <p>implement settings here</p>
                 </div>

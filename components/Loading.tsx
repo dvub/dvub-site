@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useStopwatch } from "react-use-precision-timer";
 
 const Loading = () => {
     const stopwatch = useStopwatch();
-    if (!stopwatch.isRunning()) stopwatch.start();
-
-
-  
+    useEffect(() => {
+        stopwatch.start()
+    }, [stopwatch])
     return (
         <div>
             <p>
