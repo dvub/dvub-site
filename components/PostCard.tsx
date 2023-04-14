@@ -2,7 +2,6 @@ import Link from "next/link";
 import { FC } from "react";
 import { Card } from "react-bootstrap";
 import { Metadata } from "../types/metadata";
-import CSS from 'csstype'
 
 interface Props {
     meta: Metadata;

@@ -3,6 +3,9 @@ import * as THREE from "three";
 import mathUtils from '../utils/math'
 import { Metadata } from "../types/metadata";
 import { Html } from "@react-three/drei";
+import 'react-tooltip/dist/react-tooltip.css'
+import { CSSProperties } from "react";
+
 
 const Cone = (args: {
   position: THREE.Vector3,
@@ -15,17 +18,30 @@ const Cone = (args: {
     return Math.random() * (2 * Math.PI);
   }
   const rotation = new THREE.Euler(randRad(), randRad(), randRad(), 'XYZ');
+  const hoverableStyle: CSSProperties = { 
+    backgroundColor: 'gray', 
+    borderRadius: '5px', 
+    textAlign: 'center' ,
+    height: '1rem',
+    lineHeight: '1rem'
+  };
   return (
-    <Html as='div'>
-      
-      <mesh
-        position={[x, y, z]}
-        rotation={rotation}
-      >
-        <coneGeometry args={[1, 1.5, 3, 1]} />
-        <meshStandardMaterial color={`rgb(${62 + index},${146 + index},${230 + index})`} />
-      </mesh>
-    </Html>
+    <mesh
+      position={[x, y, z]}
+      rotation={rotation}
+    >
+      <Html>
+        <div
+          data-tooltip-id="my-tooltip"
+          data-tooltip-content={meta.title}
+          style={hoverableStyle}>
+          <b>...</b>
+        </div>
+      </Html>
+      <coneGeometry args={[1, 1.5, 3, 1]} />
+      <meshStandardMaterial color={`rgb(${62 + index},${146 + index},${230 + index})`} />
+
+    </mesh>
   );
 }
 

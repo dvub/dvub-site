@@ -1,19 +1,23 @@
-import { memo, useEffect, useState } from "react";
-import { useStopwatch } from "react-use-precision-timer";
+import { useEffect, useState } from "react";
 
 const Loading = () => {
-    const stopwatch = useStopwatch();
+
+    const [quoteObj, setQuoteObj] = useState({});
     useEffect(() => {
-        stopwatch.start()
-    }, [stopwatch])
+      fetch('https://api.quotable.io/random')
+        .then((res) => res.json())
+        .then((data) => {
+          setQuoteObj(data);
+        });
+    }, []);
     return (
         <div>
             <p>
-                <b>
-                    Loading...
-                </b>
-                (100% glitchless)<br/>
-                {stopwatch.getElapsedRunningTime()}
+                <b>Loading...</b>
+                <br />
+                &quot;{quoteObj.content}&quot;
+                <br />
+                -{quoteObj.author}
             </p>
         </div>
     );
