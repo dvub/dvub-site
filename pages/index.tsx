@@ -11,7 +11,7 @@ import 'react-tooltip/dist/react-tooltip.css'
 // work on readme
 const Home: NextPage = () => {
 
-  const fps = 60;
+  const fps = 1000;
   // api call to get metadatas for posts
   const [metas, setMetas] = useState<Metadata[]>([]);
   const [isLoading, setLoading] = useState(true);
