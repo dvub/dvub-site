@@ -6,7 +6,6 @@ import { useEffect, useState, useRef } from "react";
 import { Metadata } from "../types/metadata";
 import Scene from "../components/Scene";
 import Loading from "../components/Loading";
-import "react-tooltip/dist/react-tooltip.css";
 import { Gear, InfoCircle } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
 import Popup from "reactjs-popup";

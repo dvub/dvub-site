@@ -3,47 +3,49 @@ import * as THREE from "three";
 import mathUtils from '../utils/math'
 import { Metadata } from "../types/metadata";
 import { Html, Line } from "@react-three/drei";
-import 'react-tooltip/dist/react-tooltip.css'
-import Link from 'next/link'
 import { useRouter } from "next/router";
-import { useRef } from "react";
-
+import { memo, useRef, useState } from "react";
 const Cone = (args: {
   position: THREE.Vector3,
   index: number,
   meta: Metadata,
 }) => {
-  const { position, index, meta } = args;
+  const { meta } = args;
   const positionScale = 0.75 + (Math.random() * 0.25);
 
   const randRad = (): number => {
     return Math.random() * (2 * Math.PI);
   }
-  const rotation = new THREE.Euler(randRad(), randRad(), randRad(), 'XYZ');
+
+  const [rotation, setRotation] = useState(new THREE.Euler(randRad(), randRad(), randRad(), 'XYZ'));
+  const [position, setPosition] = useState(args.position);
+  const [style, setStyle] = useState({fontSize: '12px', display: 'none'});
   const router = useRouter();
 
-
+  
   return (
     <>
     <mesh
       position={position.multiplyScalar(positionScale)}
       rotation={rotation}
       onClick={() => {router.push(`/posts/${meta.fileName}`);}}
+      onPointerOver={() => {
+        setStyle({...style, display: 'block'});
+      }}
+      onPointerLeave={() => {
+        setStyle({...style, display: 'none'});
+      }}
     >
-      <Html>
-        <div
-          data-tooltip-id="my-tooltip"
-          data-tooltip-content={meta.title}
-          style={{fontSize:'12px'}}
-        >
-          <p >...</p>
+    <Html>
+        <div style={style}>
+          <p>{meta.title}</p>
         </div>
       </Html>
       <coneGeometry args={[1, 1.5, 3, 1]} />
-      <meshStandardMaterial color={`rgb(${62 + index},${146 + index},${230 + index})`} />
+      <meshStandardMaterial wireframe={true} color='black'/>
 
     </mesh>
-    <Line points={[[0,0,0], [position.x,position.y,position.z]]} />
+    <Line points={[new THREE.Vector3(0,0,0), position]} />
     </>
   );
 }

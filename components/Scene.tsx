@@ -5,8 +5,6 @@ import Sphere from './Sphere';
 import FrameLimiter from "./FrameLimiter";
 import { memo } from "react";
 import { Metadata } from "../types/metadata";
-import 'react-tooltip/dist/react-tooltip.css'
-import { Tooltip } from 'react-tooltip'
 
 
 const Scene = (props: {
@@ -18,7 +16,6 @@ const Scene = (props: {
 
     return (
         <div>
-            <Tooltip id="my-tooltip" />
             <Canvas
                 camera={{ position: [-35, 0, 0] }}
                 style={{ height: '25rem' }}
