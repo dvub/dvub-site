@@ -4,7 +4,7 @@ import mathUtils from '../utils/math'
 import { Metadata } from "../types/metadata";
 import { Html, Line } from "@react-three/drei";
 import { useRouter } from "next/router";
-import { memo, useRef, useState } from "react";
+import { CSSProperties, memo, useRef, useState } from "react";
 
 const Cone = (args: {
   position: THREE.Vector3,
@@ -14,7 +14,15 @@ const Cone = (args: {
   const { meta } = args;
   const [rotation, setRotation] = useState(new THREE.Euler(mathUtils.randomRad(), mathUtils.randomRad(), mathUtils.randomRad(), 'XYZ'));
   const [position, setPosition] = useState(args.position.multiplyScalar(mathUtils.randomRange(0.75, 1)));
-  const [style, setStyle] = useState({fontSize: '12px', display: 'none'});
+  const [style, setStyle] = useState<CSSProperties>({
+    fontSize: '11px', 
+    opacity: '0%', 
+    backgroundColor: 'white', 
+    border: '1px solid black', 
+    borderRadius: '4px',
+    transition: 'opacity 0.1s ease',
+    whiteSpace: 'nowrap',
+  });
   const router = useRouter();
 
   return (
@@ -24,21 +32,18 @@ const Cone = (args: {
       rotation={rotation}
       onClick={() => {router.push(`/posts/${meta.fileName}`);}}
       onPointerOver={() => {
-        setStyle({...style, display: 'block'});
+        setStyle({...style, opacity: '100%'});
         console.log(position)
       }}
       onPointerLeave={() => {
-        setStyle({...style, display: 'none'});
+        setStyle({...style, opacity: '0%'});
       }}
     >
-    <Html >
-        <div style={style}>
-          <p>{meta.title}</p>
-        </div>
+    <Html style={style}>
+        <div className='mono'>{meta.title}</div>
       </Html>
       <coneGeometry args={[1, 1.5, 3, 1]} />
       <meshStandardMaterial wireframe={true} color='black'/>
-
     </mesh>
     <Line points={[[0,0,0], [position.x, position.y, position.z]]} />
     </>

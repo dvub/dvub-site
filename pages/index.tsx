@@ -8,8 +8,7 @@ import Scene from "../components/Scene";
 import Loading from "../components/Loading";
 import { Gear, InfoCircle } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+import {isMobile} from 'react-device-detect';
 // todos:
 // work on readme
 const Home: NextPage = () => {
@@ -64,34 +63,24 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </Col>
-            {!isLoading && (
+            {!isLoading && !isMobile && (
               <Col style={{ animationDelay: "0.75s" }} className="animate">
                 <h1 className="mono">&#47;&#47;directory</h1>
                 <Scene metas={metas} fps={fps} />
-                <Popup
-                  trigger={
-                    <Button>
-                      <InfoCircle />
-                    </Button>
-                  }
-                  position="right center"
-                  modal
-                >
-                  <div>
-                      <p>
-                        Welcome to the directory! Here, you can view posts in an interactive 3D space! 
-                        You can hover over [...] to view the title of the post,
-                        and you can click on each node to go to that post.
-                      </p>
-                  </div>
-                </Popup>
-                <br />
-                <Button variant="primary">
-                  <Gear />
-                </Button>
+                <InfoCircle />
+                <div>
+                  <p>
+                    Welcome to the directory! Here, you can view posts in an interactive 3D space! You can hover each node to view the title of the post, and click on it to go to that post.
+                  </p>
+                </div>
               </Col>
             )}
             {isLoading && <p>Loading</p>}
+            {isMobile && (
+              <Col>
+                It appears you&apos;re viewing this page on a mobile device. Some features of this page are not intended or will not function for mobile users.
+              </Col>
+            )}
           </Row>
         </Container>
       </div>
