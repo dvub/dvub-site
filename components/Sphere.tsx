@@ -5,38 +5,33 @@ import { Metadata } from "../types/metadata";
 import { Html, Line } from "@react-three/drei";
 import { useRouter } from "next/router";
 import { memo, useRef, useState } from "react";
+
 const Cone = (args: {
   position: THREE.Vector3,
   index: number,
   meta: Metadata,
 }) => {
   const { meta } = args;
-  const positionScale = 0.75 + (Math.random() * 0.25);
-
-  const randRad = (): number => {
-    return Math.random() * (2 * Math.PI);
-  }
-
-  const [rotation, setRotation] = useState(new THREE.Euler(randRad(), randRad(), randRad(), 'XYZ'));
-  const [position, setPosition] = useState(args.position);
+  const [rotation, setRotation] = useState(new THREE.Euler(mathUtils.randomRad(), mathUtils.randomRad(), mathUtils.randomRad(), 'XYZ'));
+  const [position, setPosition] = useState(args.position.multiplyScalar(mathUtils.randomRange(0.75, 1)));
   const [style, setStyle] = useState({fontSize: '12px', display: 'none'});
   const router = useRouter();
 
-  
   return (
     <>
     <mesh
-      position={position.multiplyScalar(positionScale)}
+      position={position}
       rotation={rotation}
       onClick={() => {router.push(`/posts/${meta.fileName}`);}}
       onPointerOver={() => {
         setStyle({...style, display: 'block'});
+        console.log(position)
       }}
       onPointerLeave={() => {
         setStyle({...style, display: 'none'});
       }}
     >
-    <Html>
+    <Html >
         <div style={style}>
           <p>{meta.title}</p>
         </div>
@@ -45,7 +40,7 @@ const Cone = (args: {
       <meshStandardMaterial wireframe={true} color='black'/>
 
     </mesh>
-    <Line points={[new THREE.Vector3(0,0,0), position]} />
+    <Line points={[[0,0,0], [position.x, position.y, position.z]]} />
     </>
   );
 }

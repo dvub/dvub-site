@@ -33,8 +33,10 @@ function toRadians(angle: number) {
 function randomRange(min: number, max: number): number {
     return Math.random() * (max - min) + min;
 }
+const randomRad = (): number => {
+    return Math.random() * (2 * Math.PI);
+  }
 
-
-const exports = { randomRange, randomSpherePoint, rotateAboutPoint, toDegrees, toRadians };
+const exports = { randomRange, randomSpherePoint, rotateAboutPoint, toDegrees, toRadians, randomRad };
 export default exports;
 
