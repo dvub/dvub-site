@@ -1,35 +1,36 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from '../components/navbar';
+import NavBar from '../components/Navbar';
 import CSS from 'csstype'
-import Footer from '../components/footer';
+import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const style: CSS.Properties = {
 
-    marginRight: '6rem',
-    marginLeft: '6rem',
+
+  const footerHeight = '4rem';
+  const margins = '5%';
+  const style: CSS.Properties = {
+    marginRight: margins,
+    marginLeft: margins,
     marginTop: '2rem',
-    paddingBottom: '4rem'
+    paddingBottom: footerHeight,
   };
   const footerStyle: CSS.Properties = {
     position: 'absolute',
-    bottom: '0',
+    bottom: 0,
     width: '100%',
-    height: '4rem',          /* Footer height */
+    height: footerHeight,
     fontFamily: 'Overpass Mono',
     textAlign: 'center',
-    lineHeight: '4rem',
+    lineHeight: footerHeight,
   }
   const wrapperStyle: CSS.Properties = {
     position: 'relative',
     minHeight: '100vh',
-
   }
 
   return (
-
     <div style={wrapperStyle}>
       <NavBar />
       <div style={style}>

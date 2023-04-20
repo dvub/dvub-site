@@ -4,7 +4,6 @@ body {
   color: black;
   font-size: 16px;
 }
-
 h1 {
   font-family: Playfair Display;
   color: black;
@@ -25,6 +24,7 @@ hr {
   border: 2px #DADADA solid;
   border-radius: 5px;
 }
+
 .mono {
   font-family: JetBrains Mono;
 }

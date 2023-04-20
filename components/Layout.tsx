@@ -2,7 +2,7 @@ import React, { ReactNode, FC, useState, useEffect } from 'react'
 import type { Metadata } from '../types/metadata'
 import Head from 'next/head'
 import { Col } from 'react-bootstrap'
-import PostCard from './postCard'
+import PostCard from './PostCard'
 
 interface Props {
     children: ReactNode;
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Layout: FC<Props> = (props) => {
-    
+
     const { children, meta } = props;
     const { title, author, date, authorLink, description, tags } = meta;
 
@@ -44,7 +44,7 @@ const Layout: FC<Props> = (props) => {
     const tagDisplay = tags ? tags.join(', ') : '';
 
     return (
-        <div style={{maxWidth: '40rem', marginBottom: '10rem'}}>
+        <div style={{ maxWidth: '40rem', marginBottom: '10rem' }}>
 
             <Head>
                 <title>{title}</title>

@@ -10,7 +10,8 @@ const About = () => {
         <title>About</title>
       </Head>
       <h1 className='animate'>About</h1>
-      <div style={{ margin: '1rem', marginBottom: '10rem' }}>
+      <hr />
+      <div style={{ marginBottom: '5rem' }}>
         <div className='animate' style={{ animationDelay: '0.125s', maxWidth: '100%' }}>
           <h2>
             Overview
@@ -58,7 +59,6 @@ const About = () => {
           <p>
             Other than programming, I have many other hobbies and passions. I love to play video games and play, as well as listen to music! I&apos;ve played piano and guitar for a good portion of my life, and I absolutely love music. I quite like to play jazz!
           </p>
-          <hr />
         </div>
       </div>
     </div>
