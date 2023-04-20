@@ -13,7 +13,7 @@ const Footer = () => {
                     <Col>
                         <a href='https://github.com/dvub' style={linkStyle}>dvub</a>
                     </Col>
-                    <Col lg={{ offset: 5 }}>v1.0.1</Col>
+                    <Col lg={{ offset: 5 }}>v1.1.0</Col>
                     <Col>
                         <a href='https://github.com/dvub/personal_website' style={linkStyle}>repository</a>
                     </Col>
