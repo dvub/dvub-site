@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const Loading = () => {
 
-    const [quoteObj, setQuoteObj] = useState({});
+    const [quoteObj, setQuoteObj] = useState<any>({});
     useEffect(() => {
       fetch('https://api.quotable.io/random')
         .then((res) => res.json())

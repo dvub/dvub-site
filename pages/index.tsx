@@ -64,27 +64,27 @@ const Home: NextPage = () => {
               </div>
             </Col>
             {!isMobile && !isLoading && (
-            <Col style={{ animationDelay: "0.75s" }} className="animate">
-              <Scene metas={metas} fps={fps} />
-              <hr/>
-              <div>
-                <h1 className="mono">directory.get();</h1>
-                <InfoCircle />
-                <p>
-                  Welcome to the directory!
-                  Here, you can view posts in an interactive 3D space! 
-                  You can navigate the directory by clicking and dragging with the mouse!
-                  You can hover each node to view the title of the post and click on a node to visit that post.
-                  
-                </p>
-              </div>
-            </Col>
+              <Col style={{ animationDelay: "0.75s" }} className="animate">
+                <Scene metas={metas} fps={fps} />
+                <hr />
+                <div>
+                  <h1 className="mono">directory.get();</h1>
+                  <InfoCircle />
+                  <p>
+                    Welcome to the directory!
+                    Here, you can view posts in an interactive 3D space!
+                    You can navigate the directory by clicking and dragging with the mouse!
+                    You can hover each node to view the title of the post and click on a node to visit that post.
+
+                  </p>
+                </div>
+              </Col>
             )}
             {isMobile && (
               <Col>
                 It looks like you&apos;re viewing this page on a mobile device. Some features of this page are <b>not intended</b> for mobile users and as such, <b>will not function properly</b>.
-                For the full experience, please visit this page on a desktop or laptop browser. 
-                <br/>
+                For the full experience, please visit this page on a desktop or laptop browser.
+                <br />
                 <em>~the website wizard</em>
               </Col>
             )}

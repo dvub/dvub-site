@@ -13,12 +13,12 @@ const Cone = (args: {
 }) => {
   const { meta } = args;
   const [rotation, setRotation] = useState(new THREE.Euler(mathUtils.randomRad(), mathUtils.randomRad(), mathUtils.randomRad(), 'XYZ'));
-  const [position, setPosition] = useState( new THREE.Vector3(0,0,0).copy(args.position).multiplyScalar(mathUtils.randomRange(0.75, 1)));
+  const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0).copy(args.position).multiplyScalar(mathUtils.randomRange(0.75, 1)));
   const [style, setStyle] = useState<CSSProperties>({
-    fontSize: '13px', 
-    opacity: '0%', 
-    backgroundColor: 'white', 
-    border: '1px solid black', 
+    fontSize: '13px',
+    opacity: '0%',
+    backgroundColor: 'white',
+    border: '1px solid black',
     borderRadius: '4px',
     transition: 'opacity 0.1s ease',
     whiteSpace: 'nowrap',
@@ -27,25 +27,32 @@ const Cone = (args: {
 
   return (
     <>
-    <mesh
-      position={position}
-      rotation={rotation}
-      onClick={() => {router.push(`/posts/${meta.fileName}`);}}
-      onPointerOver={() => {
-        setStyle({...style, opacity: '100%'});
-        console.log(position)
-      }}
-      onPointerLeave={() => {
-        setStyle({...style, opacity: '0%'});
-      }}
-    >
-    <Html style={style}>
-        <div className='mono'>{meta.title}</div>
-      </Html>
-      <coneGeometry args={[1, 1.5, 3, 1]} />
-      <meshStandardMaterial wireframe={true} color='black'/>
-    </mesh>
-    <Line points={[[0,0,0], [position.x, position.y, position.z]]} />
+      <mesh
+        position={position}
+        rotation={rotation}
+        onClick={() => { router.push(`/posts/${meta.fileName}`); }}
+        onPointerOver={() => {
+          setStyle({ ...style, opacity: '100%' });
+          console.log(position)
+        }}
+        onPointerLeave={() => {
+          setStyle({ ...style, opacity: '0%' });
+        }}
+      >
+        <Html style={style}>
+          <div className='mono'>{meta.title}</div>
+        </Html>
+        <coneGeometry args={[1, 1.5, 3, 1]} />
+        <meshStandardMaterial wireframe={true} color='black' />
+      </mesh>
+      <Line
+        points={[[0, 0, 0],
+        [position.x, position.y, position.z]]}
+        matrixWorldAutoUpdate={undefined}
+        getObjectsByProperty={undefined}
+        forceSinglePass={undefined}
+        getVertexPosition={undefined}
+      />
     </>
   );
 }

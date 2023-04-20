@@ -11,7 +11,7 @@ const About = () => {
       </Head>
       <h1 className='animate'>About</h1>
       <hr />
-      <div style={{ marginBottom: '5rem'}}>
+      <div style={{ marginBottom: '5rem' }}>
         <div className='animate' style={{ animationDelay: '0.125s', maxWidth: '100%' }}>
           <h2>
             Overview
