@@ -81,7 +81,7 @@ const Home: NextPage = () => {
               </Col>
             )}
             {isMobile && (
-              <Col>
+              <Col style={{ animationDelay: "0.75s" }} className="animate">
                 It looks like you&apos;re viewing this page on a mobile device. Some features of this page are <b>not intended</b> for mobile users and as such, <b>will not function properly</b>.
                 For the full experience, please visit this page on a desktop or laptop browser.
                 <br />
