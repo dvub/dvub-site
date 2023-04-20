@@ -8,7 +8,7 @@ import Scene from "../components/Scene";
 import Loading from "../components/Loading";
 import { Gear, InfoCircle } from "react-bootstrap-icons";
 import { Button } from "react-bootstrap";
-import {isMobile} from 'react-device-detect';
+import { isMobile } from 'react-device-detect';
 // todos:
 // work on readme
 const Home: NextPage = () => {
@@ -63,24 +63,32 @@ const Home: NextPage = () => {
                 </div>
               </div>
             </Col>
-            {!isLoading && !isMobile && (
-              <Col style={{ animationDelay: "0.75s" }} className="animate">
-                <h1 className="mono">&#47;&#47;directory</h1>
-                <Scene metas={metas} fps={fps} />
+            {!isMobile && !isLoading && (
+            <Col style={{ animationDelay: "0.75s" }} className="animate">
+              <Scene metas={metas} fps={fps} />
+              <hr/>
+              <div>
+                <h1 className="mono">directory.get();</h1>
                 <InfoCircle />
-                <div>
-                  <p>
-                    Welcome to the directory! Here, you can view posts in an interactive 3D space! You can hover each node to view the title of the post, and click on it to go to that post.
-                  </p>
-                </div>
-              </Col>
+                <p>
+                  Welcome to the directory!
+                  Here, you can view posts in an interactive 3D space! 
+                  You can navigate the directory by clicking and dragging with the mouse!
+                  You can hover each node to view the title of the post and click on a node to visit that post.
+                  
+                </p>
+              </div>
+            </Col>
             )}
-            {isLoading && <p>Loading</p>}
             {isMobile && (
               <Col>
-                It appears you&apos;re viewing this page on a mobile device. Some features of this page are not intended or will not function for mobile users.
+                It looks like you&apos;re viewing this page on a mobile device. Some features of this page are <b>not intended</b> for mobile users and as such, <b>will not function properly</b>.
+                For the full experience, please visit this page on a desktop or laptop browser. 
+                <br/>
+                <em>~the website wizard</em>
               </Col>
             )}
+            {isLoading && !isMobile && <p>Loading</p>}
           </Row>
         </Container>
       </div>
