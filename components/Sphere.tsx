@@ -22,6 +22,8 @@ const Cone = (args: {
     borderRadius: '4px',
     transition: 'opacity 0.1s ease',
     whiteSpace: 'nowrap',
+    position: 'relative',
+    left: '1rem'
   });
   const router = useRouter();
 
@@ -39,7 +41,7 @@ const Cone = (args: {
           setStyle({ ...style, opacity: '0%' });
         }}
       >
-        <Html style={style}>
+        <Html style={style} center={false}>
           <div className='mono'>{meta.title}</div>
         </Html>
         <coneGeometry args={[1, 1.5, 3, 1]} />
