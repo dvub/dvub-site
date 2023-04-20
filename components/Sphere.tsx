@@ -13,9 +13,9 @@ const Cone = (args: {
 }) => {
   const { meta } = args;
   const [rotation, setRotation] = useState(new THREE.Euler(mathUtils.randomRad(), mathUtils.randomRad(), mathUtils.randomRad(), 'XYZ'));
-  const [position, setPosition] = useState(args.position.multiplyScalar(mathUtils.randomRange(0.75, 1)));
+  const [position, setPosition] = useState( new THREE.Vector3(0,0,0).copy(args.position).multiplyScalar(mathUtils.randomRange(0.75, 1)));
   const [style, setStyle] = useState<CSSProperties>({
-    fontSize: '11px', 
+    fontSize: '13px', 
     opacity: '0%', 
     backgroundColor: 'white', 
     border: '1px solid black', 
