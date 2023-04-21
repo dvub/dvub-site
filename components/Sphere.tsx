@@ -4,7 +4,7 @@ import mathUtils from '../utils/math'
 import { Metadata } from "../types/metadata";
 import { Html, Line } from "@react-three/drei";
 import { useRouter } from "next/router";
-import { CSSProperties, memo, useRef, useState } from "react";
+import { CSSProperties, useState } from "react";
 
 const Cone = (args: {
   position: THREE.Vector3,
