@@ -6,6 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 import Head from 'next/head';
+import Loading from '../components/Loading';
 // <-----------------------> //
 
 const Posts = () => {
@@ -25,8 +26,7 @@ const Posts = () => {
             });
     }, []
     );
-    const loadingItem = <p className='animate'><b>Loading...</b></p>
-    const listItems = isLoading ? loadingItem : metas.map((d, i) => {
+    const listItems = isLoading ? <Loading/> : metas.map((d, i) => {
         return (
             <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 0.375}s` }}>
                 <PostCard meta={d} />

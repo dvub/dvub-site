@@ -2,12 +2,11 @@
 import type { NextPage } from "next";
 import { Container, Col, Row } from "react-bootstrap";
 import Head from "next/head";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Metadata } from "../types/metadata";
 import Scene from "../components/Scene";
 import Loading from "../components/Loading";
-import { Gear, InfoCircle } from "react-bootstrap-icons";
-import { Button } from "react-bootstrap";
+import { InfoCircle } from "react-bootstrap-icons";
 import { isMobile } from 'react-device-detect';
 // todos:
 // work on readme
@@ -88,7 +87,7 @@ const Home: NextPage = () => {
                 <em>~the website wizard</em>
               </Col>
             )}
-            {isLoading && !isMobile && <p>Loading</p>}
+            {isLoading && !isMobile && <Loading/>}
           </Row>
         </Container>
       </div>
