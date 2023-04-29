@@ -19,5 +19,21 @@ Although the repository for my personal website does include a `changelog` which
 Often as a developer, I struggle to find motivation or inspiration to start new projects; Sometimes I'll start an exciting new project and make a lot of progress, but suddenly lose motivation or just stop working on it due to busy schedule, etc. Don't get me wrong, I've explored different ideas and projects, but sometimes it can be difficult to *actually stick with a project and finish it*. So, what's the solution to this problem? Return to an older project and work on it using the knowledge I've gained! This is a great alternative to constantly working on something new and is a good opportunity to view my growth as a developer.
 <br/>...<br/>
 
+## Changes
+
+### Home Page
+
+First and foremost I wanted to completely revamp the home page, or the graphic on the home page, to be precise. Before the current version, the graphic on the front page was just a sphere of black squares next to (or below, depending on screen width), the main text. I *originally* wanted it to be a slow rotating sphere which was just in the background, blurred behind text, but some feedback showed that it was too distracting. So, I moved the graphic to the side, and other than the user being able to move it around with their mouse, it served no purpose; After moving it to the side, it didn't even look good!
+<br/>
+I wanted to add more interactivity to the graphic on the home page and make it resemble a portfolio project somewhat -- At the bare minimum, I wanted it to do *something*. So I decided to make an interactive 3D directory which would allow the user to navigate to different posts. 
+<br/> 
+The first step towards achieving this was to replace those boring black squares with something more interesting - I wanted each post to be represented by some sort of 3D shape; I settled on a sort of pyramid (or a cone with only 3 sides.) For a while I wanted them to be solid, but then I tried to give them a wireframe look and I liked it far more. At first, they were just floating in space in a somewhat spherical layout, but I decided it looked too unorganized like that. Instead, I added a line stemming from the origin (0,0,0), to each node, to help give some more shape to the overall graphic. After I spent *way* too much time on the looks of the graphic, I had to actually implement the interactivity. I went back and forth for a while on how to do this, and ended up going with a simple implementation. I essentially just made use of the built-in events with R3F components for clicking and hovering; When the user clicks on the node, it would redirect, and when a user hovers, it changes the style of an HTML element to be shown, rather than hidden. My only issue with the redirect functionality is that it doesn't make use of Next's built-in Link, which is *really* fast; Instead, it uses a `router`. Other than that, though, I'm really happy with the overall look of the new graphic.
+<br/>
+Completely redesigning the home page graphic took a *long time*. It was partially due to my lack of skill with R3F (no thanks to its *horrible* documentation, like holy shit), but more so due to my perfectionism. When it comes to projects like this, I'll spend as much time as it takes to realize what I envision, I.E. I won't settle for anything less than *exactly* what I want. This always leads to the project taking an extremely long time. Anyways, this is a tangential topic and I might write a whole post on it sometime in the future.
+
+### Other changes
+
+The only other major problem I had with the site was various styling issues, with the biggest being margins. Since I set the margins of every page to be based on `rem`, the margins would be way too big on mobile views, and it would make text really difficult to read. I fixed this by setting the margins to percentages.
+I also implemented a library which detects if a user is on a mobile device, and then used that to either show or hide the graphic, since clicking and dragging isn't something mobile users can do.
 
 export default ({children}) => <Layout meta={meta}>{children}</Layout>
