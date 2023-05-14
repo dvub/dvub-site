@@ -3,6 +3,9 @@ body {
   font-family: Roboto Mono !important;
   color: black;
   font-size: 16px;
+  
+  background: #296DA1;
+  background: radial-gradient(at left top, #296DA1, #C64B66);
 }
 h1 {
   font-family: Playfair Display;

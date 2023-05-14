@@ -34,6 +34,7 @@ const Home: NextPage = () => {
           <Row xs={1} md={2}>
             <Col>
               <div>
+                
                 <h1 className="animate">I&#39;m dvub, a</h1>
                 <h1
                   className="mono animate"
