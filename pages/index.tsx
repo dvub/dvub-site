@@ -8,8 +8,7 @@ import Scene from "../components/Scene";
 import Loading from "../components/Loading";
 import { InfoCircle } from "react-bootstrap-icons";
 import { isMobile } from 'react-device-detect';
-// todos:
-// work on readme
+
 const Home: NextPage = () => {
   const fps = 1000;
   // api call to get metadatas for posts
@@ -24,6 +23,24 @@ const Home: NextPage = () => {
         setLoading(false);
       });
   }, []);
+
+  const text = "new developer();";
+  const maxDelay = 250;
+  let [delay, setDelay] = useState(maxDelay);
+  const [title, setTitle] = useState("");
+
+  useEffect(() => {
+    
+    const timer = setTimeout(() => {
+      if (title !== text) {
+        setTitle(title + text[title.length]);
+
+      }
+      setDelay(Math.random() * maxDelay)  
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [title, delay]);
+
   return (
     <div>
       <Head>
@@ -40,7 +57,7 @@ const Home: NextPage = () => {
                   className="mono animate"
                   style={{ animationDelay: "0.125s", maxWidth: "100%" }}
                 >
-                  new developer();
+                  {title}
                 </h1>
                 <h1 style={{ animationDelay: "0.25s" }} className="animate">
                   Welcome.
@@ -64,8 +81,16 @@ const Home: NextPage = () => {
               </div>
             </Col>
             {!isMobile && !isLoading && (
-              <Col style={{ animationDelay: "0.75s" }} className="animate">
-                <Scene metas={metas} fps={fps} />
+              <Col style={{ animationDelay: "0.75s"}} className="animate">
+                <div 
+                  style={
+                    {borderRadius: '10px', 
+                    border: '2px solid white', 
+                    boxShadow: '5px 5px 10px rgba(0,0,0,0.5)'}
+                  }>
+                  <Scene metas={metas} fps={fps} />
+                </div>
+
                 <hr />
                 <div>
                   <h1 className="mono">directory.get();</h1>
