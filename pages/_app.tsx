@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from '../components/Navbar';
 import CSS from 'csstype'
+import { Analytics } from '@vercel/analytics/react';
 import Footer from '../components/Footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -32,6 +33,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <div style={wrapperStyle}>
+      <Analytics/>
       <NavBar />
       <div style={style}>
         <Component {...pageProps} ></Component>
