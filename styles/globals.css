@@ -1,21 +1,26 @@
 html,
 body {
   font-family: Roboto Mono !important;
-  color: black;
+  color: white !important;
   font-size: 16px;
+  
+  background: #296DA1;
+  background: linear-gradient(135deg, #347aeb, #C64B66);
+
+
 }
 h1 {
   font-family: Playfair Display;
-  color: black;
+  color: white;
 }
 h2 {
   font-family: JetBrains Mono;
-  color: black;
+  color: white;
   font-weight: 700 !important;
 }
 .navbar-custom {
   font-family: Overpass Mono;
-  color: black;
+  color: white;
 }
 hr {
   color: #DADADA !important;
