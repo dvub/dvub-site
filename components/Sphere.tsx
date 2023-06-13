@@ -45,7 +45,7 @@ const Cone = (args: {
           <div className='mono'>{meta.title}</div>
         </Html>
         <coneGeometry args={[1, 1.5, 3, 1]} />
-        <meshStandardMaterial wireframe={true} color='white' />
+        <meshStandardMaterial wireframe={true} color='black' />
       </mesh>
       <Line
         points={[[0, 0, 0],
@@ -54,7 +54,7 @@ const Cone = (args: {
         getObjectsByProperty={undefined}
         forceSinglePass={undefined}
         getVertexPosition={undefined}
-        color={'white'}
+        color={'black'}
       />
     </>
   );
