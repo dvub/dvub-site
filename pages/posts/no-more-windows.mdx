@@ -12,24 +12,52 @@ export const meta  = {
 
 ## Introduction
 
-First, a warning: If you (for some inexplicable reason) are an absolute Windows lover, this blog post *will* contain **Windows hate**. This blog post *also* contains a lot of my opinions on operating systems; Feel free to do whatever you want with your computer and take everything I write about with a grain of salt. 
-<br/>
+(You can skip this part)
+
+First, a warning: If you (for some inexplicable reason) are an absolute Windows lover, this blog post *will* contain **Windows hate**. This blog post *also* contains a lot of my **opinions** on operating systems; Feel free to do whatever you want with your computer and take everything I write about with **a grain of salt.** 
+
 Second, a note (and a bit of a confession): I didn't actually fully switch to Linux; I went with a dual boot setup with Windows 10 and Arch Linux. This is because there are certain applications I use that only run on Windows, and don't really work with compatibility layers like wine, etc. Also, since I'm on my daily driver, I wanted to keep Windows as a backup so that I would have something to use in case I messed up my Linux system badly. 
-<br/>
-Anyway, I'm writing this blog post because I *finally* switched to Linux on my daily driver PC. After I switched on my laptop (I wrote a post about that too!) I realized I *had* to switch on my daily driver too; It was only a matter of time at that point. I want to write about my own experience dual booting Linux and Windows, and hopefully convince you to get rid of Windows and use Linux too. 
+
+Anyway, I'm writing this blog post because I *finally* switched to Linux on my daily driver PC. After I switched on my laptop ([I wrote a post about that too!](/posts/first-linux-experience)) I realized I *had* to switch on my daily driver too; It was only a matter of time at that point. I want to write about my own experience dual booting Linux and Windows, and hopefully convince you to get rid of Windows and use Linux too. 
 
 # Why
 
-Why should you switch to Linux? There are many reasons, but their relevance to you will depend based on your needs and usage. The first few reasons apply to most, though:
+Why should you switch to Linux? There are many reasons, but their relevance to you will depend based on your needs and usage. Here are a few general reasons:
 - Privacy
 	- Some time ago, I watched a fascinating [video](https://www.youtube.com/watch?v=IT4vDfA_4NI) about Windows in its current state; I highly recommend that you watch it too. In summary, the video uses a tool to detect all the internet connections being made to a brand-new Windows 11 machine, compared to those being made to a machine running Windows XP. (ancient, but a surprisingly good benchmark for privacy) The results were that the Windows 11 machine was sending heaps of user data to third-party analytics services without any user interaction -- or user consent. This alone reveals how intrusive Windows has become in terms of user privacy. 
 	- Linux, on the other hand, is orders of magnitude more private. Most distros offer amazing privacy and user control, and from my experience, most Linux programs and apps are more private than their Windows counterparts.  Bottom line: **Linux beats Windows in privacy, in every way.** 
 - Efficiency
-	- 
+	- Bloat: Most distros ship with little to no bloatware, whereas Windows... well, just take a look at [this list](https://www.digitalcitizen.life/windows-10-bloatware/).
+	- Less Spyware/Data Collection (as mentioned above)
+	- Performance: Generally, fewer processes run on Linux and are much more memory-efficient. Additionally, Linux is a more lightweight operating system than Windows. Linux's speed is aided by the awesome [ext4](https://en.wikipedia.org/wiki/Ext4) file system.
 - Security
-- FOSS 
+	- Linux is more secure than Windows for several reasons; There's a good article [here](https://www.pcworld.com/article/508291/why_linux_is_more_secure_than_windows.html) If you want to know more.
+	- Linux and most Linux programs are open source, and open source software is -- well, open source -- meaning pretty much anyone can look at code and spot bugs, exploits, malware, etc. Other reasons for Linux's security are privileges in Linux and the diversity of Linux.
+- Cost
+	- Linux is free! Windows, on the other hand, costs money for a license, and many programs that run on Windows cost money too. Most Linux programs are FOSS, meaning Free/Open Source Software. 
+
+Another cool feature of Linux is the insane customization you get. With all the diversity and tools available in Linux, you can basically put together an OS and desktop that is tailored specifically to you and your preferences. Most people probably don't care enough to take the time and do all that, but it's better than Windows, right?
+
+## Cons
+
+There are only a few cons I can think of when it comes to Linux. For the most part, Linux is much more hands-on than Windows, and may not be friendly to those who aren't familiar with Linux or don't understand operating systems. If this sounds like you, don't worry! There are lots of beginner-friendly Linux distros to choose from.  
+
+# How
+
+If you've read this far, you're at least somewhat interested in Linux. So, how can you get involved and start using Linux? It's easy!
+1. Decide what distro fits you. Use a tool like [Distrochooser](https://distrochooser.de/).
+2. Back up your data! If you have anything important or sensitive, and especially if you're not familiar with Linux, back up everything you care about.
+3. Follow your distro's installation guide. There are official and unofficial guides, as well as unofficial video guides to help you along the way.
+4. Don't be afraid to ask for help! The Linux community is full of knowledgeable people who will gladly help you start out with Linux; You can reach out on forums, discord servers, subreddits, etc.
+5. Have fun!
+**Note**: I'm not responsible in any way if you f*** up your system, pls don't sue me thx :> 
+
+# My Experience
+
+I left this section to the end so that people could get to the part they're actually interested in; This last bit is more of a personal journal/documentation. My experience switching to Linux from Windows has been amazing, and I'm so glad I switched. I can enjoy more privacy, better performance and connect with an awesome community full of cool people. Switching was pretty easy for me since I've been using Linux on my laptop for some time. This time, though, I did some things differently. I'm still using Arch Linux, but unlike on my laptop, I actually manually installed Arch this time. If you use Arch, you know that installation is somewhat of a controversial topic. In the end, I realized that manual installation is pretty easy. I'm using KDE plasma and not XFCE (like I am on my laptop, but I might switch that) Overall, the experience has been near perfect. The only times s*** has gone wrong has been my own fault. (For example, when I couldn't enter my DE because I limited the max number of processes... for some reason) It took me a few days to migrate everything and get all of my programs set up, but everything works the same as it does on Windows, if not better. One thing I left out in the "Why Section": Gaming has been great for me so far! In fact, it's been way better than I expected. The only reason I left it out of the "Why" section is that the quality of gaming on Linux can vary greatly, so it can be a pro or a con depending on hardware/software configurations.
+
+# Conclusion
 
 
 
 export default ({children}) => <Layout meta={meta}>{children}</Layout>
-
