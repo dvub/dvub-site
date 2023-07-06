@@ -60,4 +60,4 @@ const Directory = (props: {
   );
 };
 
-export default memo(Directory);
+export default Directory;

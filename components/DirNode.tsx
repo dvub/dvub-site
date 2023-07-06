@@ -1,5 +1,5 @@
 import { Metadata } from "../types/metadata";
-import { CSSProperties } from "react";
+import { CSSProperties, useState } from "react";
 import mathUtils from "../utils/math";
 import * as THREE from "three";
 import { useRouter } from "next/router";
@@ -13,11 +13,12 @@ export const DirNode = (args: {
 
 }) => {
 
-  const { meta, position, linkPositions } = args;
-  const rotation = new THREE.Euler(mathUtils.randomRad(), mathUtils.randomRad(), mathUtils.randomRad());
+  const { meta, position, linkPositions, index} = args;
 
-  const router = useRouter();
-  const style: CSSProperties = {
+
+  // defining up here so that it can have the type CSSProperties
+  // todo: fix this shit??
+  const style: CSSProperties = { 
     fontSize: "13px",
     opacity: "0%",
     backgroundColor: "white",
@@ -28,65 +29,76 @@ export const DirNode = (args: {
     position: "relative",
     left: "1rem",
   };
-  const linkLines = linkPositions.map(linkPosition => {
-    return (<>
-      <Line
-        points={[
-          [
-            linkPosition.x,
-            linkPosition.y,
-            linkPosition.z,
-          ],
-          [
-            position.x,
-            position.y,
-            position.z,
-          ],
-        ]}
-        key={`${meta.fileName}to${linkPosition.x}${linkPosition.y}${linkPosition.z}`}
-        matrixWorldAutoUpdate={undefined}
-        getObjectsByProperty={undefined}
-        forceSinglePass={undefined}
-        getVertexPosition={undefined}
-        color={"black"}
-      />
-    </>
-    );
-  })
 
+  const router = useRouter();
+  // define state
+  const [state, setState] = useState({
+    node: {
+      radius: 1,
+      height: 1.5,
+      rotation: new THREE.Euler(mathUtils.randomRad(), mathUtils.randomRad(), mathUtils.randomRad()),
+      position: new THREE.Vector3().copy(position),
+    },
+    style: style,
+    lines: linkPositions.map(linkPosition => {
+      return (<>
+        <Line
+          points={[
+            [
+              linkPosition.x,
+              linkPosition.y,
+              linkPosition.z,
+            ],
+            [
+              position.x,
+              position.y,
+              position.z,
+            ],
+          ]}
+          key={`${meta.fileName}-to-${linkPosition.x}`}
+          matrixWorldAutoUpdate={undefined}
+          getObjectsByProperty={undefined}
+          forceSinglePass={undefined}
+          getVertexPosition={undefined}
+          color={"black"}
+        />
+      </>
+      );
+    })
+  });
 
   return (
     <>
       {/* the actual node thingy*/}
       <mesh
-        position={position}
-        rotation={rotation}
+        position={state.node.position}
+        rotation={state.node.rotation}
 
         onClick={() => {
+          
           router.push(`/posts/${meta.fileName}`);
         }}
         onPointerOver={() => {
-          style['opacity'] = "100%";
-          console.log(position);
+          setState({...state, style: {...state.style, opacity: "100%"}})
         }}
         onPointerLeave={() => {
-          style['opacity'] = "0%";
+          setState({...state, style: {...state.style, opacity: "0%"}})
         }}
       >
         {/* this is some HTML to display text when hovered*/}
         <Html
-          style={style}
+          style={state.style}
           center={false}
         >
           <div className="mono">{meta.title}</div>
         </Html>
 
-        <coneGeometry args={[1, 1.5, 3, 1]} />
+        <coneGeometry args={[state.node.radius, state.node.height, 3, 1]} />
         <meshStandardMaterial wireframe={true} color="black" />
       </mesh>
       {/* line to origin */}
       <Line
-        points={[[0, 0, 0], [position.x, position.y, position.z]]}
+        points={[[0, 0, 0], [state.node.position.x, state.node.position.y, state.node.position.z]]}
         matrixWorldAutoUpdate={undefined}
         getObjectsByProperty={undefined}
         forceSinglePass={undefined}
@@ -94,9 +106,8 @@ export const DirNode = (args: {
         color={"black"}
       />
       {/* add in the lines to linked nodes */}
-      <group>
-        {linkLines}
-      </group>
+      {state.lines}
+
     </>
   );
 };
