@@ -6,9 +6,9 @@ import { useEffect, useState } from "react";
 import { Metadata } from "../types/metadata";
 import Scene from "../components/Scene";
 import Loading from "../components/Loading";
-import { InfoCircle } from "react-bootstrap-icons";
+import { InfoCircle, Type } from "react-bootstrap-icons";
 import { isMobile } from 'react-device-detect';
-
+import { TypeWrite } from "../components/TypeWrite";
 const Home: NextPage = () => {
   const fps = 1000;
   // api call to get metadatas for posts
@@ -24,22 +24,7 @@ const Home: NextPage = () => {
       });
   }, []);
 
-  const text = "new developer();";
-  const maxDelay = 250;
-  let [delay, setDelay] = useState(maxDelay);
-  const [title, setTitle] = useState("");
 
-  useEffect(() => {
-    
-    const timer = setTimeout(() => {
-      if (title !== text) {
-        setTitle(title + text[title.length]);
-
-      }
-      setDelay(Math.random() * maxDelay)  
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [title, delay]);
 
   return (
     <div>
@@ -57,7 +42,7 @@ const Home: NextPage = () => {
                   className="mono animate"
                   style={{ animationDelay: "0.125s", maxWidth: "100%" }}
                 >
-                  {title}
+                  <TypeWrite text={"new developer();"}/>
                 </h1>
                 <h1 style={{ animationDelay: "0.25s" }} className="animate">
                   Welcome.

@@ -40,32 +40,32 @@ export const DirNode = (args: {
       position: new THREE.Vector3().copy(position),
     },
     style: style,
-    lines: linkPositions.map(linkPosition => {
-      return (<>
-        <Line
-          points={[
-            [
-              linkPosition.x,
-              linkPosition.y,
-              linkPosition.z,
-            ],
-            [
-              position.x,
-              position.y,
-              position.z,
-            ],
-          ]}
-          key={`${meta.fileName}-to-${linkPosition.x}`}
-          matrixWorldAutoUpdate={undefined}
-          getObjectsByProperty={undefined}
-          forceSinglePass={undefined}
-          getVertexPosition={undefined}
-          color={"black"}
-        />
-      </>
-      );
-    })
   });
+  const linkLines = linkPositions.map(linkPosition => {
+    return (<>
+      <Line
+        points={[
+          [
+            linkPosition.x,
+            linkPosition.y,
+            linkPosition.z,
+          ],
+          [
+            position.x,
+            position.y,
+            position.z,
+          ],
+        ]}
+        key={`${meta.fileName}-to-${linkPosition.x}-${linkPosition.y}-${linkPosition.z}`}
+        matrixWorldAutoUpdate={undefined}
+        getObjectsByProperty={undefined}
+        forceSinglePass={undefined}
+        getVertexPosition={undefined}
+        color={"black"}
+      />
+    </>
+    );
+  })
 
   return (
     <>
@@ -106,7 +106,7 @@ export const DirNode = (args: {
         color={"black"}
       />
       {/* add in the lines to linked nodes */}
-      {state.lines}
+      {linkLines}
 
     </>
   );
