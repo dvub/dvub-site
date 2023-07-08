@@ -5,7 +5,7 @@ import { Metadata } from "../types/metadata";
 import { memo } from "react";
 import { DirNode } from './DirNode';
 
-const Directory = (props: {
+const Nodes = (props: {
   metas: Metadata[];
 }) => {
   // declare variables
@@ -60,4 +60,4 @@ const Directory = (props: {
   );
 };
 
-export default Directory;
+export default Nodes;

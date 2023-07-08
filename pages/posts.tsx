@@ -26,6 +26,7 @@ const Posts = () => {
             });
     }, []
     );
+    
     const listItems = isLoading ? <Loading/> : metas.map((d, i) => {
         return (
             <Col key={i} className='animate' style={{ animationDelay: `${(i * 0.125) + 0.375}s`, marginTop: '1rem' }}>
