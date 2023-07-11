@@ -10,7 +10,9 @@ import { InfoCircle, Type } from "react-bootstrap-icons";
 import { isMobile } from 'react-device-detect';
 import { TypeWrite } from "../components/TypeWrite";
 const Home: NextPage = () => {
-  const fps = 1000;
+
+  
+
   // api call to get metadatas for posts
   const [metas, setMetas] = useState<Metadata[]>([]);
   const [isLoading, setLoading] = useState(true);
@@ -73,7 +75,7 @@ const Home: NextPage = () => {
                     border: '2px solid white', 
                     boxShadow: '5px 5px 10px rgba(0,0,0,0.5)'}
                   }>
-                  <Scene metas={metas} fps={fps} />
+                  <Scene metas={metas} fps={1000} />
                 </div>
 
                 <hr />
