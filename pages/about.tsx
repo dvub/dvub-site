@@ -7,7 +7,10 @@ const About = () => {
 
     <div style={{ maxWidth: '40rem' }}>
       <Head>
-        <title>About</title>
+        <title>About | Dvub</title>
+        <meta name="description" content="I'm dvub; Learn a little bit about me!" />
+        <meta name="author" content="dvub" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <h1 className='animate'>About</h1>
       <hr />
