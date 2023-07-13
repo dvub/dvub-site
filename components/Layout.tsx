@@ -9,29 +9,39 @@ import type { Metadata } from "../types/metadata";
 import Head from "next/head";
 import { Col, Container, Row, Button, Form, InputGroup } from "react-bootstrap";
 import PostCard from "./PostCard";
+import { GetServerSideProps } from "next";
 
 
 
-const CommentForm: FC = () => {
+const CommentForm = (args: {fileName: string}) => {
+
+  // simple state to manage the 2 fields
   const [commentState, setCommentState] = useState({
     name: "",
     comment: "",
   });
+
   const onFormUpdate = (e: any) => {
     setCommentState({
       ...commentState,
       [e.currentTarget.name]: e.currentTarget.value,
     });
   };
+
+  // when the comment is posted
   const onFormSubmit = (event: any) => {
     event.preventDefault();
-    console.log(commentState);
+    
+    // validate
+
+
     const res = fetch('/api/comments', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', },
       body: JSON.stringify({
         username: commentState.name,
-        content: commentState.comment
+        content: commentState.comment,
+        fileName: args.fileName,
       }),
     }).then((res) => {
       console.log(res);
@@ -40,6 +50,7 @@ const CommentForm: FC = () => {
     });
   };
 
+  // this is the component itself, built with react-boostrap comps
   return (
     <Form onSubmit={onFormSubmit}>
       <p>
@@ -79,7 +90,7 @@ const CommentForm: FC = () => {
 
 const Layout = (props: { children: ReactNode; meta: Metadata }) => {
   const { children, meta } = props;
-  const { title, author, date, authorLink, description, tags } = meta; // metadata of post
+  const { title, author, date, authorLink, description, tags, fileName } = meta; // metadata of post
 
   const postCount = 3; // the number of posts to display on the sidebar
 
@@ -151,7 +162,7 @@ const Layout = (props: { children: ReactNode; meta: Metadata }) => {
             <Container>
               <Row>
                 <h2>Comments</h2>
-                <CommentForm />
+                <CommentForm fileName={fileName}/>
               </Row>
               <br/>
               <Row>
