@@ -7,28 +7,18 @@ import { useEffect, useState } from "react";
 import PostCard from "../components/PostCard";
 import Head from "next/head";
 import Loading from "../components/Loading";
+import { useMetas } from "../utils/metas";
 // <-----------------------> //
 
 const Posts = () => {
   // https://nextjs.org/docs/basic-features/data-fetching/client-side
 
-  const [metas, setMetas] = useState<Metadata[]>([]);
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("/api/metas")
-      .then((res) => res.json())
-      .then((data) => {
-        setMetas(data);
-        setLoading(false);
-      });
-  }, []);
+  const { metas, isLoading, isError } = useMetas();
 
   const listItems = isLoading ? (
     <Loading />
   ) : (
-    metas.map((d, i) => {
+    metas.map((d: Metadata, i: number) => {
       return (
         <Col
           key={i}
