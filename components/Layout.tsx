@@ -11,10 +11,7 @@ import { Col, Container, Row, Button, Form, InputGroup } from "react-bootstrap";
 import PostCard from "./PostCard";
 import { GetServerSideProps } from "next";
 
-
-
-const CommentForm = (args: {fileName: string}) => {
-
+const CommentForm = (args: { fileName: string }) => {
   // simple state to manage the 2 fields
   const [commentState, setCommentState] = useState({
     name: "",
@@ -31,23 +28,24 @@ const CommentForm = (args: {fileName: string}) => {
   // when the comment is posted
   const onFormSubmit = (event: any) => {
     event.preventDefault();
-    
+
     // validate
 
-
-    const res = fetch('/api/comments', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', },
+    const res = fetch("/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         username: commentState.name,
         content: commentState.comment,
         fileName: args.fileName,
       }),
-    }).then((res) => {
-      console.log(res);
-    }).catch((reason: any) => {
-      console.log(reason);
-    });
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((reason: any) => {
+        console.log(reason);
+      });
   };
 
   // this is the component itself, built with react-boostrap comps
@@ -62,7 +60,7 @@ const CommentForm = (args: {fileName: string}) => {
           placeholder="Username"
           aria-label="Username"
           required
-          id='name'
+          id="name"
           name="name"
           onChange={onFormUpdate}
           value={commentState.name}
@@ -106,7 +104,7 @@ const Layout = (props: { children: ReactNode; meta: Metadata }) => {
         setLoading(false);
       });
   }, []);
-  
+
   const tagDisplay = tags ? tags.join(", ") : ""; // i forgot why i had to do this tbh
   const listItems = isLoading
     ? "Loading"
@@ -122,6 +120,14 @@ const Layout = (props: { children: ReactNode; meta: Metadata }) => {
 
   const t = `${title} | Blog`; // for some reason, if this is inline in the <title>, it thinks you're rendering multiple titles
   // so fuck that
+
+
+  // get comments
+  fetch("/api/comments/get")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 
   return (
     <div style={{ marginBottom: "10rem" }}>
@@ -162,9 +168,9 @@ const Layout = (props: { children: ReactNode; meta: Metadata }) => {
             <Container>
               <Row>
                 <h2>Comments</h2>
-                <CommentForm fileName={fileName}/>
+                <CommentForm fileName={fileName} />
               </Row>
-              <br/>
+              <br />
               <Row>
                 <h2>Other Posts</h2>
                 <Container>
