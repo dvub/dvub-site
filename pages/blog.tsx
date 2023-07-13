@@ -33,7 +33,7 @@ const Posts = () => {
         <Col
           key={i}
           className="animate"
-          style={{ animationDelay: `${i * 0.125 + 0.375}s`, marginTop: "1rem" }}
+          style={{ animationDelay: `${i * 0.125 + 0.375}s` }}
         >
           <PostCard meta={d} />
         </Col>
@@ -53,7 +53,7 @@ const Posts = () => {
   return (
     <div>
       <Head>
-        <title>Posts | Dvub</title>
+        <title>Blog | Dvub</title>
         <meta
           name="description"
           content="Check out some of my blogs! I write about tech, coding, and life, and basically anything that interests me."
@@ -61,7 +61,7 @@ const Posts = () => {
         <meta name="author" content="dvub" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <h1 className="animate">Posts</h1>
+      <h1 className="animate">Blog</h1>
       <div className="animate" style={{ animationDelay: "0.125s" }}>
         <p style={{ maxWidth: "40rem" }}>
           Here you can find posts about <b>projects</b> that I&apos;ve worked on

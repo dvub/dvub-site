@@ -20,8 +20,8 @@ const PostCard: FC<Props> = (props) => {
     );
 
     return (
-        <div style={{borderRadius: '5px', border: '1px solid #DADADA'}}>
-        <Link href={`/posts/${fileName}`} >
+        <div className='border'>
+        <Link href={`/blog/${fileName}`} >
             <a style={{color: 'black', textDecoration: 'none'}}>
             <Card style={{ border: 'transparent' }}>
 

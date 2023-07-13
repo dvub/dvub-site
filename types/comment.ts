@@ -1,0 +1,1 @@
+export interface CommentType {username: string; content: string; postName: string};

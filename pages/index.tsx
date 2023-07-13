@@ -2,27 +2,16 @@
 import type { NextPage } from "next";
 import { Container, Col, Row } from "react-bootstrap";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { Metadata } from "../types/metadata";
 import Scene from "../components/Scene";
 import Loading from "../components/Loading";
 import { InfoCircle, Type } from "react-bootstrap-icons";
 import { isMobile } from "react-device-detect";
 import { TypeWrite } from "../components/TypeWrite";
+import { useMetas } from "../utils/metas";
+
 const Home: NextPage = () => {
   // api call to get metadatas for posts
-  const [metas, setMetas] = useState<Metadata[]>([]);
-  const [isLoading, setLoading] = useState(true);
-  useEffect(() => {
-    setLoading(true);
-    fetch("/api/metas")
-      .then((res) => res.json())
-      .then((data) => {
-        setMetas(data);
-        setLoading(false);
-      });
-  }, []);
-
+  const { metas, isLoading, isError } = useMetas();
   return (
     <div>
       <Head>
@@ -73,7 +62,7 @@ const Home: NextPage = () => {
                     boxShadow: "5px 5px 10px rgba(0,0,0,0.5)",
                   }}
                 >
-                  <Scene metas={metas} fps={1000} />
+                  <Scene metas={metas!} fps={1000} />
                 </div>
 
                 <hr />
@@ -102,6 +91,7 @@ const Home: NextPage = () => {
               </Col>
             )}
             {isLoading && !isMobile && <Loading />}
+
           </Row>
         </Container>
       </div>

@@ -5,11 +5,11 @@ import fs from 'fs';
 const metas = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const postInfos: Metadata[] = [];
-    const postFiles = fs.readdirSync('./pages/posts/');
+    const postFiles = fs.readdirSync('./pages/blog/');
 
     for (let post of postFiles) {
         try {
-            const { meta } = await import(`../posts/${post}`); // dynamic imports
+            const { meta } = await import(`../blog/${post}`); // dynamic imports
 
             postInfos.push(meta);
 
