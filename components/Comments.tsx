@@ -17,7 +17,7 @@ export const Comments = (args: { fileName: string }) => {
         return (
           <div className='border'>
             <p>{comment.content}</p>
-            <h2>-{comment.username}</h2>
+            <em>~{comment.username}</em>
             
           </div>
         );
