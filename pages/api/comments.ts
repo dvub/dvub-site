@@ -5,13 +5,14 @@ import prisma from '../../lib/prisma';
 // Optional fields in body: content
 export default async function handle(req: any, res: any) {
 
-  const { duration, exerciseSession, title, description } = req.body;
+  const { username, content,fileName} = req.body;
 
-  
-  const result = await prisma.session.create({
+
+  const result = await prisma.comment.create({
     data: {
-        username: req.body.username,
-        content: req.body.content
+        username: username,
+        content: content,
+        postName: fileName
     },
   });
   res.json(result);
