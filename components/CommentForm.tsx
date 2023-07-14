@@ -20,6 +20,17 @@ export const CommentForm = (args: { fileName: string }) => {
       event.preventDefault();
   
       // validate
+
+      const maxNameLength = 20;
+      const maxCommentLength = 500;
+      if (commentState.name.length <= 1 || commentState.name.length >= maxNameLength) {
+        return;
+      }
+
+      if (commentState.comment.length <= 1 || commentState.comment.length >= maxCommentLength) {
+        return;
+      }
+
   
       const res = fetch("/api/comments", {
         method: "POST",
@@ -32,6 +43,10 @@ export const CommentForm = (args: { fileName: string }) => {
       })
         .then((res) => {
           console.log(res);
+          setCommentState({
+            name: '',
+            comment: ''
+          })
         })
         .catch((reason: any) => {
           console.log(reason);
@@ -42,12 +57,12 @@ export const CommentForm = (args: { fileName: string }) => {
     return (
       <Form onSubmit={onFormSubmit} className='border'>
         <p>
-          Write your own... <br /> NOTE: Comments are actively moderated.
+          <b>Note:</b> Comments are <b>actively moderated</b>; Please be nice (and don't spam thx)
         </p>
         <InputGroup className="mb-3">
           <InputGroup.Text>@</InputGroup.Text>
           <Form.Control
-            placeholder="Username"
+            placeholder="Username (1-20 characters)"
             aria-label="Username"
             required
             id="name"
@@ -62,16 +77,20 @@ export const CommentForm = (args: { fileName: string }) => {
             name="comment"
             id="comment"
             aria-label="Comment"
-            placeholder="Comment"
+            placeholder="Comment (500 characters max)"
             required
             onChange={onFormUpdate}
             value={commentState.comment}
           />
         </InputGroup>
-        <br />
-        <Button variant="primary" type="submit">
+        <input type="checkbox" name="contact_me_by_fax_only" value="1" style={{display: 'none'}} tabIndex={-1} autoComplete="off"></input>
+        <Button variant="primary" type="submit" style={{margin: '1rem'}}>
           Post Comment
         </Button>
+        <p>
+          Another note: Features such as replies and likes are (obviously) not implemented <i>yet.</i> 
+          If you would like to reply to someone, you can try using @&lt;username&gt;, or quote some of their comment in yours.
+        </p>
       </Form>
 
     );
