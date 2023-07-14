@@ -41,3 +41,4 @@ next-env.d.ts
 .obsidian/plugins
 .obsidian-git-data
 null*
+.env
