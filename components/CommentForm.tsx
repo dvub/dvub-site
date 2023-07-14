@@ -85,9 +85,9 @@ export const CommentForm = (args: { fileName: string }) => {
           />
         </InputGroup>
         <input type="checkbox" name="contact_me_by_fax_only" value="1" style={{display: 'none'}} tabIndex={-1} autoComplete="off"></input>
-        <Button type="submit" style={{margin: '1rem'}} variant="primary">
+        <button type="submit" style={{margin: '1rem'}}>
           Post Comment
-        </Button>
+        </button>
         <p>
           Another note: Features such as replies and likes are (obviously) not implemented <i>yet.</i> 
           If you would like to reply to someone, you can try using @&lt;username&gt;, or quote some of their comment in yours.
