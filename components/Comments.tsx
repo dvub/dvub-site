@@ -15,7 +15,7 @@ export const Comments = (args: { fileName: string }) => {
     .filter((comment: CommentType) => comment.postName === args.fileName)
     .map((comment: CommentType) => {
       return (
-        <Card className="border">
+        <Card className="border" key={`${args.fileName}-${comment.username.slice(0,5)}-${comment.content.slice(0,5)}`}>
           <Card.Body>{comment.content}</Card.Body>
           <Card.Footer
             style={{
