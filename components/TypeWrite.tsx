@@ -14,7 +14,7 @@ export const TypeWrite = (props: { text: string }) => {
     }, delay);
 
     return () => clearTimeout(timer);
-  }, [title, delay]);
+  }, [title, delay, props.text]);
 
   return <>{title}</>;
 };

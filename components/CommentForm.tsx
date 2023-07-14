@@ -58,7 +58,7 @@ export const CommentForm = (args: { fileName: string }) => {
       <Form onSubmit={onFormSubmit} className='border'>
         <p>
           {/* i think HTML escapes for special characters are stupid so you get this: */}
-          <b>Note:</b> Comments are <b>actively moderated</b>{";"} Please be nice (and don't spam thx)
+          <b>Note:</b> Comments are <b>actively moderated</b>{";"} Please be nice (and don{'\''}t spam thx)
         </p>
         <InputGroup className="mb-3">
           <InputGroup.Text>@</InputGroup.Text>
