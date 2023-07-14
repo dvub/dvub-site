@@ -2,62 +2,35 @@
 import type { NextPage } from "next";
 import { Container, Col, Row } from "react-bootstrap";
 import Head from "next/head";
-import { useEffect, useState } from "react";
-import { Metadata } from "../types/metadata";
 import Scene from "../components/Scene";
 import Loading from "../components/Loading";
-import { InfoCircle } from "react-bootstrap-icons";
-import { isMobile } from 'react-device-detect';
+import { InfoCircle, Type } from "react-bootstrap-icons";
+import { isMobile } from "react-device-detect";
+import { TypeWrite } from "../components/TypeWrite";
+import { useMetas } from "../utils/metas";
 
 const Home: NextPage = () => {
-  const fps = 1000;
   // api call to get metadatas for posts
-  const [metas, setMetas] = useState<Metadata[]>([]);
-  const [isLoading, setLoading] = useState(true);
-  useEffect(() => {
-    setLoading(true);
-    fetch("/api/metas")
-      .then((res) => res.json())
-      .then((data) => {
-        setMetas(data);
-        setLoading(false);
-      });
-  }, []);
-
-  const text = "new developer();";
-  const maxDelay = 250;
-  let [delay, setDelay] = useState(maxDelay);
-  const [title, setTitle] = useState("");
-
-  useEffect(() => {
-    
-    const timer = setTimeout(() => {
-      if (title !== text) {
-        setTitle(title + text[title.length]);
-
-      }
-      setDelay(Math.random() * maxDelay)  
-    }, delay);
-    return () => clearTimeout(timer);
-  }, [title, delay]);
-
+  const { metas, isLoading, isError } = useMetas();
   return (
     <div>
       <Head>
-        <title>dvub</title>
+        <title>Home | Dvub</title>
+        <meta name="description" content="I'm dvub, and this is my site. Welcome! Look around, relax and learn something new!" />
+        <meta name="author" content="dvub" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <div>
         <Container>
           <Row xs={1} md={2}>
             <Col>
               <div>
-                
                 <h1 className="animate">I&#39;m dvub, a</h1>
                 <h1
                   className="mono animate"
                   style={{ animationDelay: "0.125s", maxWidth: "100%" }}
                 >
-                  {title}
+                  <TypeWrite text={"new developer();"} />
                 </h1>
                 <h1 style={{ animationDelay: "0.25s" }} className="animate">
                   Welcome.
@@ -81,14 +54,15 @@ const Home: NextPage = () => {
               </div>
             </Col>
             {!isMobile && !isLoading && (
-              <Col style={{ animationDelay: "0.75s"}} className="animate">
-                <div 
-                  style={
-                    {borderRadius: '10px', 
-                    border: '2px solid white', 
-                    boxShadow: '5px 5px 10px rgba(0,0,0,0.5)'}
-                  }>
-                  <Scene metas={metas} fps={fps} />
+              <Col style={{ animationDelay: "0.75s" }} className="animate">
+                <div
+                  style={{
+                    borderRadius: "10px",
+                    border: "2px solid white",
+                    boxShadow: "5px 5px 10px rgba(0,0,0,0.5)",
+                  }}
+                >
+                  <Scene metas={metas!} fps={1000} />
                 </div>
 
                 <hr />
@@ -96,24 +70,28 @@ const Home: NextPage = () => {
                   <h1 className="mono">directory.get();</h1>
                   <InfoCircle />
                   <p>
-                    Welcome to the directory!
-                    Here, you can view posts in an interactive 3D space!
-                    You can navigate the directory by clicking and dragging with the mouse!
-                    You can hover each node to view the title of the post and click on a node to visit that post.
-
+                    Welcome to the directory! Here, you can view posts in an
+                    interactive 3D space! You can navigate the directory by
+                    clicking and dragging with the mouse! You can hover each
+                    node to view the title of the post and click on a node to
+                    visit that post.
                   </p>
                 </div>
               </Col>
             )}
             {isMobile && (
               <Col style={{ animationDelay: "0.75s" }} className="animate">
-                It looks like you&apos;re viewing this page on a mobile device. Some features of this page are <b>not intended</b> for mobile users and as such, <b>will not function properly</b>.
-                For the full experience, please visit this page on a desktop or laptop browser.
+                It looks like you&apos;re viewing this page on a mobile device.
+                Some features of this page are <b>not intended</b> for mobile
+                users and as such, <b>will not function properly</b>. For the
+                full experience, please visit this page on a desktop or laptop
+                browser.
                 <br />
                 <em>~the website wizard</em>
               </Col>
             )}
-            {isLoading && !isMobile && <Loading/>}
+            {isLoading && !isMobile && <Loading />}
+
           </Row>
         </Container>
       </div>

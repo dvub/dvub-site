@@ -26,6 +26,7 @@ hr {
 .border {
   border: 2px #DADADA solid;
   border-radius: 5px;
+  margin: 1rem
 }
 
 .mono {
@@ -35,6 +36,8 @@ hr {
   opacity: 0;
   animation: fadein 1s forwards, slidein 1s forwards;
 }
+
+
 @keyframes fadein {
   from {
     opacity: 0;

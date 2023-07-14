@@ -1,76 +1,107 @@
-import React, { ReactNode, FC, useState, useEffect } from 'react'
-import type { Metadata } from '../types/metadata'
-import Head from 'next/head'
-import { Col } from 'react-bootstrap'
-import PostCard from './PostCard'
+import React, {
+  FC,
+  FormEventHandler,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
+import type { Metadata } from "../types/metadata";
+import Head from "next/head";
+import { Col, Container, Row } from "react-bootstrap";
+import PostCard from "./PostCard";
+import { useMetas } from "../utils/metas";
+import { Comments } from "./Comments";
+import { CommentForm } from "./CommentForm";
 
-interface Props {
-    children: ReactNode;
-    meta: Metadata;
-}
+const Layout = (props: { children: ReactNode; meta: Metadata }) => {
+  // source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 
-const Layout: FC<Props> = (props) => {
+  /* Randomize array in-place using Durstenfeld shuffle algorithm */
+  function shuffleArray(array: Metadata[]) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
 
-    const { children, meta } = props;
-    const { title, author, date, authorLink, description, tags } = meta;
+    return array
+  }
 
-    const [metas, setMetas] = useState<Metadata[]>([]);
-    const [isLoading, setLoading] = useState(false);
+  const { children, meta } = props; // children is the markdown content
+  const { title, author, date, authorLink, description, tags, fileName } = meta; // metadata of CURRENT post
 
-    useEffect(() => {
+  const { metas, isError, isLoading } = useMetas(); // swr is fucking epic
+  const tagDisplay = tags ? tags.join(", ") : ""; // i forgot why i had to do this tbh
 
-        setLoading(true);
-        fetch('/api/metas')
-            .then((res) => res.json())
-            .then((data) => {
+  // this filters and shuffles the array of metadata
 
-                setMetas(data);
-                setLoading(false);
-
-            });
-    }, []);
-
-    const listItems = isLoading ? 'Loading' : metas.map((d) => {
-
+  const listItems = isLoading
+    ? "Loading"
+    : shuffleArray(metas).filter((d: Metadata) => d.fileName !== fileName).slice(0, 3).map((d: Metadata) => {
         const { title } = d;
+        // a wrapper div to add some margins
+        return <PostCard meta={d} key={title} />;
+      });
 
-        return (
-            <Col key={title}>
-                <PostCard meta={d}></PostCard>
-            </Col>
-        );
-    });
+  const t = `${title} | Blog`; // for some reason, if this is inline in the <title>, it thinks you're rendering multiple titles
+  // so fuck that
 
-    const tagDisplay = tags ? tags.join(', ') : '';
-
-    return (
-        <div style={{ maxWidth: '40rem', marginBottom: '10rem' }}>
-
-            <Head>
-                <title>{title}</title>
-                <link rel="stylesheet" href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css" />
-            </Head>
-
+  return (
+    <div style={{ marginBottom: "10rem" }}>
+      <Head>
+        <title>{t}</title>
+        <link
+          rel="stylesheet"
+          href="https://unpkg.com/dracula-prism/dist/css/dracula-prism.css"
+        />
+        <meta name="description" content={description} />
+        <meta name="author" content="dvub" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content={tags.join(", ")}></meta>
+      </Head>
+      {/* the main content of the page is split vertically, with the post on the left and comments/posts on the right */}
+      <Container>
+        <Row xs={1} md={1} lg={2}>
+          <Col>
             <div>
-                {/* title, author, date, etc */}
-                <header>
-                    <h1>{title}</h1>
-                    <a href={authorLink}>{author}</a> · {date} · {tagDisplay}
-                    <br />
-                    <i>{description}</i>
-                </header>
-                <hr />
-                {/* props.children will render the standard md content*/}
-                <div>
-                    {children}
-                </div>
-                thanks for reading,
+              {/* title, author, date, etc */}
+              <header>
+                <h1>{title}</h1>
+                <a href={authorLink}>{author}</a> · {date} · {tagDisplay}
                 <br />
-                <i>~dvub</i>
-                <hr />
+                <i>{description}</i>
+              </header>
+              <hr />
+              {/* props.children will render the standard md content*/}
+              <div>{children}</div>
+              thanks for reading,
+              <br />
+              <i>~dvub</i>
+              <hr />
             </div>
-        </div>
-    );
-}
+          </Col>
+          <Col>
+            {/* this is another container to split the comments and posts horizontally */}
+            <Container>
+              <Row>
+                <h2>Other Posts</h2>
+                <Container>
+                  <Col>{listItems}</Col>
+                </Container>
+              </Row>
+              <Row>
+                <h2>Comments</h2>
+                <CommentForm fileName={fileName} />
+                <Comments fileName={fileName} />
+              </Row>
+              <br />
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;

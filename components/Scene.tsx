@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { Stats, OrbitControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import Sphere from './Sphere';
+import Nodes from './Nodes';
 import FrameLimiter from "./FrameLimiter";
 import { Metadata } from "../types/metadata";
 
@@ -19,10 +19,10 @@ const Scene = (props: {
                 camera={{ position: [-35, 0, 0] }}
                 style={{ height: '25rem' }}
             >
-                 <OrbitControls keys={{LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', BOTTOM: 'ArrowDown', UP:'ArrowUp'}}/>
+                <OrbitControls keys={{ LEFT: 'ArrowLeft', RIGHT: 'ArrowRight', BOTTOM: 'ArrowDown', UP: 'ArrowUp' }} />
                 <ambientLight />
                 <pointLight position={[10, 10, 10]} />
-                <Sphere metas={metas} />
+                <Nodes metas={metas} />
                 <FrameLimiter fps={fps} />
             </Canvas>
         </div>

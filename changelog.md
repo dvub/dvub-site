@@ -4,9 +4,16 @@ Important/notable changes for this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.1.3] - 2023-5-5
+## [1.2.0] - 2023-7-13
 ### Added
- - New post: Updating my website
+ - Comment Sections for blog posts.
+ - API for comments.
+ - Sidebar showing other blog posts.
+### Changed
+ - Directory on home page: Now includes representations of links to other posts.
+ - Renamed "Post" to "Blog" across the website.
+
+
 
 ## [1.1.2] - 2023-4-20
 ### Changed
