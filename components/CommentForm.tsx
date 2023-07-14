@@ -85,7 +85,7 @@ export const CommentForm = (args: { fileName: string }) => {
           />
         </InputGroup>
         <input type="checkbox" name="contact_me_by_fax_only" value="1" style={{display: 'none'}} tabIndex={-1} autoComplete="off"></input>
-        <Button variant="primary" type="submit" style={{margin: '1rem'}}>
+        <Button type="submit" style={{margin: '1rem'}} variant="primary">
           Post Comment
         </Button>
         <p>
