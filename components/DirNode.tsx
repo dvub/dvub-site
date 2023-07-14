@@ -1,3 +1,7 @@
+/* eslint-disable react/no-unknown-property */;
+
+// yeah i guess i need to disable that..
+
 import { Metadata } from "../types/metadata";
 import { CSSProperties, useState } from "react";
 import mathUtils from "../utils/math";
