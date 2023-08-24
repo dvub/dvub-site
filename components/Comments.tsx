@@ -8,7 +8,14 @@ export const Comments = (args: { fileName: string }) => {
   const { data, error, isLoading } = useSWR(`/api/comments/get`, fetcher);
 
   if (isLoading) return <Loading />;
-  if (error) console.log(error);
+  if (error) {
+    console.log(error);
+    return <p>
+      There was an error... :/
+      <em>~the website wizard</em>
+    </p>
+
+  }
 
   // todo: fix this
   const comments = data
