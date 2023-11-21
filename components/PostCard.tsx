@@ -27,9 +27,9 @@ const PostCard: FC<Props> = (props) => {
 
 	return (
 		<div className='border'>
-			<Link href={`/blog/${fileName}`}>
-				<a style={{ color: 'black', textDecoration: 'none' }}>
-					<Card style={{ border: 'transparent' }}>
+			<Link href={`/blog/${fileName}`} style={{textDecoration: 'none'}}>
+	
+					<Card style={{ border: 'transparent'}}>
 						<div style={{ height: '10rem', overflow: 'hidden' }}>
 							<Card.Body>
 								<Card.Title
@@ -59,7 +59,6 @@ const PostCard: FC<Props> = (props) => {
 							</Card.Footer>
 						</div>
 					</Card>
-				</a>
 			</Link>
 		</div>
 	);
