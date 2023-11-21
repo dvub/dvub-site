@@ -5,7 +5,7 @@ import fs from 'fs';
 const metas = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const postInfos: Metadata[] = [];
-    const postFiles = fs.readdirSync('./pages/blog/');
+    const postFiles = fs.readdirSync('./pages/blog');
 
     for (let post of postFiles) {
         try {
@@ -14,10 +14,14 @@ const metas = async (req: NextApiRequest, res: NextApiResponse) => {
             postInfos.push(meta);
 
         } catch (error) {
+            // if we have an error, just stop and don't return any data..
+
             console.log(error);
+            return;
         }
+        
+        res.status(200).json(postInfos)
     }
-    res.status(200).json(postInfos)
 
 };
 
