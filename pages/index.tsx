@@ -2,8 +2,8 @@
 import type { NextPage } from 'next';
 import { Container, Col, Row } from 'react-bootstrap';
 import Head from 'next/head';
-import Scene from '../components/Scene';
-import Loading from '../components/Loading';
+import Scene from '../components/directory/Scene';
+import Loading from '../components/directory/Loading';
 import { InfoCircle, Type } from 'react-bootstrap-icons';
 import { isMobile } from 'react-device-detect';
 import { TypeWrite } from '../components/TypeWrite';
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
 										maxWidth: '100%',
 									}}
 								>
-									<p>
+									<p className='border'>
 										I&#39;m a student who enjoys building
 										projects and just{' '}
 										<b>making cool stuff</b>. I also love{' '}
@@ -70,55 +70,58 @@ const Home: NextPage = () => {
 										<br />
 										If you want to read about some of my
 										projects, you can look{' '}
-										<a href='posts'>here.</a>
+										<a href='blog'>here.</a>
 									</p>
 								</div>
 							</div>
 						</Col>
-						{!isMobile && !isLoading && (
-							<Col
-								style={{ animationDelay: '0.75s' }}
-								className='animate'
-							>
-								<div
-									style={{
-										borderRadius: '10px',
-										border: '2px solid white',
-										boxShadow:
-											'5px 5px 10px rgba(0,0,0,0.5)',
-									}}
-								>
-									{!isError && (
-										<Scene metas={metas!} fps={1000} />
-									)}
-									{isError && (
-										<div>
-											<p>
-												There was an error getting post
-												data :/
-											</p>
-											<br />
-											<i>~the website wizard</i>
-										</div>
-									)}
-								</div>
 
-								<hr />
-								<div>
-									<h1 className='mono'>directory.get();</h1>
-									<InfoCircle />
+						<Col
+							style={{ animationDelay: '0.75s' }}
+							className='animate'
+						>
+							{isError && (
+								<div className='border'>
 									<p>
-										Welcome to the directory! Here, you can
-										view posts in an interactive 3D space!
-										You can navigate the directory by
-										clicking and dragging with the mouse!
-										You can hover each node to view the
-										title of the post and click on a node to
-										visit that post.
+										There was an error getting post data :/
 									</p>
+									<br />
+									<i>~the website wizard</i>
 								</div>
-							</Col>
-						)}
+							)}
+							{!isMobile && !isLoading && !isError && (
+								<div>
+									<div
+										style={{
+											borderRadius: '10px',
+											border: '2px solid white',
+											boxShadow:
+												'5px 5px 10px rgba(0,0,0,0.5)',
+										}}
+									>
+										<Scene metas={metas!} fps={1000} />
+									</div>
+									<hr />
+									<div className='border'>
+										<h1 className='mono'>
+											directory.get();
+										</h1>
+
+										<p>
+											<InfoCircle /> Welcome to the
+											directory! Here, you can view posts
+											in an interactive 3D space! You can
+											navigate the directory by clicking
+											and dragging with the mouse! You can
+											hover each node to view the title of
+											the post and click on a node to
+											visit that post.
+										</p>
+									</div>
+								</div>
+							)}
+						</Col>
+
 						{isMobile && (
 							<Col
 								style={{ animationDelay: '0.75s' }}

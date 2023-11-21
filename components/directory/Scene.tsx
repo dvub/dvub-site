@@ -3,7 +3,7 @@ import { Stats, OrbitControls } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber';
 import Nodes from './Nodes';
 import FrameLimiter from './FrameLimiter';
-import { Metadata } from '../types/metadata';
+import { Metadata } from '../../types/metadata';
 
 const Scene = (props: { metas: Metadata[]; fps: number }) => {
 	const { metas, fps } = props;

@@ -10,8 +10,8 @@ import Head from 'next/head';
 import { Col, Container, Row } from 'react-bootstrap';
 import PostCard from './PostCard';
 import { useMetas } from './hooks/useMetas';
-import { Comments } from './Comments';
-import { CommentForm } from './CommentForm';
+import { Comments } from './comments/Comments';
+import { CommentForm } from './comments/CommentForm';
 
 const Layout = (props: { children: ReactNode; meta: Metadata }) => {
 	// source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array

@@ -6,7 +6,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 import Head from 'next/head';
-import Loading from '../components/Loading';
+import Loading from '../components/directory/Loading';
 import { useMetas } from '../components/hooks/useMetas';
 // <-----------------------> //
 

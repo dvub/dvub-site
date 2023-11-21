@@ -1,6 +1,6 @@
-import { Metadata } from '../types/metadata';
+import { Metadata } from '../../types/metadata';
 import { CSSProperties, useState } from 'react';
-import mathUtils from '../utils/math';
+import mathUtils from '../../utils/math';
 import * as THREE from 'three';
 import { useRouter } from 'next/router';
 import { Html, Line } from '@react-three/drei';

@@ -90,6 +90,7 @@ export const CommentForm = (args: { fileName: string }) => {
 					value={commentState.comment}
 				/>
 			</InputGroup>
+
 			<input
 				type='checkbox'
 				name='contact_me_by_fax_only'
@@ -98,9 +99,9 @@ export const CommentForm = (args: { fileName: string }) => {
 				tabIndex={-1}
 				autoComplete='off'
 			></input>
-			<button type='submit' style={{ margin: '1rem' }}>
+			<Button variant='light' type='submit' style={{ margin: '1rem' }}>
 				Post Comment
-			</button>
+			</Button>
 			<p>
 				Another note: Features such as replies and likes are (obviously)
 				not implemented <i>yet.</i>

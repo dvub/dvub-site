@@ -1,6 +1,6 @@
 import useSWR from 'swr';
-import { CommentType } from '../types/comment';
-import Loading from './Loading';
+import { CommentType } from '../../types/comment';
+import Loading from '../directory/Loading';
 import { Card } from 'react-bootstrap';
 
 export const Comments = (args: { fileName: string }) => {
@@ -11,9 +11,11 @@ export const Comments = (args: { fileName: string }) => {
 	if (error) {
 		console.log(error);
 		return (
-			<p>
-				There was an error... :/
-				<em>~the website wizard</em>
+			<p className='border' style={{ padding: '1em' }}>
+				There was an error loading the comments... :/ I definitely broke
+				something. But I&apos;m probably fixing it!
+				<br />
+				<em>{'    '}~the website wizard</em>
 			</p>
 		);
 	}
