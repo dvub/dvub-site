@@ -8,9 +8,12 @@ dependencies:
   '@mdx-js/loader':
     specifier: ^3.0.0
     version: 3.0.0(webpack@5.89.0)
+  '@mdx-js/react':
+    specifier: ^3.0.0
+    version: 3.0.0(@types/react@18.2.37)(react@18.2.0)
   '@next/mdx':
     specifier: ^14.0.2
-    version: 14.0.2(@mdx-js/loader@3.0.0)
+    version: 14.0.2(@mdx-js/loader@3.0.0)(@mdx-js/react@3.0.0)
   '@prisma/client':
     specifier: ^5.6.0
     version: 5.6.0(prisma@5.6.0)
@@ -23,6 +26,9 @@ dependencies:
   '@react-three/postprocessing':
     specifier: ^2.15.11
     version: 2.15.11(@react-three/fiber@8.15.11)(@types/three@0.158.2)(react@18.2.0)(three@0.158.0)
+  '@types/mdx':
+    specifier: ^2.0.10
+    version: 2.0.10
   '@types/three':
     specifier: ^0.158.2
     version: 0.158.2
@@ -235,6 +241,17 @@ packages:
       - supports-color
     dev: false
 
+  /@mdx-js/react@3.0.0(@types/react@18.2.37)(react@18.2.0):
+    resolution: {integrity: sha512-nDctevR9KyYFyV+m+/+S4cpzCWHqj+iHDHq3QrsWezcC+B17uZdIWgCguESUkwFhM3n/56KxWVE3V6EokrmONQ==}
+    peerDependencies:
+      '@types/react': '>=16'
+      react: '>=16'
+    dependencies:
+      '@types/mdx': 2.0.10
+      '@types/react': 18.2.37
+      react: 18.2.0
+    dev: false
+
   /@mediapipe/tasks-vision@0.10.8:
     resolution: {integrity: sha512-Rp7ll8BHrKB3wXaRFKhrltwZl1CiXGdibPxuWXvqGnKTnv8fqa/nvftYNuSbf+pbJWKYCXdBtYTITdAUTGGh0Q==}
     dev: false
@@ -249,7 +266,7 @@ packages:
       glob: 7.1.7
     dev: true
 
-  /@next/mdx@14.0.2(@mdx-js/loader@3.0.0):
+  /@next/mdx@14.0.2(@mdx-js/loader@3.0.0)(@mdx-js/react@3.0.0):
     resolution: {integrity: sha512-MFjfSeGDmjwLLRHojlyaDIs2dQz5kFBQh/jcTIb57VIlbOvRjJsgnwLTH3DzUT25dUaX0QaR6t+ITNcdyfwozQ==}
     peerDependencies:
       '@mdx-js/loader': '>=0.15.0'
@@ -261,6 +278,7 @@ packages:
         optional: true
     dependencies:
       '@mdx-js/loader': 3.0.0(webpack@5.89.0)
+      '@mdx-js/react': 3.0.0(@types/react@18.2.37)(react@18.2.0)
       source-map: 0.7.4
     dev: false
 

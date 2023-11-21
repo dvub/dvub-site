@@ -11,11 +11,13 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^14.0.2",
     "@prisma/client": "^5.6.0",
     "@react-three/drei": "^9.88.15",
     "@react-three/fiber": "^8.15.11",
     "@react-three/postprocessing": "^2.15.11",
+    "@types/mdx": "^2.0.10",
     "@types/three": "^0.158.2",
     "@vercel/analytics": "^1.1.1",
     "bootstrap": "^5.3.2",
