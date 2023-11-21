@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import BlogLayout from '../../components/BlogLayout'
 import Image from 'next/image'
 export const meta  = {
     author: 'dvub',
@@ -48,4 +48,4 @@ The next, and most recent issue I had was yet again an issue caused by my use of
 ## Conclusion
 So, what are the takeaways here? Arch is a great distro, but **not for beginners** -- or more specifically, not for beginners who don't have *hours* to spend researching and learning. If you're looking to get into Arch and *do* have hours to learn and spend time researching, then by all means, try Arch! Other than that, though, Arch and Linux in general has been a great experience, and I don't really have any complaints!
 
-export default ({children}) => <Layout meta={meta}>{children}</Layout>
+export default function MDXPage({children}) { return <BlogLayout meta={meta}>{children}</BlogLayout>; }

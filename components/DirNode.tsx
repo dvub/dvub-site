@@ -1,17 +1,17 @@
-import { Metadata } from '../types/metadata'
-import { CSSProperties, useState } from 'react'
-import mathUtils from '../utils/math'
-import * as THREE from 'three'
-import { useRouter } from 'next/router'
-import { Html, Line } from '@react-three/drei'
+import { Metadata } from '../types/metadata';
+import { CSSProperties, useState } from 'react';
+import mathUtils from '../utils/math';
+import * as THREE from 'three';
+import { useRouter } from 'next/router';
+import { Html, Line } from '@react-three/drei';
 
 export const DirNode = (args: {
-	position: THREE.Vector3
-	index: number
-	meta: Metadata
-	linkPositions: Array<THREE.Vector3>
+	position: THREE.Vector3;
+	index: number;
+	meta: Metadata;
+	linkPositions: Array<THREE.Vector3>;
 }) => {
-	const { meta, position, linkPositions, index } = args
+	const { meta, position, linkPositions, index } = args;
 
 	// defining up here so that it can have the type CSSProperties
 	// todo: fix this shit??
@@ -25,9 +25,9 @@ export const DirNode = (args: {
 		whiteSpace: 'nowrap',
 		position: 'relative',
 		left: '1rem',
-	}
+	};
 
-	const router = useRouter()
+	const router = useRouter();
 	// define state
 	const [state, setState] = useState({
 		node: {
@@ -41,7 +41,7 @@ export const DirNode = (args: {
 			position: new THREE.Vector3().copy(position),
 		},
 		style: style,
-	})
+	});
 	const linkLines = linkPositions.map((linkPosition) => {
 		return (
 			<>
@@ -54,8 +54,8 @@ export const DirNode = (args: {
 					color={'black'}
 				/>
 			</>
-		)
-	})
+		);
+	});
 
 	return (
 		<>
@@ -64,20 +64,21 @@ export const DirNode = (args: {
 				position={state.node.position}
 				rotation={state.node.rotation}
 				onClick={() => {
-					router.push(`/blog/${meta.fileName}`)
+					router.push(`/blog/${meta.fileName}`);
 				}}
 				onPointerOver={() => {
 					setState({
 						...state,
 						style: { ...state.style, opacity: '100%' },
-					})
+					});
 				}}
 				onPointerLeave={() => {
 					setState({
 						...state,
 						style: { ...state.style, opacity: '0%' },
-					})
-				}}>
+					});
+				}}
+			>
 				{/* this is some HTML to display text when hovered*/}
 				<Html style={state.style} center={false}>
 					<div className='mono'>{meta.title}</div>
@@ -103,5 +104,5 @@ export const DirNode = (args: {
 			{/* add in the lines to linked nodes */}
 			{linkLines}
 		</>
-	)
-}
+	);
+};

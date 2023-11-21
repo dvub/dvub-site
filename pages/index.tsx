@@ -1,17 +1,17 @@
 /* eslint-disable react/no-unknown-property */
-import type { NextPage } from 'next'
-import { Container, Col, Row } from 'react-bootstrap'
-import Head from 'next/head'
-import Scene from '../components/Scene'
-import Loading from '../components/Loading'
-import { InfoCircle, Type } from 'react-bootstrap-icons'
-import { isMobile } from 'react-device-detect'
-import { TypeWrite } from '../components/TypeWrite'
-import { useMetas } from '../hooks/useMetas'
+import type { NextPage } from 'next';
+import { Container, Col, Row } from 'react-bootstrap';
+import Head from 'next/head';
+import Scene from '../components/Scene';
+import Loading from '../components/Loading';
+import { InfoCircle, Type } from 'react-bootstrap-icons';
+import { isMobile } from 'react-device-detect';
+import { TypeWrite } from '../components/TypeWrite';
+import { useMetas } from '../components/hooks/useMetas';
 
 const Home: NextPage = () => {
 	// api call to get metadatas for posts
-	const { metas, isLoading, isError } = useMetas()
+	const { metas, isLoading, isError } = useMetas();
 	return (
 		<div>
 			<Head>
@@ -37,12 +37,14 @@ const Home: NextPage = () => {
 									style={{
 										animationDelay: '0.125s',
 										maxWidth: '100%',
-									}}>
+									}}
+								>
 									<TypeWrite text={'new developer();'} />
 								</h1>
 								<h1
 									style={{ animationDelay: '0.25s' }}
-									className='animate'>
+									className='animate'
+								>
 									Welcome.
 								</h1>
 								<hr
@@ -54,7 +56,8 @@ const Home: NextPage = () => {
 									style={{
 										animationDelay: '0.5s',
 										maxWidth: '100%',
-									}}>
+									}}
+								>
 									<p>
 										I&#39;m a student who enjoys building
 										projects and just{' '}
@@ -75,14 +78,16 @@ const Home: NextPage = () => {
 						{!isMobile && !isLoading && (
 							<Col
 								style={{ animationDelay: '0.75s' }}
-								className='animate'>
+								className='animate'
+							>
 								<div
 									style={{
 										borderRadius: '10px',
 										border: '2px solid white',
 										boxShadow:
 											'5px 5px 10px rgba(0,0,0,0.5)',
-									}}>
+									}}
+								>
 									<Scene metas={metas!} fps={1000} />
 								</div>
 
@@ -105,7 +110,8 @@ const Home: NextPage = () => {
 						{isMobile && (
 							<Col
 								style={{ animationDelay: '0.75s' }}
-								className='animate'>
+								className='animate'
+							>
 								It looks like you&apos;re viewing this page on a
 								mobile device. Some features of this page are{' '}
 								<b>not intended</b> for mobile users and as
@@ -121,7 +127,7 @@ const Home: NextPage = () => {
 				</Container>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Home
+export default Home;

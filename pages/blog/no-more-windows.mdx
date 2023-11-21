@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import BlogLayout from '../../components/BlogLayout'
 
 export const meta  = {
     author: 'dvub',
@@ -61,4 +61,4 @@ I left this section to the end so that people could get to the part they're actu
 
 
 
-export default ({children}) => <Layout meta={meta}>{children}</Layout>
+export default function MDXPage({children}) { return <BlogLayout meta={meta}>{children}</BlogLayout>; }

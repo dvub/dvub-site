@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import BlogLayout from '../../components/BlogLayout'
 
 export const meta  = {
     author: 'dvub',
@@ -50,5 +50,6 @@ As of the time of writing, I can only think of one thing that I *don't* like abo
 
 In conclusion, Obsidian is an amazing piece of productivity software that I would recommend to just about everybody. Regardless of the task, you could probably use Obsidian to help manage it. I can't really think of anything else to write about, so uhhh.... yeah. That's it.
 
-export default ({children}) => <Layout meta={meta}>{children}</Layout>
+
+export default function MDXPage({children}) { return <BlogLayout meta={meta}>{children}</BlogLayout>; }
 

@@ -1,19 +1,19 @@
 // page to display posts using boostrap's cards components
 // using getStaticProps to get all mdx files from posts/ directory
 
-import { Metadata } from '../types/metadata'
-import { Col, Container, Row } from 'react-bootstrap'
-import { useEffect, useState } from 'react'
-import PostCard from '../components/PostCard'
-import Head from 'next/head'
-import Loading from '../components/Loading'
-import { useMetas } from '../hooks/useMetas'
+import { Metadata } from '../types/metadata';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import PostCard from '../components/PostCard';
+import Head from 'next/head';
+import Loading from '../components/Loading';
+import { useMetas } from '../components/hooks/useMetas';
 // <-----------------------> //
 
 const Posts = () => {
 	// https://nextjs.org/docs/basic-features/data-fetching/client-side
 
-	const { metas, isLoading, isError } = useMetas()
+	const { metas, isLoading, isError } = useMetas();
 
 	const listItems = isLoading ? (
 		<Loading />
@@ -23,12 +23,13 @@ const Posts = () => {
 				<Col
 					key={i}
 					className='animate'
-					style={{ animationDelay: `${i * 0.125 + 0.375}s` }}>
+					style={{ animationDelay: `${i * 0.125 + 0.375}s` }}
+				>
 					<PostCard meta={d} />
 				</Col>
-			)
+			);
 		})
-	)
+	);
 	// placeholder grid items for testing style, animtions, etc
 	/*
     const listItems = new Array(9).fill(null!).map((d, i) => {
@@ -72,7 +73,7 @@ const Posts = () => {
 				</Container>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-export default Posts
+export default Posts;

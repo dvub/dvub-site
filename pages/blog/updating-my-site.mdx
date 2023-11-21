@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import BlogLayout from '../../components/BlogLayout'
 
 export const meta  = {
     author: 'dvub',
@@ -59,5 +59,4 @@ This is already a pretty long post, so I'll just do a TL:DR
 
 Redid the front page 3d thing, reworked some styling, wrote a new post, added some info on the front page, also it's good to work on old projects, and you should try it sometime.
 
-
-export default ({children}) => <Layout meta={meta}>{children}</Layout>
+export default function MDXPage({children}) { return <BlogLayout meta={meta}>{children}</BlogLayout>; }

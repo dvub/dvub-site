@@ -1,4 +1,4 @@
-import Layout from '../../components/Layout'
+import BlogLayout from '../../components/BlogLayout'
 
 export const meta  = {
     author: 'dvub',
@@ -59,8 +59,4 @@ Learning Next.js was a great experience, and I was very happy with its **flexibi
 
 
 
-
-
-
-
-export default ({children}) => <Layout meta={meta}>{children}</Layout>
+export default function MDXPage({children}) { return <BlogLayout meta={meta}>{children}</BlogLayout>; }
