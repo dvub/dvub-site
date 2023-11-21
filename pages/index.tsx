@@ -88,7 +88,19 @@ const Home: NextPage = () => {
 											'5px 5px 10px rgba(0,0,0,0.5)',
 									}}
 								>
-									<Scene metas={metas!} fps={1000} />
+									{!isError && (
+										<Scene metas={metas!} fps={1000} />
+									)}
+									{isError && (
+										<div>
+											<p>
+												There was an error getting post
+												data :/
+											</p>
+											<br />
+											<i>~the website wizard</i>
+										</div>
+									)}
 								</div>
 
 								<hr />
