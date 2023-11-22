@@ -1,35 +1,39 @@
 // page to display posts using boostrap's cards components
 // using getStaticProps to get all mdx files from posts/ directory
 
-import { Metadata } from '../types/metadata';
+import Metadata from '../types/metadata';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import PostCard from '../components/PostCard';
 import Head from 'next/head';
 import Loading from '../components/directory/Loading';
-import { useMetas } from '../components/hooks/useMetas';
 // <-----------------------> //
+export const getStaticProps = async (context: any) => {
+	const endpoint = process.env.META_ENDPOINT;
 
-const Posts = () => {
+	const result = await fetch(`${endpoint}/api/metas`);
+	let metas = await result.json();
+	return {
+		props: {
+			metas: metas,
+		},
+	};
+};
+
+export default function Posts(props: { metas: Metadata[] }) {
 	// https://nextjs.org/docs/basic-features/data-fetching/client-side
 
-	const { metas, isLoading, isError } = useMetas();
-
-	const listItems = isLoading ? (
-		<Loading />
-	) : (
-		metas.map((d: Metadata, i: number) => {
-			return (
-				<Col
-					key={i}
-					className='animate'
-					style={{ animationDelay: `${i * 0.125 + 0.375}s` }}
-				>
-					<PostCard meta={d} />
-				</Col>
-			);
-		})
-	);
+	const listItems = props.metas.map((d: Metadata, i: number) => {
+		return (
+			<Col
+				key={i}
+				className='animate'
+				style={{ animationDelay: `${i * 0.125 + 0.375}s` }}
+			>
+				<PostCard meta={d} />
+			</Col>
+		);
+	});
 	// placeholder grid items for testing style, animtions, etc
 	/*
     const listItems = new Array(9).fill(null!).map((d, i) => {
@@ -74,6 +78,4 @@ const Posts = () => {
 			</div>
 		</div>
 	);
-};
-
-export default Posts;
+}

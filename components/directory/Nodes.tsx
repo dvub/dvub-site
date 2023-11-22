@@ -1,7 +1,6 @@
-/* eslint-disable react/no-unknown-property */
 import * as THREE from 'three';
 import mathUtils from '../../utils/math';
-import { Metadata } from '../../types/metadata';
+import Metadata from '../../types/metadata';
 import { DirNode } from './DirNode';
 
 const Nodes = (props: { metas: Metadata[] }) => {

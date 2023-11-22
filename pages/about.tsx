@@ -1,7 +1,7 @@
-import Image from 'next/image'
-import Head from 'next/head'
-const About = () => {
-	const imgSize = 64
+import Image from 'next/image';
+import Head from 'next/head';
+export default function About() {
+	const imgSize = 64;
 
 	return (
 		<div style={{ maxWidth: '40rem' }}>
@@ -22,7 +22,8 @@ const About = () => {
 			<div style={{ marginBottom: '5rem' }}>
 				<div
 					className='animate'
-					style={{ animationDelay: '0.125s', maxWidth: '100%' }}>
+					style={{ animationDelay: '0.125s', maxWidth: '100%' }}
+				>
 					<h2>Overview</h2>
 					<p>
 						My name is <b>dvub</b>. I am a student currently
@@ -36,7 +37,8 @@ const About = () => {
 				</div>
 				<div
 					className='animate'
-					style={{ animationDelay: '0.25s', maxWidth: '100%' }}>
+					style={{ animationDelay: '0.25s', maxWidth: '100%' }}
+				>
 					<h2>Background</h2>
 					<p>
 						For most of my life, I was interested in technology. I
@@ -56,7 +58,8 @@ const About = () => {
 				</div>
 				<div
 					className='animate'
-					style={{ animationDelay: '0.375s', maxWidth: '100%' }}>
+					style={{ animationDelay: '0.375s', maxWidth: '100%' }}
+				>
 					<h2>Skills</h2>
 
 					<div>
@@ -108,7 +111,8 @@ const About = () => {
 				</div>
 				<div
 					className='animate'
-					style={{ animationDelay: '0.5s', maxWidth: '100%' }}>
+					style={{ animationDelay: '0.5s', maxWidth: '100%' }}
+				>
 					<h2>Goals</h2>
 					Currently, my goal is to get through school and go to a good
 					university. (and get through that, too) From there, I hope
@@ -128,7 +132,8 @@ const About = () => {
 				</div>
 				<div
 					className='animate'
-					style={{ animationDelay: '0.625s', maxWidth: '100%' }}>
+					style={{ animationDelay: '0.625s', maxWidth: '100%' }}
+				>
 					<h2>Other Passions</h2>
 					<p>
 						Other than programming, I have many other hobbies and
@@ -140,7 +145,5 @@ const About = () => {
 				</div>
 			</div>
 		</div>
-	)
+	);
 }
-
-export default About

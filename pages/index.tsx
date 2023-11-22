@@ -1,17 +1,24 @@
-/* eslint-disable react/no-unknown-property */
-import type { NextPage } from 'next';
 import { Container, Col, Row } from 'react-bootstrap';
 import Head from 'next/head';
 import Scene from '../components/directory/Scene';
-import Loading from '../components/directory/Loading';
 import { InfoCircle, Type } from 'react-bootstrap-icons';
 import { isMobile } from 'react-device-detect';
 import { TypeWrite } from '../components/TypeWrite';
-import { useMetas } from '../components/hooks/useMetas';
+import Metadata from '../types/metadata';
 
-const Home: NextPage = () => {
-	// api call to get metadatas for posts
-	const { metas, isLoading, isError } = useMetas();
+export const getStaticProps = async (context: any) => {
+	const endpoint = process.env.META_ENDPOINT;
+
+	const result = await fetch(`${endpoint}/api/metas`);
+	let metas = await result.json();
+	return {
+		props: {
+			metas: metas,
+		},
+	};
+};
+
+export default function Home(props: { metas: Metadata[] }) {
 	return (
 		<div>
 			<Head>
@@ -80,46 +87,32 @@ const Home: NextPage = () => {
 							style={{ animationDelay: '0.75s' }}
 							className='animate'
 						>
-							{isError && (
+							<div>
+								<div
+									style={{
+										borderRadius: '10px',
+										border: '2px solid white',
+										boxShadow:
+											'5px 5px 10px rgba(0,0,0,0.5)',
+									}}
+								>
+									<Scene metas={props.metas} fps={1000} />
+								</div>
+								<hr />
 								<div className='border'>
-									<p>
-										There was an error getting post data :/
-									</p>
-									<br />
-									<i>~the website wizard</i>
-								</div>
-							)}
-							{!isMobile && !isLoading && !isError && (
-								<div>
-									<div
-										style={{
-											borderRadius: '10px',
-											border: '2px solid white',
-											boxShadow:
-												'5px 5px 10px rgba(0,0,0,0.5)',
-										}}
-									>
-										<Scene metas={metas!} fps={1000} />
-									</div>
-									<hr />
-									<div className='border'>
-										<h1 className='mono'>
-											directory.get();
-										</h1>
+									<h1 className='mono'>directory.get();</h1>
 
-										<p>
-											<InfoCircle /> Welcome to the
-											directory! Here, you can view posts
-											in an interactive 3D space! You can
-											navigate the directory by clicking
-											and dragging with the mouse! You can
-											hover each node to view the title of
-											the post and click on a node to
-											visit that post.
-										</p>
-									</div>
+									<p>
+										<InfoCircle /> Welcome to the directory!
+										Here, you can view posts in an
+										interactive 3D space! You can navigate
+										the directory by clicking and dragging
+										with the mouse! You can hover each node
+										to view the title of the post and click
+										on a node to visit that post.
+									</p>
 								</div>
-							)}
+							</div>
 						</Col>
 
 						{isMobile && (
@@ -137,12 +130,9 @@ const Home: NextPage = () => {
 								<em>~the website wizard</em>
 							</Col>
 						)}
-						{isLoading && !isMobile && <Loading />}
 					</Row>
 				</Container>
 			</div>
 		</div>
 	);
-};
-
-export default Home;
+}

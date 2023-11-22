@@ -1,4 +1,4 @@
-import { Metadata } from '../../types/metadata';
+import Metadata from '../../types/metadata';
 import { CSSProperties, useState } from 'react';
 import mathUtils from '../../utils/math';
 import * as THREE from 'three';

@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import type { Metadata } from '../../types/metadata';
+import type Metadata from '../../types/metadata';
 import fs from 'fs';
 import path from 'path';
 
