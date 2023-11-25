@@ -99,9 +99,17 @@ export const CommentForm = (args: { fileName: string }) => {
 				tabIndex={-1}
 				autoComplete='off'
 			></input>
-			<Button variant='light' type='submit' style={{ margin: '1rem' }}>
+			<button
+				type='submit'
+				style={{
+					margin: '1rem',
+					borderRadius: '5px',
+					backgroundColor: 'gray',
+					borderColor: 'transparent',
+				}}
+			>
 				Post Comment
-			</Button>
+			</button>
 			<p>
 				Another note: Features such as replies and likes are (obviously)
 				not implemented <i>yet.</i>
