@@ -12,6 +12,7 @@ import PostCard from './PostCard';
 
 import { Comments } from './comments/Comments';
 import { CommentForm } from './comments/CommentForm';
+import useSWR from 'swr';
 
 // source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 /* Randomize array in-place using Durstenfeld shuffle algorithm */
@@ -26,29 +27,53 @@ function shuffleArray(array: Metadata[]) {
 	return array;
 }
 
-const BlogLayout = async (props: { children: ReactNode; meta: Metadata }) => {
+const BlogLayout = (props: { children: ReactNode; meta: Metadata }) => {
+	// source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+
+	/* Randomize array in-place using Durstenfeld shuffle algorithm */
+	function shuffleArray(array: Metadata[]) {
+		for (var i = array.length - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));
+			var temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+
+		return array;
+	}
+
 	const { children, meta } = props; // children is the markdown content
 	const { title, author, date, authorLink, description, tags, fileName } =
 		meta; // metadata of CURRENT post
 
-	const response = await fetch(`${process.env.META_ENDPOINT}/api/metas/`);
-	const metas = await response.json();
+	const fetcher = (args: string) => fetch(args).then((res) => res.json());
+	const {
+		data: metas,
+		error: isError,
+		isLoading,
+	} = useSWR(`/api/metas`, fetcher); // swr is fucking epic
+	const tagDisplay = tags ? tags.join(', ') : ''; // i forgot why i had to do this tbh
 
 	// this filters and shuffles the array of metadata
-	const listItems = shuffleArray(metas)
-		.filter((d: Metadata) => d.fileName !== fileName)
-		.slice(0, 3)
-		.map((d: Metadata) => {
-			const { title } = d;
-			// a wrapper div to add some margins
-			return <PostCard meta={d} key={title} />;
-		});
 
-	const tagDisplay = tags ? tags.join(', ') : ''; // i forgot why i had to do this tbh
+	const listItems = isLoading
+		? 'Loading'
+		: shuffleArray(metas)
+				.filter((d: Metadata) => d.fileName !== fileName)
+				.slice(0, 3)
+				.map((d: Metadata) => {
+					const { title } = d;
+					// a wrapper div to add some margins
+					return <PostCard meta={d} key={title} />;
+				});
+
+	const t = `${title} | Blog`; // for some reason, if this is inline in the <title>, it thinks you're rendering multiple titles
+	// so fuck that
+
 	return (
 		<div style={{ marginBottom: '10rem' }}>
 			<Head>
-				<title>{title} | Blog</title>
+				<title>{t}</title>
 				<link
 					rel='stylesheet'
 					href='https://unpkg.com/dracula-prism/dist/css/dracula-prism.css'
@@ -105,5 +130,4 @@ const BlogLayout = async (props: { children: ReactNode; meta: Metadata }) => {
 		</div>
 	);
 };
-
 export default BlogLayout;
