@@ -45,14 +45,10 @@ const BlogLayout = async (props: { children: ReactNode; meta: Metadata }) => {
 		});
 
 	const tagDisplay = tags ? tags.join(', ') : ''; // i forgot why i had to do this tbh
-	// this filters and shuffles the array of metadata
-	const t = `${title} | Blog`; // for some reason, if this is inline in the <title>, it thinks you're rendering multiple titles
-	// so fuck that
-
 	return (
 		<div style={{ marginBottom: '10rem' }}>
 			<Head>
-				<title>{t}</title>
+				<title>{title} | Blog</title>
 				<link
 					rel='stylesheet'
 					href='https://unpkg.com/dracula-prism/dist/css/dracula-prism.css'
