@@ -13,15 +13,39 @@ import PostCard from './PostCard';
 import { Comments } from './comments/Comments';
 import { CommentForm } from './comments/CommentForm';
 
-const Layout = async (props: { children: ReactNode; meta: Metadata }) => {
+// source: https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+/* Randomize array in-place using Durstenfeld shuffle algorithm */
+function shuffleArray(array: Metadata[]) {
+	for (let i = array.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+
+	return array;
+}
+
+const BlogLayout = async (props: { children: ReactNode; meta: Metadata }) => {
 	const { children, meta } = props; // children is the markdown content
 	const { title, author, date, authorLink, description, tags, fileName } =
 		meta; // metadata of CURRENT post
 
-	const tagDisplay = tags ? tags.join(', ') : ''; // i forgot why i had to do this tbh
+	const response = await fetch(`${process.env.META_ENDPOINT}/api/metas/`);
+	const metas = await response.json();
 
 	// this filters and shuffles the array of metadata
+	const listItems = shuffleArray(metas)
+		.filter((d: Metadata) => d.fileName !== fileName)
+		.slice(0, 3)
+		.map((d: Metadata) => {
+			const { title } = d;
+			// a wrapper div to add some margins
+			return <PostCard meta={d} key={title} />;
+		});
 
+	const tagDisplay = tags ? tags.join(', ') : ''; // i forgot why i had to do this tbh
+	// this filters and shuffles the array of metadata
 	const t = `${title} | Blog`; // for some reason, if this is inline in the <title>, it thinks you're rendering multiple titles
 	// so fuck that
 
@@ -64,9 +88,21 @@ const Layout = async (props: { children: ReactNode; meta: Metadata }) => {
 						</div>
 					</Col>
 					<Col>
-						<h2>Comments</h2>
-						<CommentForm fileName={fileName} />
-						<Comments fileName={fileName} />
+						{/* this is another container to split the comments and posts horizontally */}
+						<Container>
+							<Row>
+								<h2>Other Posts</h2>
+								<Container>
+									<Col>{listItems}</Col>
+								</Container>
+							</Row>
+							<Row>
+								<h2>Comments</h2>
+								<CommentForm fileName={fileName} />
+								<Comments fileName={fileName} />
+							</Row>
+							<br />
+						</Container>
 					</Col>
 				</Row>
 			</Container>
@@ -74,4 +110,4 @@ const Layout = async (props: { children: ReactNode; meta: Metadata }) => {
 	);
 };
 
-export default Layout;
+export default BlogLayout;

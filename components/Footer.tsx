@@ -16,21 +16,12 @@ const Footer = () => {
 							dvub
 						</a>
 					</Col>
-					<Col lg={{ offset: 5 }}>v1.2.0</Col>
 					<Col>
 						<a
 							href='https://github.com/dvub/personal_website'
 							style={linkStyle}
 						>
 							repository
-						</a>
-					</Col>
-					<Col>
-						<a
-							href='https://github.com/dvub/personal_website/blob/main/changelog.md'
-							style={linkStyle}
-						>
-							changelog
 						</a>
 					</Col>
 				</Row>
